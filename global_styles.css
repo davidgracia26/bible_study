@@ -14,9 +14,10 @@
 }
 
 body {
-  font-family: 'Georgia', 'Times New Roman', serif;
+  font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
   background: var(--cream);
   color: var(--text);
+  font-size: 18px;
   line-height: 1.75;
 }
 
@@ -126,7 +127,7 @@ header h1 span { color: var(--gold2); }
   margin-bottom: 10px;
 }
 .passage-text {
-  font-size: .97rem;
+  font-size: 1.1rem;
   line-height: 1.7;
   color: var(--text);
 }
@@ -198,7 +199,7 @@ header h1 span { color: var(--gold2); }
 }
 .q-body { flex: 1; }
 .q-text {
-  font-size: 1rem;
+  font-size: 1.1rem;
   line-height: 1.65;
   color: var(--text);
 }
@@ -242,7 +243,7 @@ header h1 span { color: var(--gold2); }
   pointer-events: none;
 }
 .quote-text {
-  font-size: .97rem;
+  font-size: 1.1rem;
   line-height: 1.7;
   color: rgba(255,255,255,.9);
   font-style: italic;
@@ -285,7 +286,7 @@ header h1 span { color: var(--gold2); }
 }
 .prayer-body {
   flex: 1;
-  font-size: 1rem;
+  font-size: 1.1rem;
   line-height: 1.85;
   color: var(--text);
   font-style: italic;

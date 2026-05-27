@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bible Study — May 26</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:      #0f2340;
+      --navy2:     #1a3558;
+      --navy3:     #243f6a;
+      --gold:      #c9a84c;
+      --gold2:     #e8c878;
+      --cream:     #faf7f2;
+      --white:     #ffffff;
+      --text:      #1e2a3a;
+      --muted:     #3d4f63;
+      --gold-dark: #b5902e;
+      --border:    #dde3ec;
+      --radius:    10px;
+      --nav-h:     52px;
+      --left-w:    38%;
+    }
+
+    /* ─────────────────────────────────────────
+       LAYOUT SHELL
+    ───────────────────────────────────────── */
+    html, body { height: 100%; }
+
+    body {
+      font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      font-size: 18px;
+      line-height: 1.7;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* ─────────────────────────────────────────
+       TOP CHROME (compact — doesn't eat TV space)
+    ───────────────────────────────────────── */
+    .top-chrome {
+      background: linear-gradient(90deg, var(--navy) 0%, var(--navy2) 100%);
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      gap: 16px;
+      flex-shrink: 0;
+      box-shadow: 0 2px 12px rgba(15,35,64,.4);
+      position: sticky;
+      top: 0;
+      z-index: 200;
+    }
+    .chrome-title {
+      flex: 1;
+      min-width: 0;
+    }
+    .chrome-title .eyebrow {
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold2);
+      line-height: 1;
+      margin-bottom: 2px;
+    }
+    .chrome-title h1 {
+      font-size: .95rem;
+      font-weight: 600;
+      color: white;
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .chrome-title h1 span { color: var(--gold2); }
+
+    /* Section jump pills */
+    .section-pills {
+      display: flex;
+      gap: 5px;
+      flex-shrink: 0;
+    }
+    .section-pills button {
+      background: rgba(201,168,76,.12);
+      border: 1px solid rgba(201,168,76,.35);
+      border-radius: 20px;
+      color: var(--gold2);
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      cursor: pointer;
+      transition: background .15s, color .15s, border-color .15s;
+      white-space: nowrap;
+    }
+    .section-pills button:hover,
+    .section-pills button.active {
+      background: var(--gold);
+      color: var(--navy);
+      border-color: var(--gold);
+    }
+
+    /* Font size control */
+    .font-controls {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+      border-left: 1px solid rgba(255,255,255,.15);
+      padding-left: 14px;
+      margin-left: 4px;
+    }
+    .font-controls span {
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.5);
+      margin-right: 2px;
+    }
+    .font-btn {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,168,76,.35);
+      background: rgba(201,168,76,.1);
+      color: var(--gold2);
+      font-size: .9rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .15s;
+      flex-shrink: 0;
+    }
+    .font-btn:hover { background: var(--gold); color: var(--navy); }
+
+    /* ─────────────────────────────────────────
+       TWO-COLUMN WORKSPACE
+    ───────────────────────────────────────── */
+    .workspace {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+      height: calc(100vh - var(--nav-h));
+      position: sticky;
+      top: var(--nav-h);
+    }
+
+    /* ── LEFT PANEL: passage + scholar context (sticky, never scrolls away) ── */
+    .left-panel {
+      width: var(--left-w);
+      flex-shrink: 0;
+      background: var(--navy);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border-right: 3px solid var(--gold);
+    }
+
+    .left-panel-header {
+      background: rgba(0,0,0,.25);
+      padding: 12px 18px 10px;
+      flex-shrink: 0;
+      border-bottom: 1px solid rgba(201,168,76,.2);
+    }
+    .left-panel-header .part-badge {
+      font-size: .6rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold2);
+      margin-bottom: 3px;
+    }
+    .left-panel-header .part-name {
+      font-size: 1rem;
+      color: white;
+      font-weight: 500;
+      line-height: 1.3;
+    }
+    .left-panel-header .part-name em { color: var(--gold2); font-style: normal; }
+
+    .left-panel-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .left-panel-body::-webkit-scrollbar { width: 5px; }
+    .left-panel-body::-webkit-scrollbar-track { background: transparent; }
+    .left-panel-body::-webkit-scrollbar-thumb { background: rgba(201,168,76,.3); border-radius: 3px; }
+
+    /* Passage card inside left panel */
+    .passage-block {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(201,168,76,.25);
+      border-top: 3px solid var(--gold);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+    }
+    .passage-block .p-ref {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .passage-block .p-text {
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,.92);
+      font-style: italic;
+    }
+    .passage-block .p-trans {
+      font-size: .65rem;
+      color: rgba(255,255,255,.55);
+      margin-top: 8px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    /* Scholar quote block inside left panel */
+    .scholar-block {
+      background: rgba(201,168,76,.07);
+      border-left: 4px solid var(--gold);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 12px 14px;
+    }
+    .scholar-block .s-label {
+      font-size: .58rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+    .scholar-block .s-quote {
+      font-size: .92rem;
+      line-height: 1.6;
+      color: rgba(255,255,255,.85);
+      font-style: italic;
+    }
+    .scholar-block .s-attr {
+      font-size: .72rem;
+      font-weight: 700;
+      color: var(--gold2);
+      margin-top: 7px;
+      font-style: normal;
+    }
+
+    /* placeholder when no scholar quote for this question */
+    .no-scholar {
+      font-size: .8rem;
+      color: rgba(255,255,255,.5);
+      font-style: italic;
+      text-align: center;
+      padding: 8px 0;
+    }
+
+    /* ── RIGHT PANEL: question focus view ── */
+    .right-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background: var(--cream);
+    }
+
+    /* Question counter bar */
+    .q-counter-bar {
+      background: white;
+      border-bottom: 1px solid var(--border);
+      padding: 8px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+    .q-counter-bar .q-dots {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+      flex: 1;
+    }
+    .q-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--border);
+      cursor: pointer;
+      transition: background .15s, transform .15s;
+      flex-shrink: 0;
+    }
+    .q-dot.done { background: rgba(201,168,76,.45); }
+    .q-dot.active { background: var(--gold); transform: scale(1.4); }
+
+    .q-of-total {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      color: var(--muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .q-of-total strong { color: var(--navy); }
+
+    /* The active question display */
+    .q-stage {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 32px 36px;
+      overflow-y: auto;
+    }
+    .q-stage::-webkit-scrollbar { width: 5px; }
+    .q-stage::-webkit-scrollbar-track { background: transparent; }
+    .q-stage::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+    .q-num-large {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .q-num-large::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .q-text-main {
+      font-size: 1.35rem;
+      line-height: 1.7;
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    .q-refs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 20px;
+    }
+    .q-refs span {
+      background: rgba(201,168,76,.1);
+      border: 1px solid var(--gold-dark);
+      border-radius: 4px;
+      padding: 3px 11px;
+      font-size: .8rem;
+      font-weight: 700;
+      color: var(--gold-dark);
+      letter-spacing: .04em;
+    }
+
+    /* Navigation buttons */
+    .q-nav-bar {
+      background: white;
+      border-top: 1px solid var(--border);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+    .nav-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--navy);
+      border: none;
+      border-radius: 8px;
+      color: var(--gold2);
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background .15s, color .15s;
+    }
+    .nav-btn:hover { background: var(--navy2); }
+    .nav-btn:disabled { background: var(--border); color: var(--muted); cursor: default; }
+    .nav-btn .arrow { font-size: 1rem; }
+    .nav-btn.primary {
+      background: var(--gold);
+      color: var(--navy);
+      flex: 1;
+      justify-content: center;
+      font-size: .9rem;
+    }
+    .nav-btn.primary:hover { background: var(--gold2); }
+    .nav-btn.primary:disabled { background: var(--border); color: var(--muted); }
+
+    /* Mark done toggle */
+    .mark-btn {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--muted);
+      font-size: .78rem;
+      font-weight: 700;
+      padding: 9px 16px;
+      cursor: pointer;
+      transition: all .15s;
+      white-space: nowrap;
+    }
+    .mark-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .mark-btn.marked { border-color: var(--gold); background: rgba(201,168,76,.1); color: var(--gold); }
+
+    /* ── ALL-QUESTIONS LIST VIEW (hidden by default, toggled) ── */
+    .list-overlay {
+      display: none;
+      position: fixed;
+      inset: var(--nav-h) 0 0 0;
+      background: rgba(15,35,64,.55);
+      z-index: 150;
+      backdrop-filter: blur(2px);
+    }
+    .list-overlay.open { display: flex; align-items: flex-start; justify-content: flex-end; }
+    .list-drawer {
+      background: var(--white);
+      width: 420px;
+      max-width: 90vw;
+      height: 100%;
+      overflow-y: auto;
+      box-shadow: -4px 0 30px rgba(15,35,64,.25);
+      display: flex;
+      flex-direction: column;
+    }
+    .list-drawer-header {
+      background: var(--navy);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+    .list-drawer-header h2 {
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gold2);
+    }
+    .close-btn {
+      background: none;
+      border: 1px solid rgba(201,168,76,.3);
+      border-radius: 50%;
+      color: var(--gold2);
+      width: 28px; height: 28px;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .15s;
+    }
+    .close-btn:hover { background: rgba(201,168,76,.2); }
+
+    .list-section {
+      padding: 10px 16px 6px;
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(201,168,76,.06);
+      border-bottom: 1px solid var(--border);
+    }
+    .list-q-item {
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      transition: background .12s;
+    }
+    .list-q-item:hover { background: #f0f4fb; }
+    .list-q-item.active-item { background: rgba(201,168,76,.08); border-left: 4px solid var(--gold); }
+    .list-q-item .lq-num {
+      min-width: 30px; height: 30px;
+      background: var(--navy);
+      color: var(--gold2);
+      border-radius: 50%;
+      font-size: .75rem;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .list-q-item.done-item .lq-num { background: rgba(201,168,76,.25); color: var(--gold); }
+    .list-q-item .lq-text {
+      font-size: .88rem;
+      line-height: 1.5;
+      color: var(--text);
+    }
+    .list-q-item.done-item .lq-text { color: var(--muted); }
+
+    /* ── LIST TOGGLE BUTTON (top-chrome) ── */
+    .list-toggle-btn {
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 6px;
+      color: white;
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      padding: 5px 12px;
+      cursor: pointer;
+      transition: background .15s;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .list-toggle-btn:hover { background: rgba(255,255,255,.2); }
+
+    /* ── OVERVIEW MODE: all questions for print/browse ── */
+    .overview-section { display: none; }
+    .overview-section.visible { display: block; }
+    .main-workspace { display: flex; flex-direction: column; flex: 1; }
+    .main-workspace.hidden { display: none; }
+
+    /* ── SECTION OVERVIEW HEADER (shown in all-questions list) ── */
+    .overview-part-header {
+      background: linear-gradient(90deg, var(--navy) 0%, var(--navy2) 100%);
+      color: white;
+      padding: 14px 28px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 0;
+    }
+    .overview-part-header .op-label {
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold2);
+    }
+    .overview-part-header .op-title { font-size: 1rem; color: white; }
+    .overview-part-header .op-title em { color: var(--gold2); font-style: normal; }
+    .overview-part-header .op-ref { margin-left: auto; font-size: .78rem; color: rgba(255,255,255,.55); }
+
+    .overview-q-card {
+      background: white;
+      border-bottom: 1px solid var(--border);
+      padding: 18px 28px;
+      display: flex;
+      gap: 16px;
+    }
+    .overview-q-card .oq-num {
+      min-width: 36px; height: 36px;
+      background: var(--navy);
+      color: var(--gold2);
+      border-radius: 50%;
+      font-size: .82rem;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .overview-q-card .oq-text {
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--text);
+    }
+    .overview-q-card .oq-refs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 8px;
+    }
+    .overview-q-card .oq-refs span {
+      background: rgba(201,168,76,.1);
+      border: 1px solid var(--gold-dark);
+      border-radius: 4px;
+      padding: 1px 8px;
+      font-size: .72rem;
+      font-weight: 700;
+      color: var(--gold-dark);
+    }
+
+    /* ─────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────── */
+    .page-footer {
+      background: var(--navy);
+      color: rgba(255,255,255,.4);
+      text-align: center;
+      padding: 16px 20px;
+      font-size: .72rem;
+      letter-spacing: .04em;
+      flex-shrink: 0;
+    }
+    .page-footer strong { color: var(--gold2); }
+
+    /* ─────────────────────────────────────────
+       SECTION OVERLAY PANELS (Passages / Voices / Prayer)
+    ───────────────────────────────────────── */
+    .section-overlay {
+      display: none;
+      position: fixed;
+      inset: var(--nav-h) 0 0 0;
+      background: rgba(15,35,64,.6);
+      z-index: 140;
+      backdrop-filter: blur(3px);
+      align-items: flex-start;
+      justify-content: center;
+      overflow-y: auto;
+      padding: 32px 20px;
+    }
+    .section-overlay.open { display: flex; }
+    .section-panel {
+      background: var(--white);
+      border-radius: 14px;
+      width: 100%;
+      max-width: 720px;
+      box-shadow: 0 8px 48px rgba(15,35,64,.35);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .section-panel-header {
+      background: linear-gradient(90deg, var(--navy) 0%, var(--navy2) 100%);
+      padding: 20px 24px 16px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .section-panel-header .sp-eyebrow {
+      font-size: .6rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold2);
+      margin-bottom: 4px;
+    }
+    .section-panel-header .sp-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: white;
+      line-height: 1.3;
+    }
+    .section-panel-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    /* Passages overlay cards */
+    .sp-passage-card {
+      background: var(--navy);
+      border-radius: var(--radius);
+      border-top: 3px solid var(--gold);
+      padding: 16px 18px;
+    }
+    .sp-passage-card .sp-ref {
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .sp-passage-card .sp-text {
+      font-size: 1rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,.92);
+      font-style: italic;
+    }
+    .sp-passage-card .sp-trans {
+      font-size: .62rem;
+      color: rgba(255,255,255,.35);
+      margin-top: 8px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    /* Voices overlay cards */
+    .sp-scholar-card {
+      background: rgba(201,168,76,.06);
+      border: 1px solid rgba(201,168,76,.25);
+      border-left: 4px solid var(--gold);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 16px 18px;
+    }
+    .sp-scholar-card .sp-s-label {
+      font-size: .58rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+    .sp-scholar-card .sp-s-quote {
+      font-size: .95rem;
+      line-height: 1.65;
+      color: var(--text);
+      font-style: italic;
+    }
+    .sp-scholar-card .sp-s-attr {
+      font-size: .75rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-top: 8px;
+    }
+    /* Prayer overlay */
+    .sp-prayer-block {
+      background: var(--navy);
+      border-radius: var(--radius);
+      border-left: 4px solid var(--gold);
+      padding: 20px 22px;
+    }
+    .sp-prayer-block .sp-prayer-label {
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold2);
+      margin-bottom: 12px;
+    }
+    .sp-prayer-block .sp-prayer-text {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,.9);
+      font-style: italic;
+    }
+    .sp-prayer-block .sp-prayer-source {
+      font-size: .72rem;
+      font-weight: 700;
+      color: var(--gold2);
+      margin-top: 12px;
+    }
+
+    /* ─────────────────────────────────────────
+       PRINT
+    ───────────────────────────────────────── */
+    @media print {
+      .top-chrome, .list-overlay, .q-counter-bar, .q-nav-bar,
+      .left-panel, .workspace, .page-footer { display: none !important; }
+      .overview-section { display: block !important; }
+      .main-workspace { display: none !important; }
+      body { font-size: 11pt; background: white; color: black; }
+      .overview-part-header { background: none; border: 1px solid black; color: black; page-break-after: avoid; }
+      .overview-part-header .op-label, .overview-part-header .op-title,
+      .overview-part-header .op-title em, .overview-part-header .op-ref { color: black; }
+      .overview-q-card { page-break-inside: avoid; border: 1px solid #ccc; margin-bottom: 4px; }
+      .overview-q-card .oq-num { background: none; border: 1px solid black; color: black; }
+      .overview-q-card .oq-refs span { border-color: #333; color: #333; background: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════
+     TOP CHROME (sticky, compact)
+════════════════════════════════════════ -->
+<div class="top-chrome">
+
+  <div class="chrome-title">
+    <div class="eyebrow">Bible Study &mdash; May 26, 2026</div>
+    <h1>Scattered &amp; Gathered: <span>Unity, Diversity &amp; the Church</span></h1>
+  </div>
+
+  <div class="section-pills" id="section-pills">
+    <button onclick="jumpToSection(0)" data-section="0">Passages</button>
+    <button onclick="jumpToSection(1)" data-section="1">Part 1</button>
+    <button onclick="jumpToSection(2)" data-section="2">Part 2</button>
+    <button onclick="jumpToSection(3)" data-section="3">Part 3</button>
+    <button onclick="jumpToSection(4)" data-section="4">Voices</button>
+    <button onclick="jumpToSection(5)" data-section="5">Prayer</button>
+  </div>
+
+  <button class="list-toggle-btn" onclick="toggleListOverlay()">All Questions &#9776;</button>
+
+  <div class="font-controls">
+    <span>Aa</span>
+    <button class="font-btn" onclick="adjustFont(-1)" title="Smaller">&#8722;</button>
+    <button class="font-btn" onclick="adjustFont(1)"  title="Larger">&#43;</button>
+  </div>
+
+</div>
+
+<!-- ════════════════════════════════════════
+     ALL-QUESTIONS DRAWER OVERLAY
+════════════════════════════════════════ -->
+<div class="list-overlay" id="list-overlay" onclick="closeListOnBackdrop(event)">
+  <div class="list-drawer">
+    <div class="list-drawer-header">
+      <h2>All Questions</h2>
+      <button class="close-btn" onclick="toggleListOverlay()">&#x2715;</button>
+    </div>
+
+    <div class="list-section">Part 1 — Tower of Babel &nbsp;·&nbsp; Gen 11:4, 9</div>
+    <div class="list-q-item" id="li-0" onclick="goToQuestion(0); toggleListOverlay();">
+      <div class="lq-num">1</div>
+      <div class="lq-text">The people at Babel wanted to "make a name for ourselves." What drives that impulse — pride, fear, insecurity?</div>
+    </div>
+    <div class="list-q-item" id="li-1" onclick="goToQuestion(1); toggleListOverlay();">
+      <div class="lq-num">2</div>
+      <div class="lq-text">Brueggemann reads Babel as an "empire story." What empires are you tempted to build in your own life?</div>
+    </div>
+    <div class="list-q-item" id="li-2" onclick="goToQuestion(2); toggleListOverlay();">
+      <div class="lq-num">3</div>
+      <div class="lq-text">God's response at Babel is to scatter. Is the scattering a punishment, a mercy, or something else?</div>
+    </div>
+    <div class="list-q-item" id="li-3" onclick="goToQuestion(3); toggleListOverlay();">
+      <div class="lq-num">4</div>
+      <div class="lq-text">Babel's unity was built on sameness. When have you seen a community try to maintain unity by suppressing difference?</div>
+    </div>
+    <div class="list-q-item" id="li-4" onclick="goToQuestion(4); toggleListOverlay();">
+      <div class="lq-num">5</div>
+      <div class="lq-text">Brueggemann speaks of the "prophetic imagination." What would it look like to imagine your community through that lens?</div>
+    </div>
+
+    <div class="list-section">Part 2 — Day of Pentecost &nbsp;·&nbsp; Acts 2:4, 6</div>
+    <div class="list-q-item" id="li-5" onclick="goToQuestion(5); toggleListOverlay();">
+      <div class="lq-num">6</div>
+      <div class="lq-text">At Babel one language became many. At Pentecost many remain — yet each person hears. Why doesn't the Spirit restore one language?</div>
+    </div>
+    <div class="list-q-item" id="li-6" onclick="goToQuestion(6); toggleListOverlay();">
+      <div class="lq-num">7</div>
+      <div class="lq-text">N.T. Wright describes Pentecost as the launch of "new creation." How does that change how you think about what the Church should be doing?</div>
+    </div>
+    <div class="list-q-item" id="li-7" onclick="goToQuestion(7); toggleListOverlay();">
+      <div class="lq-num">8</div>
+      <div class="lq-text">"Each one was hearing them speak in his own language." What does that say about how God values particularity?</div>
+    </div>
+    <div class="list-q-item" id="li-8" onclick="goToQuestion(8); toggleListOverlay();">
+      <div class="lq-num">9</div>
+      <div class="lq-text">What are the "Babel projects" the Church is sometimes tempted to substitute for genuine Pentecost community?</div>
+    </div>
+    <div class="list-q-item" id="li-9" onclick="goToQuestion(9); toggleListOverlay();">
+      <div class="lq-num">10</div>
+      <div class="lq-text">When have you experienced the Church doing something genuinely surprising or disorienting in the best possible way?</div>
+    </div>
+
+    <div class="list-section">Part 3 — The Church as Social Miracle &nbsp;·&nbsp; Eph 2:14</div>
+    <div class="list-q-item" id="li-10" onclick="goToQuestion(10); toggleListOverlay();">
+      <div class="lq-num">11</div>
+      <div class="lq-text">Christ has broken down "the dividing wall of hostility." What walls are hardest for your church to let Christ break down?</div>
+    </div>
+    <div class="list-q-item" id="li-11" onclick="goToQuestion(11); toggleListOverlay();">
+      <div class="lq-num">12</div>
+      <div class="lq-text">Hauerwas argues the Church is a "contrast society." Does your church feel like a contrast society? Should it?</div>
+    </div>
+    <div class="list-q-item" id="li-12" onclick="goToQuestion(12); toggleListOverlay();">
+      <div class="lq-num">13</div>
+      <div class="lq-text">Richard Beck: "The Church is called to be a social miracle." Is your experience of the Church miraculous — or explainable?</div>
+    </div>
+    <div class="list-q-item" id="li-13" onclick="goToQuestion(13); toggleListOverlay();">
+      <div class="lq-num">14</div>
+      <div class="lq-text">Houston has 145+ languages. What is God uniquely calling the Church in Houston to demonstrate to the watching world?</div>
+    </div>
+    <div class="list-q-item" id="li-14" onclick="goToQuestion(14); toggleListOverlay();">
+      <div class="lq-num">15</div>
+      <div class="lq-text">The arc of Scripture: Babel → Pentecost → "every tribe, tongue, and nation" (Rev 7:9). How does that end-of-story vision change how you live now?</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PASSAGES OVERLAY
+════════════════════════════════════════ -->
+<div class="section-overlay" id="passages-overlay" onclick="closeOverlayOnBackdrop(event,'passages-overlay')">
+  <div class="section-panel">
+    <div class="section-panel-header">
+      <div>
+        <div class="sp-eyebrow">Key Texts</div>
+        <div class="sp-title">Scripture Passages</div>
+      </div>
+      <button class="close-btn" onclick="closeOverlay('passages-overlay')">&#x2715;</button>
+    </div>
+    <div class="section-panel-body">
+      <div class="sp-passage-card">
+        <div class="sp-ref">Genesis 11:4</div>
+        <div class="sp-text">&#x201C;&hellip;let us make a name for ourselves, lest we be dispersed over the face of the whole earth.&#x201D;</div>
+        <div class="sp-trans">ESV</div>
+      </div>
+      <div class="sp-passage-card">
+        <div class="sp-ref">Genesis 11:9</div>
+        <div class="sp-text">&#x201C;&hellip;the <span style="font-variant:small-caps">Lord</span> confused the language of all the earth. And from there the <span style="font-variant:small-caps">Lord</span> dispersed them over the face of all the earth.&#x201D;</div>
+        <div class="sp-trans">ESV</div>
+      </div>
+      <div class="sp-passage-card">
+        <div class="sp-ref">Acts 2:4</div>
+        <div class="sp-text">&#x201C;And they were all filled with the Holy Spirit and began to speak in other tongues as the Spirit gave them utterance.&#x201D;</div>
+        <div class="sp-trans">ESV</div>
+      </div>
+      <div class="sp-passage-card">
+        <div class="sp-ref">Acts 2:6</div>
+        <div class="sp-text">&#x201C;And at this sound the multitude came together, and they were bewildered, because each one was hearing them speak in his own language.&#x201D;</div>
+        <div class="sp-trans">ESV</div>
+      </div>
+      <div class="sp-passage-card">
+        <div class="sp-ref">Ephesians 2:14</div>
+        <div class="sp-text">&#x201C;For he himself is our peace, who has made us both one and has broken down in his flesh the dividing wall of hostility.&#x201D;</div>
+        <div class="sp-trans">ESV</div>
+      </div>
+      <div class="sp-passage-card">
+        <div class="sp-ref">Revelation 7:9</div>
+        <div class="sp-text">&#x201C;After this I looked, and behold, a great multitude that no one could number, from every nation, from all tribes and peoples and languages, standing before the throne and before the Lamb&hellip;&#x201D;</div>
+        <div class="sp-trans">ESV</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     VOICES OVERLAY
+════════════════════════════════════════ -->
+<div class="section-overlay" id="voices-overlay" onclick="closeOverlayOnBackdrop(event,'voices-overlay')">
+  <div class="section-panel">
+    <div class="section-panel-header">
+      <div>
+        <div class="sp-eyebrow">Scholar Voices</div>
+        <div class="sp-title">Thinkers in Conversation</div>
+      </div>
+      <button class="close-btn" onclick="closeOverlay('voices-overlay')">&#x2715;</button>
+    </div>
+    <div class="section-panel-body">
+      <div class="sp-scholar-card">
+        <div class="sp-s-label">Walter Brueggemann &nbsp;&middot;&nbsp; The Prophetic Imagination</div>
+        <div class="sp-s-quote">&#x201C;The prophetic imagination dares to criticize the numbness and to energize the community around a vision that stands against the empire&#x2019;s claims.&#x201D;</div>
+        <div class="sp-s-attr">The Prophetic Imagination</div>
+      </div>
+      <div class="sp-scholar-card">
+        <div class="sp-s-label">N.T. Wright &nbsp;&middot;&nbsp; New Testament scholar &amp; bishop</div>
+        <div class="sp-s-quote">&#x201C;The church is called to be a sign, instrument, and foretaste of the new creation that God is bringing about through Jesus Christ. It is not a club for the like-minded.&#x201D;</div>
+        <div class="sp-s-attr">Surprised by Hope</div>
+      </div>
+      <div class="sp-scholar-card">
+        <div class="sp-s-label">Stanley Hauerwas &nbsp;&middot;&nbsp; Duke Divinity School</div>
+        <div class="sp-s-quote">&#x201C;The church does not have a social ethic; the church <em>is</em> a social ethic.&#x201D;</div>
+        <div class="sp-s-attr">A Community of Character</div>
+      </div>
+      <div class="sp-scholar-card">
+        <div class="sp-s-label">Richard Beck &nbsp;&middot;&nbsp; Abilene Christian University</div>
+        <div class="sp-s-quote">&#x201C;The Church is called to be a social miracle.&#x201D;</div>
+        <div class="sp-s-attr">Unclean: Meditations on Purity, Hospitality, and Mortality</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PRAYER OVERLAY
+════════════════════════════════════════ -->
+<div class="section-overlay" id="prayer-overlay" onclick="closeOverlayOnBackdrop(event,'prayer-overlay')">
+  <div class="section-panel">
+    <div class="section-panel-header">
+      <div>
+        <div class="sp-eyebrow">Closing</div>
+        <div class="sp-title">Prayer</div>
+      </div>
+      <button class="close-btn" onclick="closeOverlay('prayer-overlay')">&#x2715;</button>
+    </div>
+    <div class="section-panel-body">
+      <div class="sp-prayer-block">
+        <div class="sp-prayer-label">Closing Prayer</div>
+        <div class="sp-prayer-text">
+          Lord, you scattered Babel because its unity was built on pride and the erasure of difference.<br><br>
+          You answered at Pentecost not by restoring one language, but by speaking every language at once &mdash; because you have always loved the particular.<br><br>
+          You broke down the dividing wall not to make us all the same, but to make us one body in our difference.<br><br>
+          Give us the courage to be a social miracle &mdash; a community that the world cannot explain, because you alone are our peace.<br><br>
+          In the name of the one who gathers every tribe, tongue, and nation around his throne. Amen.
+        </div>
+        <div class="sp-prayer-source">&#x2014; Based on Genesis 11, Acts 2, Ephesians 2:14, Revelation 7:9</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     MAIN WORKSPACE (two-column)
+════════════════════════════════════════ -->
+<div class="main-workspace" id="main-workspace">
+<div class="workspace">
+
+  <!-- ── LEFT PANEL ── -->
+  <div class="left-panel" id="left-panel">
+    <div class="left-panel-header" id="left-header">
+      <div class="part-badge" id="left-part-badge">Part 1</div>
+      <div class="part-name" id="left-part-name">The <em>Tower of Babel</em></div>
+    </div>
+    <div class="left-panel-body" id="left-body">
+      <!-- injected by JS -->
+    </div>
+  </div>
+
+  <!-- ── RIGHT PANEL ── -->
+  <div class="right-panel">
+
+    <div class="q-counter-bar">
+      <div class="q-dots" id="q-dots"></div>
+      <div class="q-of-total" id="q-of-total"><strong>Q1</strong> of 15</div>
+    </div>
+
+    <div class="q-stage" id="q-stage">
+      <!-- injected by JS -->
+    </div>
+
+    <div class="q-nav-bar">
+      <button class="nav-btn" id="btn-prev" onclick="prevQ()" disabled>
+        <span class="arrow">&#8592;</span> Prev
+      </button>
+      <button class="nav-btn primary" id="btn-next" onclick="nextQ()">
+        Next <span class="arrow">&#8594;</span>
+      </button>
+      <button class="mark-btn" id="btn-mark" onclick="toggleMark()">&#10003; Mark Done</button>
+    </div>
+
+  </div>
+
+</div>
+</div><!-- /main-workspace -->
+
+<!-- ════════════════════════════════════════
+     PRINT-ONLY OVERVIEW (hidden on screen)
+════════════════════════════════════════ -->
+<div class="overview-section" id="overview-section">
+  <div class="overview-part-header">
+    <span class="op-label">Part 1</span>
+    <span class="op-title">The <em>Tower of Babel</em></span>
+    <span class="op-ref">Genesis 11:4, 9</span>
+  </div>
+  <div class="overview-q-card"><div class="oq-num">1</div><div><div class="oq-text">The people at Babel wanted to "make a name for ourselves." What drives that impulse — pride, fear, insecurity? Where do you see that same impulse at work in culture, institutions, or your own life?</div><div class="oq-refs"><span>Gen 11:4</span><span>Brueggemann</span></div></div></div>
+  <div class="overview-q-card"><div class="oq-num">2</div><div><div class="oq-text">Walter Brueggemann reads Babel as an "empire story" — humanity organizing itself around power and self-sufficiency rather than dependence on God. What empires (large or small) are you tempted to build in your own life?</div><div class="oq-refs"><span>Gen 11:4</span><span>Brueggemann</span></div></div></div>
+  <div class="overview-q-card"><div class="oq-num">3</div><div><div class="oq-text">God's response at Babel is to scatter. Is the scattering a punishment, a mercy, or something else entirely? What does it tell us about what God values?</div><div class="oq-refs"><span>Gen 11:9</span></div></div></div>
+  <div class="overview-q-card"><div class="oq-num">4</div><div><div class="oq-text">Babel's unity was built on sameness and self-promotion. When have you seen a community — a church, a workplace, a family — try to maintain unity by suppressing difference? What was the cost?</div><div class="oq-refs"><span>Gen 11:4–9</span><span>Hauerwas</span></div></div></div>
+  <div class="overview-q-card"><div class="oq-num">5</div><div><div class="oq-text">Brueggemann speaks of the "prophetic imagination" — the ability to envision a world ordered differently than the empire orders it. What would it look like to imagine your community through that prophetic lens this week?</div><div class="oq-refs"><span>Gen 11:9</span><span>Brueggemann</span></div></div></div>
+
+  <div class="overview-part-header">
+    <span class="op-label">Part 2</span>
+    <span class="op-title">The <em>Day of Pentecost</em></span>
+    <span class="op-ref">Acts 2:4, 6</span>
+  </div>
+  <div class="overview-q-card"><div class="oq-num">6</div><div><div class="oq-text">At Babel, one language became many. At Pentecost, many languages remain — yet each person hears. Why does the Spirit not simply restore one language? What does it mean that God speaks into diversity rather than erasing it?</div><div class="oq-refs"><span>Acts 2:4</span><span>Acts 2:6</span><span>N.T. Wright</span></div></div></div>
+  <div class="overview-q-card"><div class="oq-num">7</div><div><div class="oq-text">N.T. Wright describes Pentecost as the launch of the "new creation" — God's project of renewal breaking into the old world. How does that frame change how you think about what the Church is supposed to be doing?</div><div class="oq-refs"><span>Acts 2:4</span><span>N.T. Wright</span></div></div></div>
+  <div class="overview-q-card"><div class="oq-num">8</div><div><div class="oq-text">"Each one was hearing them speak in his own language" (Acts 2:6). The gospel arrived in people's mother tongues. What does that say about how God values particularity — your background, language, and story?</div><div class="oq-refs"><span>Acts 2:6</span></div></div></div>
+  <div class="overview-q-card"><div class="oq-num">9</div><div><div class="oq-text">If Babel is about humanity grasping for heaven on its own terms, and Pentecost is about heaven descending on God's terms — what are the "Babel projects" the Church is sometimes tempted to substitute for genuine Pentecost community?</div><div class="oq-refs"><span>Acts 2:4</span><span>Hauerwas</span></div></div></div>
+  <div class="overview-q-card"><div class="oq-num">10</div><div><div class="oq-text">The crowd at Pentecost was "bewildered" (Acts 2:6) — the word implies being out of one's mind. When have you experienced the Church doing something genuinely surprising or disorienting in the best possible way?</div><div class="oq-refs"><span>Acts 2:6</span></div></div></div>
+
+  <div class="overview-part-header">
+    <span class="op-label">Part 3</span>
+    <span class="op-title">The <em>Church as Social Miracle</em></span>
+    <span class="op-ref">Ephesians 2:14</span>
+  </div>
+  <div class="overview-q-card"><div class="oq-num">11</div><div><div class="oq-text">Paul says Christ has broken down "the dividing wall of hostility" (Eph 2:14). What walls — racial, economic, generational, political — are hardest for your church to let Christ break down? Why?</div><div class="oq-refs"><span>Eph 2:14</span><span>N.T. Wright</span></div></div></div>
+  <div class="overview-q-card"><div class="oq-num">12</div><div><div class="oq-text">Stanley Hauerwas argues the Church is a distinct political community — not a chaplain to the existing culture, but a "contrast society" that shows the world a different way to be human together. Does your church feel like a contrast society? Should it?</div><div class="oq-refs"><span>Eph 2:14</span><span>Hauerwas</span></div></div></div>
+  <div class="overview-q-card"><div class="oq-num">13</div><div><div class="oq-text">Richard Beck says, "The Church is called to be a social miracle." A miracle is something that cannot be explained by natural causes alone. Is your experience of the Church miraculous — or explainable? What would change if it were truly a miracle?</div><div class="oq-refs"><span>Richard Beck</span><span>Eph 2:14</span></div></div></div>
+  <div class="overview-q-card"><div class="oq-num">14</div><div><div class="oq-text">Houston is one of the most ethnically diverse cities on earth — more than 145 languages spoken. Given Acts 2 and Ephesians 2:14, what is God uniquely calling the Church in Houston to demonstrate to the watching world?</div><div class="oq-refs"><span>Acts 2:6</span><span>Eph 2:14</span><span>Houston</span></div></div></div>
+  <div class="overview-q-card"><div class="oq-num">15</div><div><div class="oq-text">The arc of Scripture runs from Babel's scattering to Pentecost's gathering to Revelation's vision of "every tribe, tongue, and nation" around the throne (Rev 7:9). How does that end-of-the-story vision change how you live and worship right now — this week, in this city?</div><div class="oq-refs"><span>Gen 11</span><span>Acts 2</span><span>Eph 2:14</span><span>Rev 7:9</span></div></div></div>
+</div>
+
+<div class="page-footer">
+  <strong>Bible Study &mdash; May 26, 2026</strong> &nbsp;&middot;&nbsp; Scattered &amp; Gathered: Unity, Diversity &amp; the Church &nbsp;&middot;&nbsp; ESV
+</div>
+
+<script>
+/* ════════════════════════════════════════
+   DATA
+════════════════════════════════════════ */
+const SCHOLARS = {
+  brueggemann: {
+    name: 'Walter Brueggemann',
+    role: 'The Prophetic Imagination',
+    quote: 'The prophetic imagination dares to criticize the numbness and to energize the community around a vision that stands against the empire\'s claims.'
+  },
+  wright: {
+    name: 'N.T. Wright',
+    role: 'New Testament scholar & bishop',
+    quote: 'The church is called to be a sign, instrument, and foretaste of the new creation that God is bringing about through Jesus Christ. It is not a club for the like-minded.'
+  },
+  hauerwas: {
+    name: 'Stanley Hauerwas',
+    role: 'Duke Divinity School',
+    quote: 'The church does not have a social ethic; the church <em>is</em> a social ethic.'
+  },
+  beck: {
+    name: 'Richard Beck',
+    role: 'Abilene Christian University',
+    quote: 'The Church is called to be a social miracle.'
+  }
+};
+
+const PASSAGES = {
+  'Gen 11:4':   { ref: 'Genesis 11:4',   text: '&#x201C;&hellip;let us make a name for ourselves, lest we be dispersed over the face of the whole earth.&#x201D;' },
+  'Gen 11:9':   { ref: 'Genesis 11:9',   text: '&#x201C;&hellip;the <span style="font-variant:small-caps">Lord</span> confused the language of all the earth. And from there the <span style="font-variant:small-caps">Lord</span> dispersed them over the face of all the earth.&#x201D;' },
+  'Gen 11:4–9': { ref: 'Genesis 11:4–9', text: '&#x201C;Let us make a name for ourselves&hellip;&#x201D; &mdash; and the Lord scattered them.' },
+  'Acts 2:4':   { ref: 'Acts 2:4',       text: '&#x201C;And they were all filled with the Holy Spirit and began to speak in other tongues as the Spirit gave them utterance.&#x201D;' },
+  'Acts 2:6':   { ref: 'Acts 2:6',       text: '&#x201C;And at this sound the multitude came together, and they were bewildered, because each one was hearing them speak in his own language.&#x201D;' },
+  'Eph 2:14':   { ref: 'Ephesians 2:14', text: '&#x201C;For he himself is our peace, who has made us both one and has broken down in his flesh the dividing wall of hostility.&#x201D;' }
+};
+
+const QUESTIONS = [
+  {
+    n: 1, section: 0,
+    text: 'The people at Babel wanted to &#x201C;make a name for ourselves.&#x201D; What drives that impulse &#x2014; pride, fear, insecurity? Where do you see that same impulse at work in culture, institutions, or your own life?',
+    refs: ['Gen 11:4'],
+    passages: ['Gen 11:4'],
+    scholar: 'brueggemann'
+  },
+  {
+    n: 2, section: 0,
+    text: 'Walter Brueggemann reads Babel as an &#x201C;empire story&#x201D; &#x2014; humanity organizing itself around power and self-sufficiency rather than dependence on God. What empires (large or small) are you tempted to build in your own life?',
+    refs: ['Gen 11:4', 'Brueggemann'],
+    passages: ['Gen 11:4'],
+    scholar: 'brueggemann'
+  },
+  {
+    n: 3, section: 0,
+    text: 'God&#x2019;s response at Babel is to scatter. Is the scattering a punishment, a mercy, or something else entirely? What does it tell us about what God values?',
+    refs: ['Gen 11:9'],
+    passages: ['Gen 11:9'],
+    scholar: null
+  },
+  {
+    n: 4, section: 0,
+    text: 'Babel&#x2019;s unity was built on sameness and self-promotion. When have you seen a community &#x2014; a church, a workplace, a family &#x2014; try to maintain unity by suppressing difference? What was the cost?',
+    refs: ['Gen 11:4–9', 'Hauerwas'],
+    passages: ['Gen 11:4–9'],
+    scholar: 'hauerwas'
+  },
+  {
+    n: 5, section: 0,
+    text: 'Brueggemann speaks of the &#x201C;prophetic imagination&#x201D; &#x2014; the ability to envision a world ordered differently than the empire orders it. What would it look like to imagine your community through that prophetic lens this week?',
+    refs: ['Gen 11:9', 'Brueggemann'],
+    passages: ['Gen 11:9'],
+    scholar: 'brueggemann'
+  },
+  {
+    n: 6, section: 1,
+    text: 'At Babel, one language became many. At Pentecost, many languages remain &#x2014; yet each person hears. Why does the Spirit not simply restore one language? What does it mean that God speaks <em>into</em> diversity rather than erasing it?',
+    refs: ['Acts 2:4', 'Acts 2:6', 'N.T. Wright'],
+    passages: ['Acts 2:4', 'Acts 2:6'],
+    scholar: 'wright'
+  },
+  {
+    n: 7, section: 1,
+    text: 'N.T. Wright describes Pentecost as the launch of the &#x201C;new creation&#x201D; &#x2014; God&#x2019;s project of renewal breaking into the old world. How does that frame change how you think about what the Church is supposed to be doing?',
+    refs: ['Acts 2:4', 'N.T. Wright'],
+    passages: ['Acts 2:4'],
+    scholar: 'wright'
+  },
+  {
+    n: 8, section: 1,
+    text: '&#x201C;Each one was hearing them speak in his own language&#x201D; (Acts 2:6). The gospel arrived in people&#x2019;s mother tongues. What does that say about how God values particularity &#x2014; your background, language, and story &#x2014; rather than demanding you conform to someone else&#x2019;s?',
+    refs: ['Acts 2:6'],
+    passages: ['Acts 2:6'],
+    scholar: null
+  },
+  {
+    n: 9, section: 1,
+    text: 'If Babel is about humanity grasping for heaven on its own terms, and Pentecost is about heaven descending on God&#x2019;s terms &#x2014; what are the &#x201C;Babel projects&#x201D; the Church is sometimes tempted to substitute for genuine Pentecost community?',
+    refs: ['Acts 2:4', 'Hauerwas'],
+    passages: ['Acts 2:4'],
+    scholar: 'hauerwas'
+  },
+  {
+    n: 10, section: 1,
+    text: 'The crowd at Pentecost was &#x201C;bewildered&#x201D; (Acts 2:6) &#x2014; the word implies being out of one&#x2019;s mind. When have you experienced the Church doing something genuinely surprising or disorienting in the best possible way?',
+    refs: ['Acts 2:6'],
+    passages: ['Acts 2:6'],
+    scholar: null
+  },
+  {
+    n: 11, section: 2,
+    text: 'Paul says Christ has broken down &#x201C;the dividing wall of hostility&#x201D; (Eph 2:14). What walls &#x2014; racial, economic, generational, political &#x2014; are hardest for your church to let Christ break down? Why?',
+    refs: ['Eph 2:14', 'N.T. Wright'],
+    passages: ['Eph 2:14'],
+    scholar: 'wright'
+  },
+  {
+    n: 12, section: 2,
+    text: 'Stanley Hauerwas argues the Church is a distinct political community &#x2014; not a chaplain to the existing culture, but a &#x201C;contrast society&#x201D; that shows the world a different way to be human together. Does your church feel like a contrast society? Should it?',
+    refs: ['Eph 2:14', 'Hauerwas'],
+    passages: ['Eph 2:14'],
+    scholar: 'hauerwas'
+  },
+  {
+    n: 13, section: 2,
+    text: 'Richard Beck says, &#x201C;The Church is called to be a social miracle.&#x201D; A miracle is something that cannot be explained by natural causes alone. Is your experience of the Church miraculous &#x2014; or explainable? What would change if it were truly a miracle?',
+    refs: ['Richard Beck', 'Eph 2:14'],
+    passages: ['Eph 2:14'],
+    scholar: 'beck'
+  },
+  {
+    n: 14, section: 2,
+    text: 'Houston is one of the most ethnically diverse cities on earth &#x2014; more than 145 languages spoken. Given Acts 2 and Ephesians 2:14, what is God uniquely calling the Church in Houston to demonstrate to the watching world?',
+    refs: ['Acts 2:6', 'Eph 2:14', 'Houston'],
+    passages: ['Eph 2:14'],
+    scholar: null
+  },
+  {
+    n: 15, section: 2,
+    text: 'The arc of Scripture runs from Babel&#x2019;s scattering to Pentecost&#x2019;s gathering to Revelation&#x2019;s vision of &#x201C;every tribe, tongue, and nation&#x201D; around the throne (Rev 7:9). How does that end-of-the-story vision change how you live and worship right now &#x2014; this week, in this city?',
+    refs: ['Gen 11', 'Acts 2', 'Eph 2:14', 'Rev 7:9'],
+    passages: ['Eph 2:14'],
+    scholar: null
+  }
+];
+
+const SECTIONS = [
+  { label: 'Part 1', name: 'The <em>Tower of Babel</em>', ref: 'Genesis 11:4, 9' },
+  { label: 'Part 2', name: 'The <em>Day of Pentecost</em>', ref: 'Acts 2:4, 6' },
+  { label: 'Part 3', name: 'The <em>Church as Social Miracle</em>', ref: 'Ephesians 2:14' }
+];
+
+const SECTION_Q_START = [0, 5, 10]; // question indices where each section begins
+
+/* ════════════════════════════════════════
+   STATE
+════════════════════════════════════════ */
+let current = 0;
+let done = new Set();
+let fontScale = 0; // steps: -2 to +4
+
+/* ════════════════════════════════════════
+   RENDER
+════════════════════════════════════════ */
+function render() {
+  const q = QUESTIONS[current];
+
+  /* ── Left panel ── */
+  const sec = SECTIONS[q.section];
+  document.getElementById('left-part-badge').textContent = sec.label;
+  document.getElementById('left-part-name').innerHTML = sec.name;
+
+  let leftHTML = '';
+
+  // Passage blocks
+  const seenPassages = new Set();
+  q.passages.forEach(key => {
+    if (seenPassages.has(key)) return;
+    seenPassages.add(key);
+    const p = PASSAGES[key];
+    if (!p) return;
+    leftHTML += `
+      <div class="passage-block">
+        <div class="p-ref">${p.ref}</div>
+        <div class="p-text">${p.text}</div>
+        <div class="p-trans">ESV</div>
+      </div>`;
+  });
+
+  // Scholar quote
+  if (q.scholar) {
+    const s = SCHOLARS[q.scholar];
+    leftHTML += `
+      <div class="scholar-block">
+        <div class="s-label">Scholar Voice</div>
+        <div class="s-quote">${s.quote}</div>
+        <div class="s-attr">&#x2014; ${s.name} &nbsp;&middot;&nbsp; ${s.role}</div>
+      </div>`;
+  } else {
+    leftHTML += `<div class="no-scholar">No scholar citation for this question</div>`;
+  }
+
+  document.getElementById('left-body').innerHTML = leftHTML;
+
+  /* ── Right panel: question ── */
+  const refsHTML = q.refs.map(r => `<span>${r}</span>`).join('');
+  document.getElementById('q-stage').innerHTML = `
+    <div class="q-num-large">Question ${q.n}</div>
+    <div class="q-text-main">${q.text}</div>
+    <div class="q-refs">${refsHTML}</div>
+  `;
+
+  /* ── Counter bar dots ── */
+  let dotsHTML = '';
+  QUESTIONS.forEach((_, i) => {
+    let cls = 'q-dot';
+    if (i === current) cls += ' active';
+    else if (done.has(i)) cls += ' done';
+    dotsHTML += `<div class="${cls}" onclick="goToQuestion(${i})" title="Q${i+1}"></div>`;
+  });
+  document.getElementById('q-dots').innerHTML = dotsHTML;
+  document.getElementById('q-of-total').innerHTML = `<strong>Q${q.n}</strong> of ${QUESTIONS.length}`;
+
+  /* ── Nav buttons ── */
+  document.getElementById('btn-prev').disabled = current === 0;
+  document.getElementById('btn-next').disabled = current === QUESTIONS.length - 1;
+  document.getElementById('btn-next').innerHTML = current === QUESTIONS.length - 1
+    ? 'Last Question'
+    : 'Next <span class="arrow">&#8594;</span>';
+
+  /* ── Mark done button ── */
+  const markBtn = document.getElementById('btn-mark');
+  if (done.has(current)) {
+    markBtn.classList.add('marked');
+    markBtn.textContent = '✓ Discussed';
+  } else {
+    markBtn.classList.remove('marked');
+    markBtn.textContent = '✓ Mark Done';
+  }
+
+  /* ── Section pills active state ── */
+  document.querySelectorAll('.section-pills button[data-section]').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  // sections 0–2 map to pill indices 1–3
+  const activePill = document.querySelector(`.section-pills button[data-section="${q.section + 1}"]`);
+  if (activePill) activePill.classList.add('active');
+
+  /* ── List drawer active item ── */
+  document.querySelectorAll('.list-q-item').forEach((el, i) => {
+    el.classList.remove('active-item', 'done-item');
+    if (i === current) el.classList.add('active-item');
+    if (done.has(i)) el.classList.add('done-item');
+  });
+}
+
+/* ════════════════════════════════════════
+   NAVIGATION
+════════════════════════════════════════ */
+function goToQuestion(i) {
+  current = Math.max(0, Math.min(QUESTIONS.length - 1, i));
+  render();
+}
+function nextQ() { goToQuestion(current + 1); }
+function prevQ() { goToQuestion(current - 1); }
+function toggleMark() {
+  if (done.has(current)) done.delete(current);
+  else done.add(current);
+  render();
+}
+
+/* Jump to first question of a section (pills: 0=Passages, 1=Part1, 2=Part2, 3=Part3, 4=Voices, 5=Prayer) */
+function jumpToSection(pillIdx) {
+  if (pillIdx === 0) { openOverlay('passages-overlay'); return; }
+  if (pillIdx === 1) { goToQuestion(0); return; }
+  if (pillIdx === 2) { goToQuestion(5); return; }
+  if (pillIdx === 3) { goToQuestion(10); return; }
+  if (pillIdx === 4)  { openOverlay('voices-overlay'); return; }
+  if (pillIdx === 5)  { openOverlay('prayer-overlay'); return; }
+}
+
+function openOverlay(id) {
+  document.getElementById(id).classList.add('open');
+}
+function closeOverlay(id) {
+  document.getElementById(id).classList.remove('open');
+}
+function closeOverlayOnBackdrop(e, id) {
+  if (e.target === document.getElementById(id)) closeOverlay(id);
+}
+
+/* ════════════════════════════════════════
+   FONT SIZE
+════════════════════════════════════════ */
+const BASE_PX = 18;
+function adjustFont(dir) {
+  fontScale = Math.max(-2, Math.min(4, fontScale + dir));
+  document.documentElement.style.fontSize = (BASE_PX + fontScale * 2) + 'px';
+}
+
+/* ════════════════════════════════════════
+   LIST OVERLAY
+════════════════════════════════════════ */
+function toggleListOverlay() {
+  document.getElementById('list-overlay').classList.toggle('open');
+}
+function closeListOnBackdrop(e) {
+  if (e.target === document.getElementById('list-overlay')) toggleListOverlay();
+}
+
+/* ════════════════════════════════════════
+   KEYBOARD SHORTCUTS
+════════════════════════════════════════ */
+document.addEventListener('keydown', e => {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); nextQ(); }
+  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   { e.preventDefault(); prevQ(); }
+  if (e.key === ' ') { e.preventDefault(); toggleMark(); }
+  if (e.key === 'Escape') {
+    document.getElementById('list-overlay').classList.remove('open');
+    ['passages-overlay','voices-overlay','prayer-overlay'].forEach(id => closeOverlay(id));
+  }
+});
+
+/* ════════════════════════════════════════
+   INIT
+════════════════════════════════════════ */
+render();
+</script>
+</body>
+</html>

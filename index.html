@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bible Study Guides</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="landing-body">
+
+  <div class="landing-header">
+    <div class="eyebrow">Ordinary Glory</div>
+    <h1>Bible Study Guides</h1>
+  </div>
+
+  <div class="landing-list" id="landing-list">
+    <div class="landing-empty">Loading studies&hellip;</div>
+  </div>
+
+  <script>
+    fetch('data/manifest.json')
+      .then(res => {
+        if (!res.ok) throw new Error('manifest not found');
+        return res.json();
+      })
+      .then(manifest => {
+        const list = document.getElementById('landing-list');
+        const weeks = manifest.weeks || [];
+        if (!weeks.length) {
+          list.innerHTML = '<div class="landing-empty">No studies available yet.</div>';
+          return;
+        }
+        list.innerHTML = weeks.map(w => `
+          <a class="landing-card" href="study.html?week=${encodeURIComponent(w.id)}">
+            <div class="lc-date">${w.series ? w.series + ' &middot; ' : ''}${w.date || ''}</div>
+            <div class="lc-title">${w.title || w.id}</div>
+            ${w.subtitle ? `<div class="lc-subtitle">${w.subtitle}</div>` : ''}
+          </a>
+        `).join('');
+      })
+      .catch(err => {
+        document.getElementById('landing-list').innerHTML =
+          `<div class="landing-empty">Could not load studies (${err.message}).</div>`;
+      });
+  </script>
+</body>
+</html>

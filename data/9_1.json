@@ -1,0 +1,101 @@
+{
+  "meta": {
+    "pageTitle": "Bible Study — September 1 | Love Like Dolly Parton",
+    "eyebrow": "Ordinary Glory &middot; Bible Study &mdash; September 1",
+    "title": "Love Like Dolly Parton:",
+    "titleHighlight": "Give, Welcome, Transform",
+    "translation": "NIV",
+    "footer": "Bible Study &mdash; September 1 &nbsp;&middot;&nbsp; Ordinary Glory: Love Like Dolly Parton &nbsp;&middot;&nbsp; Scripture from the <strong>NIV</strong>"
+  },
+
+  "sections": [
+    { "label": "Part 1", "name": "God&rsquo;s <em>Story</em>", "ref": "John 3:17" },
+    { "label": "Part 2", "name": "Give People <em>Language</em> for Their Lives", "ref": "Psalm 13 &middot; Luke 18 &middot; Romans 8" },
+    { "label": "Part 3", "name": "Make &ldquo;Those People&rdquo; <em>Your</em> People", "ref": "Luke 15:1&ndash;2" },
+    { "label": "Part 4", "name": "Transform Inherited <em>Pain</em>", "ref": "1 Peter 4 &middot; 2 Cor 1 &middot; John 20" }
+  ],
+
+  "passages": {
+    "john3":   { "ref": "John 3:17", "link": "https://www.biblegateway.com/passage/?search=John%203%3A17&version=NIV", "text": "&ldquo;For God did not send his Son into the world to condemn the world, but to save the world through him.&rdquo;" },
+    "psalm13": { "ref": "Psalm 13:1&ndash;6", "link": "https://www.biblegateway.com/passage/?search=Psalm%2013%3A1-6&version=NIV", "text": "&ldquo;How long, Lord? Will you forget me forever? How long will you hide your face from me? How long must I wrestle with my thoughts and day after day have sorrow in my heart? How long will my enemy triumph over me? Look on me and answer, Lord my God. Give light to my eyes, or I will sleep in death, and my enemy will say, &lsquo;I have overcome him,&rsquo; and my foes will rejoice when I fall. But I trust in your unfailing love; my heart rejoices in your salvation. I will sing the Lord&rsquo;s praise, for he has been good to me.&rdquo;" },
+    "luke18":  { "ref": "Luke 18:35&ndash;43", "link": "https://www.biblegateway.com/passage/?search=Luke%2018%3A35-43&version=NIV", "text": "&ldquo;As Jesus approached Jericho, a blind man was sitting by the roadside begging. When he heard the crowd going by, he asked what was happening. They told him, &lsquo;Jesus of Nazareth is passing by.&rsquo; He called out, &lsquo;Jesus, Son of David, have mercy on me!&rsquo; Those who led the way rebuked him and told him to be quiet, but he shouted all the more, &lsquo;Son of David, have mercy on me!&rsquo; Jesus stopped and ordered the man to be brought to him. When he came near, Jesus asked him, &lsquo;What do you want me to do for you?&rsquo; &lsquo;Lord, I want to see,&rsquo; he replied. Jesus said to him, &lsquo;Receive your sight; your faith has healed you.&rsquo; Immediately he received his sight and followed Jesus, praising God. When all the people saw it, they also praised God.&rdquo;" },
+    "rom8":    { "ref": "Romans 8:22&ndash;25", "link": "https://www.biblegateway.com/passage/?search=Romans%208%3A22-25&version=NIV", "text": "&ldquo;We know that the whole creation has been groaning as in the pains of childbirth right up to the present time. Not only so, but we ourselves, who have the firstfruits of the Spirit, groan inwardly as we wait eagerly for our adoption to sonship, the redemption of our bodies. For in this hope we were saved. But hope that is seen is no hope at all. Who hopes for what they already have? But if we hope for what we do not yet have, we wait for it patiently.&rdquo;" },
+    "luke15":  { "ref": "Luke 15:1&ndash;2", "link": "https://www.biblegateway.com/passage/?search=Luke%2015%3A1-2&version=NIV", "text": "&ldquo;Now the tax collectors and sinners were all gathering around to hear Jesus. But the Pharisees and the teachers of the law muttered, &lsquo;This man welcomes sinners and eats with them.&rsquo;&rdquo;" },
+    "pet4":    { "ref": "1 Peter 4:10", "link": "https://www.biblegateway.com/passage/?search=1%20Peter%204%3A10&version=NIV", "text": "&ldquo;Each of you should use whatever gift you have received to serve others, as faithful stewards of God&rsquo;s grace in its various forms.&rdquo;" },
+    "cor2_1":  { "ref": "2 Corinthians 1:3&ndash;4", "link": "https://www.biblegateway.com/passage/?search=2%20Corinthians%201%3A3-4&version=NIV", "text": "&ldquo;Praise be to the God and Father of our Lord Jesus Christ, the Father of compassion and the God of all comfort, who comforts us in all our troubles, so that we can comfort those in any trouble with the comfort we ourselves receive from God.&rdquo;" },
+    "john20":  { "ref": "John 20:24&ndash;29", "link": "https://www.biblegateway.com/passage/?search=John%2020%3A24-29&version=NIV", "text": "&ldquo;Now Thomas (also known as Didymus), one of the Twelve, was not with the disciples when Jesus came. So the other disciples told him, &lsquo;We have seen the Lord!&rsquo; But he said to them, &lsquo;Unless I see the nail marks in his hands and put my finger where the nails were, and put my hand into his side, I will not believe.&rsquo; A week later his disciples were in the house again, and Thomas was with them. Though the doors were locked, Jesus came and stood among them and said, &lsquo;Peace be with you!&rsquo; Then he said to Thomas, &lsquo;Put your finger here; see my hands. Reach out your hand and put it into my side. Stop doubting and believe.&rsquo; Thomas said to him, &lsquo;My Lord and my God!&rsquo; Then Jesus told him, &lsquo;Because you have seen me, you have believed; blessed are those who have not seen and yet have believed.&rsquo;&rdquo;" },
+    "cor13":   { "ref": "1 Corinthians 13:13", "link": "https://www.biblegateway.com/passage/?search=1%20Corinthians%2013%3A13&version=NIV", "text": "&ldquo;And now these three remain: faith, hope and love. But the greatest of these is love.&rdquo;" }
+  },
+
+  "scholars": {
+    "dollycowriter": { "name": "Dolly Parton", "role": "", "quote": "God is my co-writer and my co-pilot." },
+    "sarahsmarsh":    { "name": "Sarah Smarsh", "role": "Author", "quote": "Country music was foremost a language among women. It&rsquo;s how we talked to each other in a place where feelings aren&rsquo;t discussed." },
+    "dollylove":      { "name": "Dolly Parton", "role": "", "quote": "I just love people. I do not judge or criticize or condemn." },
+    "dollygood":      { "name": "Dolly Parton", "role": "", "quote": "You don&rsquo;t even have to believe in anything to be good to people. You should just know you should be a good human being." }
+  },
+
+  "questions": [
+    {
+      "n": 1, "section": 0,
+      "text": "John 3:17 says God did not send Jesus to condemn the world, but to save it. Many of us grew up thinking God is always watching to catch our mistakes. How does knowing God&rsquo;s purpose is to save you, not condemn you, change the way you see him? How does it change the way you look at other people?",
+      "refs": ["John 3:17"],
+      "passages": ["john3"],
+      "scholars": []
+    },
+    {
+      "n": 2, "section": 0,
+      "text": "Dolly Parton says, &ldquo;God is my co-writer and my co-pilot.&rdquo; A co-writer helps write the story, and a co-pilot helps fly the plane &mdash; they do not take over completely, but you do not do it alone either. Do you let God co-write your story and co-pilot your life? What is one decision or problem you are facing right now that you can bring to him this week?",
+      "refs": ["Dolly Parton"],
+      "passages": [],
+      "scholars": ["dollycowriter"]
+    },
+    {
+      "n": 3, "section": 1,
+      "text": "Sarah Smarsh says country music gave women a &ldquo;language&rdquo; to talk about feelings that were hard to say out loud. In Psalm 13, David is honest with God about his sadness and fear &mdash; he does not hide his feelings. Why is it hard for us to say our true feelings, even to God? What words could you use this week to tell God how you really feel?",
+      "refs": ["Psalm 13:1&ndash;6", "Sarah Smarsh"],
+      "passages": ["psalm13"],
+      "scholars": ["sarahsmarsh"]
+    },
+    {
+      "n": 4, "section": 1,
+      "text": "The blind man in Luke 18 would not stay quiet &mdash; he kept shouting until Jesus heard him, even when the crowd told him to be quiet. Romans 8 says all of creation is groaning, and we wait for God with hope, even when we cannot yet see the answer. What are you &ldquo;crying out&rdquo; to God about right now? How can you keep asking and wait for God&rsquo;s answer with hope, instead of giving up or staying quiet?",
+      "refs": ["Luke 18:35&ndash;43", "Romans 8:22&ndash;25"],
+      "passages": ["luke18", "rom8"],
+      "scholars": []
+    },
+    {
+      "n": 5, "section": 2,
+      "text": "Jesus ate with tax collectors and sinners &mdash; the people others called &ldquo;those people.&rdquo; The religious leaders muttered and did not like it. Who are the people that others in your life, church, or town call &ldquo;those people&rdquo;? What would it look like for you to welcome them the way Jesus did?",
+      "refs": ["Luke 15:1&ndash;2"],
+      "passages": ["luke15"],
+      "scholars": []
+    },
+    {
+      "n": 6, "section": 2,
+      "text": "Dolly Parton says, &ldquo;I just love people. I do not judge or criticize or condemn.&rdquo; That is a hard way to live! Think of someone you have judged, criticized, or written off recently. What would it look like to love that person the way Dolly describes, instead of judging them?",
+      "refs": ["Dolly Parton"],
+      "passages": [],
+      "scholars": ["dollylove"]
+    },
+    {
+      "n": 7, "section": 3,
+      "text": "God gives each of us a gift to help other people (1 Peter 4:10). When we go through hard times, God comforts us. Then we can use that same comfort to help someone else who is hurting (2 Corinthians 1:3&ndash;4). This means even our pain can become a gift for another person. Think of one hard thing you went through. How could God use it to help or comfort someone else?",
+      "refs": ["1 Peter 4:10", "2 Cor 1:3&ndash;4"],
+      "passages": ["pet4", "cor2_1"],
+      "scholars": []
+    },
+    {
+      "n": 8, "section": 3,
+      "text": "Thomas doubted until he saw Jesus&rsquo; wounds, and Jesus still called him blessed for later believing. Dolly Parton says, &ldquo;You don&rsquo;t even have to believe in anything to be good to people. You should just know you should be a good human being.&rdquo; Paul says the greatest of faith, hope, and love is love. Do you agree that love matters even more than being sure about everything? How can you show love this week to someone, even while you or they still have doubts?",
+      "refs": ["John 20:24&ndash;29", "1 Cor 13:13", "Dolly Parton"],
+      "passages": ["john20", "cor13"],
+      "scholars": ["dollygood"]
+    }
+  ],
+
+  "prayer": {
+    "label": "Closing Prayer",
+    "text": "Dear God,<br><br>Thank you that you did not send Jesus to judge us, but to save us. Help us to let you write our story, instead of trying to write it alone.<br><br>Give us the words to tell you our true feelings, even when it is hard, like David did when he was sad and afraid.<br><br>Help us to cry out to you like the blind man in the road, and to wait for your answer with hope, even when we have to wait a long time.<br><br>Teach us to love &ldquo;those people&rdquo; &mdash; the ones others push away &mdash; the same way Jesus welcomed sinners and ate with them. Help us not to judge, but to love.<br><br>And Father, take the hard and painful things from our past, and turn them into comfort and love for someone else. Like Thomas, help us to believe, even when we cannot see. And above everything &mdash; faith, hope, and love &mdash; help us to hold on to love, because it is the greatest of all.<br><br>We ask this in the name of Jesus, who loved us first. Amen.",
+    "source": "&mdash; Based on this week&rsquo;s study: God&rsquo;s story of love, giving people language for their pain, welcoming &ldquo;those people,&rdquo; and turning our pain into someone else&rsquo;s comfort."
+  }
+}

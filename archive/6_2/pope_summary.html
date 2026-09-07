@@ -5,8 +5,109 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pope Leo XIV — Speech Summary</title>
   <link rel="stylesheet" href="../global_styles.css" />
+  <style>
+    /* ── DARK MODE OVERRIDES ── */
+    body.dark-mode {
+      --navy:   #0a1929;
+      --navy2:  #0f2340;
+      --gold:   #c9a84c;
+      --gold2:  #e8c878;
+      --cream:  #121e2d;
+      --white:  #1a2d42;
+      --text:   #dce6f0;
+      --muted:  #7a95b0;
+      --border: #243650;
+      background: #0d1b2a;
+      color: #dce6f0;
+    }
+    body.dark-mode .q-anchor span {
+      background: #0f2340;
+    }
+    body.dark-mode .section-title::after {
+      background: #243650;
+    }
+    body.dark-mode header h1 {
+      color: #ffffff;
+    }
+    body.dark-mode .header-sub {
+      color: rgba(255,255,255,.75);
+    }
+
+    /* ── TOGGLE BUTTON ── */
+    #dark-toggle {
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      z-index: 1000;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      background: var(--navy);
+      color: var(--gold2);
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,.35);
+      transition: background .2s, color .2s, border-color .2s;
+    }
+    #dark-toggle:hover {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    /* ── FONT CONTROLS ── */
+    #font-controls {
+      position: fixed;
+      top: 18px;
+      right: 70px;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--navy);
+      border: 2px solid var(--gold);
+      border-radius: 22px;
+      padding: 0 10px;
+      height: 44px;
+      box-shadow: 0 2px 10px rgba(0,0,0,.35);
+    }
+    #font-controls .fc-label {
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.5);
+      margin-right: 2px;
+      user-select: none;
+    }
+    .font-btn {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,168,76,.35);
+      background: rgba(201,168,76,.1);
+      color: var(--gold2);
+      font-size: .9rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .15s, color .15s;
+      flex-shrink: 0;
+    }
+    .font-btn:hover { background: var(--gold); color: var(--navy); }
+  </style>
 </head>
 <body>
+
+  <button id="dark-toggle" title="Toggle dark mode" aria-label="Toggle dark mode">&#9790;</button>
+
+  <div id="font-controls" aria-label="Font size controls">
+    <span class="fc-label">Aa</span>
+    <button class="font-btn" onclick="adjustFont(-1)" title="Smaller text">&#8722;</button>
+    <button class="font-btn" onclick="adjustFont(1)"  title="Larger text">&#43;</button>
+  </div>
 
   <!-- ── HEADER ── -->
   <header>
@@ -123,6 +224,35 @@
   <footer>
     <strong>Bible Study Resource</strong> &nbsp;&bull;&nbsp; Summary of Pope Leo XIV's 2025 Encyclical &nbsp;&bull;&nbsp; Prepared June 2026
   </footer>
+
+  <script>
+    /* ── DARK MODE ── */
+    (function () {
+      var btn = document.getElementById('dark-toggle');
+      var DARK = 'dark-mode';
+      if (localStorage.getItem('darkMode') === '1') {
+        document.body.classList.add(DARK);
+        btn.innerHTML = '&#9728;';
+      }
+      btn.addEventListener('click', function () {
+        var on = document.body.classList.toggle(DARK);
+        btn.innerHTML = on ? '&#9728;' : '&#9790;';
+        localStorage.setItem('darkMode', on ? '1' : '0');
+      });
+    })();
+
+    /* ── FONT SIZE ── */
+    var BASE_PX = 18;
+    var fontScale = parseInt(localStorage.getItem('fontScale') || '0', 10);
+    (function applyFont() {
+      document.documentElement.style.fontSize = (BASE_PX + fontScale * 2) + 'px';
+    })();
+    function adjustFont(dir) {
+      fontScale = Math.max(-2, Math.min(4, fontScale + dir));
+      document.documentElement.style.fontSize = (BASE_PX + fontScale * 2) + 'px';
+      localStorage.setItem('fontScale', fontScale);
+    }
+  </script>
 
 </body>
 </html>

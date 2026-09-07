@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bible Study</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<!-- ════════════════════════════════════════
+     TOP CHROME
+════════════════════════════════════════ -->
+<div class="top-chrome">
+  <div class="chrome-title">
+    <div class="eyebrow" id="chrome-eyebrow"></div>
+    <h1 id="chrome-title"></h1>
+  </div>
+
+  <div class="section-pills" id="section-pills">
+    <!-- injected by JS -->
+  </div>
+
+  <button class="list-toggle-btn" onclick="toggleListOverlay()"><span class="ltb-text">All Questions</span> &#9776;</button>
+
+  <div class="font-controls" id="font-controls">
+    <span>Aa</span>
+    <button class="font-btn" onclick="adjustFont(-1)" title="Smaller">&#8722;</button>
+    <button class="font-btn" onclick="adjustFont(1)"  title="Larger">&#43;</button>
+  </div>
+
+  <button class="theme-toggle-btn" id="theme-toggle-btn" onclick="toggleTheme()" title="Toggle light / dark mode">
+    <span class="theme-icon" id="theme-icon">&#9790;</span>
+    <span id="theme-label">Dark</span>
+  </button>
+</div>
+
+<!-- ════════════════════════════════════════
+     ALL-QUESTIONS DRAWER
+════════════════════════════════════════ -->
+<div class="list-overlay" id="list-overlay" onclick="closeListOnBackdrop(event)">
+  <div class="list-drawer">
+    <div class="list-drawer-header">
+      <h2>All Questions</h2>
+      <button class="close-btn" onclick="toggleListOverlay()">&#x2715;</button>
+    </div>
+    <div id="list-drawer-body">
+      <!-- injected by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PASSAGES OVERLAY
+════════════════════════════════════════ -->
+<div class="section-overlay" id="passages-overlay" onclick="closeOverlayOnBackdrop(event,'passages-overlay')">
+  <div class="section-panel">
+    <div class="section-panel-header">
+      <div>
+        <div class="sp-eyebrow">Key Texts</div>
+        <div class="sp-title">Scripture Passages</div>
+      </div>
+      <button class="close-btn" onclick="closeOverlay('passages-overlay')">&#x2715;</button>
+    </div>
+    <div class="section-panel-body" id="passages-overlay-body">
+      <!-- injected by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     VOICES OVERLAY
+════════════════════════════════════════ -->
+<div class="section-overlay" id="voices-overlay" onclick="closeOverlayOnBackdrop(event,'voices-overlay')">
+  <div class="section-panel">
+    <div class="section-panel-header">
+      <div>
+        <div class="sp-eyebrow">Voices for the Discussion</div>
+        <div class="sp-title">Thinkers in Conversation</div>
+      </div>
+      <button class="close-btn" onclick="closeOverlay('voices-overlay')">&#x2715;</button>
+    </div>
+    <div class="section-panel-body" id="voices-overlay-body">
+      <!-- injected by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PRAYER OVERLAY
+════════════════════════════════════════ -->
+<div class="section-overlay" id="prayer-overlay" onclick="closeOverlayOnBackdrop(event,'prayer-overlay')">
+  <div class="section-panel">
+    <div class="section-panel-header">
+      <div>
+        <div class="sp-eyebrow">Closing</div>
+        <div class="sp-title">Prayer</div>
+      </div>
+      <button class="close-btn" onclick="closeOverlay('prayer-overlay')">&#x2715;</button>
+    </div>
+    <div class="section-panel-body" id="prayer-overlay-body">
+      <!-- injected by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     MAIN WORKSPACE (two-column)
+════════════════════════════════════════ -->
+<div class="main-workspace" id="main-workspace">
+<div class="workspace">
+
+  <!-- LEFT PANEL -->
+  <div class="left-panel" id="left-panel">
+    <div class="left-panel-header" id="left-header">
+      <div class="part-badge" id="left-part-badge"></div>
+      <div class="part-name" id="left-part-name"></div>
+    </div>
+    <div class="left-panel-body" id="left-body">
+      <!-- injected by JS -->
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="right-panel">
+    <div class="q-counter-bar">
+      <div class="q-dots" id="q-dots"></div>
+      <div class="q-of-total" id="q-of-total"></div>
+    </div>
+
+    <div class="q-stage" id="q-stage">
+      <div class="app-loading">Loading study&hellip;</div>
+    </div>
+
+    <div class="q-nav-bar">
+      <button class="nav-btn" id="btn-prev" onclick="prevQ()" disabled>
+        <span class="arrow">&#8592;</span> Prev
+      </button>
+      <button class="nav-btn primary" id="btn-next" onclick="nextQ()">
+        Next <span class="arrow">&#8594;</span>
+      </button>
+      <button class="mark-btn" id="btn-mark" onclick="toggleMark()">&#10003; Mark Done</button>
+    </div>
+  </div>
+
+</div>
+</div><!-- /main-workspace -->
+
+<!-- ════════════════════════════════════════
+     PRINT-ONLY OVERVIEW (auto-built from data)
+════════════════════════════════════════ -->
+<div class="overview-section" id="overview-section">
+  <!-- injected by JS -->
+</div>
+
+<div class="page-footer">
+  <span id="page-footer-text"></span>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>

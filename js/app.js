@@ -33,8 +33,8 @@ function toggleTheme() {
 ════════════════════════════════════════ */
 let DATA = null;
 let SECTION_Q_START = [];
+let VIEWS = [];
 let current = 0;
-let done = new Set();
 let fontScale = 0;
 const BASE_PX = 18;
 
@@ -83,16 +83,29 @@ function initPage() {
     DATA.questions.findIndex(q => q.section === i)
   );
 
+  buildViews();
   buildSectionPills();
   buildListDrawer();
-  buildPassagesOverlay();
-  buildVoicesOverlay();
-  buildPrayerOverlay();
   buildOverview();
 
   document.getElementById('page-footer-text').innerHTML = DATA.meta.footer || '';
 
+  current = VIEWS.findIndex(v => v.type === 'question');
   render();
+}
+
+/* ════════════════════════════════════════
+   VIEWS
+   One continuous sequence: Passages, then
+   each question, then Voices (if any), then
+   Prayer. Prev/Next step through all of it.
+════════════════════════════════════════ */
+function buildViews() {
+  const hasVoices = Object.keys(DATA.scholars || {}).length > 0;
+  VIEWS = [{ type: 'passages' }];
+  DATA.questions.forEach((q, i) => VIEWS.push({ type: 'question', qIndex: i }));
+  if (hasVoices) VIEWS.push({ type: 'voices' });
+  VIEWS.push({ type: 'prayer' });
 }
 
 function buildSectionPills() {
@@ -124,7 +137,7 @@ function buildListDrawer() {
   document.getElementById('list-drawer-body').innerHTML = html;
 }
 
-function buildPassagesOverlay() {
+function passagesHTML() {
   let html = '';
   Object.values(DATA.passages || {}).forEach(p => {
     html += `
@@ -134,18 +147,12 @@ function buildPassagesOverlay() {
         <div class="sp-trans">${DATA.meta.translation || 'NIV'}</div>
       </div>`;
   });
-  document.getElementById('passages-overlay-body').innerHTML = html;
+  return html;
 }
 
-function buildVoicesOverlay() {
-  const scholars = Object.values(DATA.scholars || {});
-  const overlay = document.getElementById('voices-overlay');
-  if (!scholars.length) {
-    if (overlay) overlay.remove();
-    return;
-  }
+function voicesHTML() {
   let html = '';
-  scholars.forEach(s => {
+  Object.values(DATA.scholars || {}).forEach(s => {
     html += `
       <div class="sp-scholar-card">
         <div class="sp-s-label">${s.name}${s.role ? ' &nbsp;&middot;&nbsp; ' + s.role : ''}</div>
@@ -153,12 +160,12 @@ function buildVoicesOverlay() {
         <div class="sp-s-attr">&#x2014; ${s.name}</div>
       </div>`;
   });
-  document.getElementById('voices-overlay-body').innerHTML = html;
+  return html;
 }
 
-function buildPrayerOverlay() {
+function prayerHTML() {
   const prayer = DATA.prayer || {};
-  document.getElementById('prayer-overlay-body').innerHTML = `
+  return `
     <div class="sp-prayer-block">
       <div class="sp-prayer-label">${prayer.label || 'Closing Prayer'}</div>
       <div class="sp-prayer-text">${prayer.text || ''}</div>
@@ -195,12 +202,81 @@ function buildOverview() {
 }
 
 /* ════════════════════════════════════════
-   RENDER (per-question view)
+   RENDER
+   `current` indexes into VIEWS, which is one
+   continuous sequence: Passages, Q1..Qn,
+   Voices, Prayer. All views render into the
+   same main panel (#q-stage) — no overlays.
 ════════════════════════════════════════ */
 function render() {
-  const q = DATA.questions[current];
+  const view = VIEWS[current];
+  const stage = document.getElementById('q-stage');
+  const totalEl = document.getElementById('q-of-total');
 
-  /* Left panel */
+  const leftPanel = document.getElementById('left-panel');
+
+  if (view.type === 'question') {
+    const q = DATA.questions[view.qIndex];
+    leftPanel.classList.remove('hidden');
+    renderLeftPanel(q);
+
+    const refsHTML = q.refs.map(r => `<span>${r}</span>`).join('');
+    stage.className = 'q-stage';
+    stage.innerHTML = `
+      <div class="q-num-large">Question ${q.n}</div>
+      <div class="q-text-main">${q.text}</div>
+      <div class="q-refs">${refsHTML}</div>
+    `;
+    totalEl.innerHTML = `<strong>Q${q.n}</strong> of ${DATA.questions.length}`;
+  } else {
+    leftPanel.classList.add('hidden');
+    stage.className = 'q-stage list-view';
+    if (view.type === 'passages') {
+      stage.innerHTML = `<div class="q-num-large">Scripture Passages</div>${passagesHTML()}`;
+      totalEl.textContent = 'Scripture Passages';
+    } else if (view.type === 'voices') {
+      stage.innerHTML = `<div class="q-num-large">Voices for the Discussion</div>${voicesHTML()}`;
+      totalEl.textContent = 'Voices for the Discussion';
+    } else if (view.type === 'prayer') {
+      stage.innerHTML = `<div class="q-num-large">Prayer</div>${prayerHTML()}`;
+      totalEl.textContent = 'Prayer';
+    }
+  }
+
+  /* Dots (questions only) */
+  let dotsHTML = '';
+  DATA.questions.forEach((_, i) => {
+    let cls = 'q-dot';
+    if (view.type === 'question' && i === view.qIndex) cls += ' active';
+    dotsHTML += `<div class="${cls}" onclick="goToQuestion(${i})" title="Q${i+1}"></div>`;
+  });
+  document.getElementById('q-dots').innerHTML = dotsHTML;
+
+  /* Nav buttons */
+  document.getElementById('btn-prev').disabled = current === 0;
+  document.getElementById('btn-next').disabled = current === VIEWS.length - 1;
+  document.getElementById('btn-next').innerHTML = current === VIEWS.length - 1
+    ? 'The End'
+    : 'Next <span class="arrow">&#8594;</span>';
+
+  /* Section pills */
+  document.querySelectorAll('.section-pills button[data-target]').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  const activeTarget = view.type === 'question'
+    ? String(DATA.questions[view.qIndex].section)
+    : view.type;
+  const activePill = document.querySelector(`.section-pills button[data-target="${activeTarget}"]`);
+  if (activePill) activePill.classList.add('active');
+
+  /* List drawer */
+  document.querySelectorAll('.list-q-item').forEach((el, i) => {
+    el.classList.remove('active-item');
+    if (view.type === 'question' && i === view.qIndex) el.classList.add('active-item');
+  });
+}
+
+function renderLeftPanel(q) {
   const sec = DATA.sections[q.section];
   document.getElementById('left-part-badge').textContent = sec.label;
   document.getElementById('left-part-name').innerHTML = sec.name;
@@ -239,90 +315,28 @@ function render() {
   }
 
   document.getElementById('left-body').innerHTML = leftHTML;
-
-  /* Right panel */
-  const refsHTML = q.refs.map(r => `<span>${r}</span>`).join('');
-  document.getElementById('q-stage').innerHTML = `
-    <div class="q-num-large">Question ${q.n}</div>
-    <div class="q-text-main">${q.text}</div>
-    <div class="q-refs">${refsHTML}</div>
-  `;
-
-  /* Dots */
-  let dotsHTML = '';
-  DATA.questions.forEach((_, i) => {
-    let cls = 'q-dot';
-    if (i === current) cls += ' active';
-    else if (done.has(i)) cls += ' done';
-    dotsHTML += `<div class="${cls}" onclick="goToQuestion(${i})" title="Q${i+1}"></div>`;
-  });
-  document.getElementById('q-dots').innerHTML = dotsHTML;
-  document.getElementById('q-of-total').innerHTML = `<strong>Q${q.n}</strong> of ${DATA.questions.length}`;
-
-  /* Nav buttons */
-  document.getElementById('btn-prev').disabled = current === 0;
-  document.getElementById('btn-next').disabled = current === DATA.questions.length - 1;
-  document.getElementById('btn-next').innerHTML = current === DATA.questions.length - 1
-    ? 'Last Question'
-    : 'Next <span class="arrow">&#8594;</span>';
-
-  /* Mark done */
-  const markBtn = document.getElementById('btn-mark');
-  if (done.has(current)) {
-    markBtn.classList.add('marked');
-    markBtn.textContent = '✓ Discussed';
-  } else {
-    markBtn.classList.remove('marked');
-    markBtn.textContent = '✓ Mark Done';
-  }
-
-  /* Section pills */
-  document.querySelectorAll('.section-pills button[data-target]').forEach(btn => {
-    btn.classList.remove('active');
-  });
-  const activePill = document.querySelector(`.section-pills button[data-target="${q.section}"]`);
-  if (activePill) activePill.classList.add('active');
-
-  /* List drawer */
-  document.querySelectorAll('.list-q-item').forEach((el, i) => {
-    el.classList.remove('active-item', 'done-item');
-    if (i === current) el.classList.add('active-item');
-    if (done.has(i)) el.classList.add('done-item');
-  });
 }
 
 /* ════════════════════════════════════════
    NAVIGATION
 ════════════════════════════════════════ */
 function goToQuestion(i) {
-  current = Math.max(0, Math.min(DATA.questions.length - 1, i));
+  const qi = Math.max(0, Math.min(DATA.questions.length - 1, i));
+  const idx = VIEWS.findIndex(v => v.type === 'question' && v.qIndex === qi);
+  if (idx !== -1) current = idx;
   render();
 }
-function nextQ() { goToQuestion(current + 1); }
-function prevQ() { goToQuestion(current - 1); }
-function toggleMark() {
-  if (done.has(current)) done.delete(current);
-  else done.add(current);
-  render();
-}
+function nextQ() { current = Math.min(VIEWS.length - 1, current + 1); render(); }
+function prevQ() { current = Math.max(0, current - 1); render(); }
 
 function jumpToSection(target) {
-  if (target === 'passages') { openOverlay('passages-overlay'); return; }
-  if (target === 'voices')   { openOverlay('voices-overlay'); return; }
-  if (target === 'prayer')   { openOverlay('prayer-overlay'); return; }
+  if (target === 'passages' || target === 'voices' || target === 'prayer') {
+    const idx = VIEWS.findIndex(v => v.type === target);
+    if (idx !== -1) current = idx;
+    render();
+    return;
+  }
   goToQuestion(SECTION_Q_START[Number(target)]);
-}
-
-function openOverlay(id) {
-  const el = document.getElementById(id);
-  if (el) el.classList.add('open');
-}
-function closeOverlay(id) {
-  const el = document.getElementById(id);
-  if (el) el.classList.remove('open');
-}
-function closeOverlayOnBackdrop(e, id) {
-  if (e.target === document.getElementById(id)) closeOverlay(id);
 }
 
 /* ════════════════════════════════════════
@@ -392,11 +406,9 @@ document.addEventListener('keydown', e => {
   if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
   if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); nextQ(); }
   if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   { e.preventDefault(); prevQ(); }
-  if (e.key === ' ') { e.preventDefault(); toggleMark(); }
   if (e.key === 'd' || e.key === 'D') { toggleTheme(); }
   if (e.key === 'Escape') {
     document.getElementById('list-overlay').classList.remove('open');
-    ['passages-overlay', 'voices-overlay', 'prayer-overlay'].forEach(id => closeOverlay(id));
   }
 });
 

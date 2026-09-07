@@ -385,6 +385,8 @@
     .q-stage::-webkit-scrollbar { width: 5px; }
     .q-stage::-webkit-scrollbar-track { background: transparent; }
     .q-stage::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 3px; }
+    .q-stage.list-view { justify-content: flex-start; gap: 18px; }
+    .q-stage.list-view .q-num-large { margin-bottom: 4px; }
 
     .q-num-large {
       font-size: .72rem;
@@ -568,58 +570,7 @@
     .list-q-item .lq-text { font-size: .88rem; line-height: 1.5; color: var(--text-primary); }
     .list-q-item.done-item .lq-text { color: var(--text-muted); }
 
-    /* ── SECTION OVERLAY PANELS ── */
-    .section-overlay {
-      display: none;
-      position: fixed;
-      inset: var(--nav-h) 0 0 0;
-      background: rgba(0,0,0,.6);
-      z-index: 140;
-      backdrop-filter: blur(3px);
-      align-items: flex-start;
-      justify-content: center;
-      overflow-y: auto;
-      padding: 32px 20px;
-    }
-    [data-theme="dark"] .section-overlay { background: rgba(0,0,0,.7); }
-    .section-overlay.open { display: flex; }
-    .section-panel {
-      background: var(--bg-section-panel);
-      border-radius: 14px;
-      width: 100%;
-      max-width: 720px;
-      box-shadow: 0 8px 48px rgba(0,0,0,.35);
-      overflow: hidden;
-      flex-shrink: 0;
-      transition: background .25s;
-    }
-    .section-panel-header {
-      background: linear-gradient(90deg, var(--navy) 0%, var(--navy2) 100%);
-      padding: 20px 24px 16px;
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 12px;
-    }
-    [data-theme="dark"] .section-panel-header {
-      background: linear-gradient(90deg, #111111 0%, #1a1a1a 100%);
-    }
-    .section-panel-header .sp-eyebrow {
-      font-size: .6rem;
-      font-weight: 700;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--gold2);
-      margin-bottom: 4px;
-    }
-    .section-panel-header .sp-title {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: white;
-      line-height: 1.3;
-    }
-    .section-panel-body { padding: 24px; display: flex; flex-direction: column; gap: 18px; }
-
+    /* ── SECTION VIEW CARDS (rendered inline in main panel) ── */
     .sp-passage-card {
       background: var(--navy);
       border-radius: var(--radius);

@@ -12,16 +12,16 @@
      TOP CHROME
 ════════════════════════════════════════ -->
 <div class="top-chrome">
+  <a class="home-btn" href="index.html" title="Back to home"><span class="arrow">&#8592;</span> Home</a>
+
   <div class="chrome-title">
     <div class="eyebrow" id="chrome-eyebrow"></div>
     <h1 id="chrome-title"></h1>
   </div>
 
   <div class="section-pills" id="section-pills">
-    <!-- injected by JS -->
+    <!-- injected by JS (includes the All Questions toggle as the last pill) -->
   </div>
-
-  <button class="list-toggle-btn" onclick="toggleListOverlay()"><span class="ltb-text">All Questions</span> &#9776;</button>
 
   <div class="font-controls" id="font-controls">
     <span>Aa</span>
@@ -33,21 +33,6 @@
     <span class="theme-icon" id="theme-icon">&#9790;</span>
     <span id="theme-label">Dark</span>
   </button>
-</div>
-
-<!-- ════════════════════════════════════════
-     ALL-QUESTIONS DRAWER
-════════════════════════════════════════ -->
-<div class="list-overlay" id="list-overlay" onclick="closeListOnBackdrop(event)">
-  <div class="list-drawer">
-    <div class="list-drawer-header">
-      <h2>All Questions</h2>
-      <button class="close-btn" onclick="toggleListOverlay()">&#x2715;</button>
-    </div>
-    <div id="list-drawer-body">
-      <!-- injected by JS -->
-    </div>
-  </div>
 </div>
 
 <!-- ════════════════════════════════════════

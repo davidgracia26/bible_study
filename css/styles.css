@@ -22,7 +22,6 @@
   --bg-right-panel:  var(--cream);
   --bg-q-counter:    var(--white);
   --bg-q-nav:        var(--white);
-  --bg-list-drawer:  var(--white);
   --bg-section-panel: var(--white);
   --bg-overview-q:   var(--white);
   --text-primary:    var(--text);
@@ -41,7 +40,6 @@
   --bg-right-panel:  #0a0a0a;
   --bg-q-counter:    #111111;
   --bg-q-nav:        #111111;
-  --bg-list-drawer:  #111111;
   --bg-section-panel: #111111;
   --bg-overview-q:   #111111;
   --text-primary:    #e6edf3;
@@ -164,6 +162,28 @@ body {
 .font-btn:hover { background: var(--gold); color: var(--navy); }
 
 .list-toggle-btn {
+  background: rgba(232,117,23,.12);
+  border: 1px solid rgba(232,117,23,.35);
+  border-radius: 20px;
+  color: var(--gold2);
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.list-toggle-btn:hover {
+  background: var(--gold);
+  color: var(--navy);
+  border-color: var(--gold);
+}
+
+/* ── HOME (BACK) BUTTON ── */
+.home-btn {
   background: rgba(255,255,255,.1);
   border: 1px solid rgba(255,255,255,.2);
   border-radius: 6px;
@@ -176,8 +196,12 @@ body {
   transition: background .15s;
   white-space: nowrap;
   flex-shrink: 0;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
-.list-toggle-btn:hover { background: rgba(255,255,255,.2); }
+.home-btn:hover { background: rgba(255,255,255,.2); }
 
 /* ── THEME TOGGLE BUTTON ── */
 .theme-toggle-btn {
@@ -460,60 +484,7 @@ body {
 .nav-btn.primary:hover { background: var(--gold2); }
 .nav-btn.primary:disabled { background: var(--border-color); color: var(--text-muted); }
 
-/* ── ALL-QUESTIONS DRAWER ── */
-.list-overlay {
-  display: none;
-  position: fixed;
-  inset: var(--nav-h) 0 0 0;
-  background: rgba(0,0,0,.55);
-  z-index: 150;
-  backdrop-filter: blur(2px);
-}
-[data-theme="dark"] .list-overlay { background: rgba(0,0,0,.65); }
-.list-overlay.open { display: flex; align-items: flex-start; justify-content: flex-end; }
-.list-drawer {
-  background: var(--bg-list-drawer);
-  width: 420px;
-  max-width: 90vw;
-  height: 100%;
-  overflow-y: auto;
-  box-shadow: -4px 0 30px rgba(0,0,0,.25);
-  display: flex;
-  flex-direction: column;
-  transition: background .25s;
-}
-.list-drawer-header {
-  background: var(--navy);
-  padding: 16px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-shrink: 0;
-  position: sticky;
-  top: 0;
-  z-index: 1;
-}
-[data-theme="dark"] .list-drawer-header { background: #111111; }
-.list-drawer-header h2 {
-  font-size: .8rem;
-  font-weight: 700;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--gold2);
-}
-.close-btn {
-  background: none;
-  border: 1px solid rgba(232,117,23,.3);
-  border-radius: 50%;
-  color: var(--gold2);
-  width: 28px; height: 28px;
-  font-size: 1rem;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  transition: background .15s;
-}
-.close-btn:hover { background: rgba(232,117,23,.2); }
-
+/* ── ALL-QUESTIONS PAGE ── */
 .list-section {
   padding: 10px 16px 6px;
   font-size: .62rem;
@@ -742,7 +713,7 @@ body {
 
 /* ── PRINT ── */
 @media print {
-  .top-chrome, .list-overlay, .q-counter-bar, .q-nav-bar,
+  .top-chrome, .q-counter-bar, .q-nav-bar,
   .left-panel, .workspace, .page-footer { display: none !important; }
   .overview-section { display: block !important; }
   .main-workspace { display: none !important; }
@@ -761,36 +732,19 @@ body {
 @media (max-width: 760px) {
   body { font-size: 16px; }
 
-  /* ── Top bar: title + hamburger only ── */
-  .top-chrome { padding: 0 12px; gap: 8px; }
+  /* ── Top bar: wraps onto a second row on narrow screens ── */
+  .top-chrome {
+    height: auto;
+    flex-wrap: wrap;
+    row-gap: 8px;
+    padding: 10px 12px;
+    gap: 8px;
+  }
   .chrome-title h1 { font-size: .85rem; }
-  .list-toggle-btn { padding: 6px 12px; font-size: .8rem; }
   .list-toggle-btn .ltb-text { display: none; }
-  .top-chrome #section-pills,
+  .top-chrome #section-pills { flex-wrap: wrap; gap: 6px; order: 5; flex-basis: 100%; }
   .top-chrome #font-controls,
-  .top-chrome #theme-toggle-btn { display: none; }
-
-  /* ── Quick actions relocated into the drawer ── */
-  .drawer-quick-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    background: var(--navy);
-    padding: 14px 20px 16px;
-    border-bottom: 1px solid rgba(232,117,23,.2);
-  }
-  [data-theme="dark"] .drawer-quick-actions { background: #111111; }
-  .drawer-quick-actions #section-pills { flex-wrap: wrap; gap: 8px; }
-  .drawer-quick-actions #section-pills button { padding: 7px 14px; font-size: .72rem; }
-  .drawer-quick-actions #font-controls,
-  .drawer-quick-actions #theme-toggle-btn {
-    border-left: none;
-    margin-left: 0;
-    padding-left: 0;
-  }
-  .drawer-quick-actions #font-controls { gap: 10px; }
-  .drawer-quick-actions #font-controls .font-btn { width: 34px; height: 34px; font-size: 1.05rem; }
-  .drawer-quick-actions #theme-toggle-btn { align-self: flex-start; padding: 8px 16px; }
+  .top-chrome #theme-toggle-btn { order: 5; }
 
   /* ── Stack the workspace: passage/context above, question below ── */
   .workspace {
@@ -816,9 +770,6 @@ body {
     flex-wrap: wrap;
     padding: 10px 14px;
   }
-
-  /* ── Drawer takes the full width ── */
-  .list-drawer { width: 100%; max-width: 100vw; }
 
   .landing-header { padding: 36px 18px 30px; }
   .landing-list { padding: 24px 14px 40px; }

@@ -85,7 +85,6 @@ function initPage() {
 
   buildViews();
   buildSectionPills();
-  buildListDrawer();
   buildOverview();
 
   document.getElementById('page-footer-text').innerHTML = DATA.meta.footer || '';
@@ -106,6 +105,7 @@ function buildViews() {
   DATA.questions.forEach((q, i) => VIEWS.push({ type: 'question', qIndex: i }));
   if (hasVoices) VIEWS.push({ type: 'voices' });
   VIEWS.push({ type: 'prayer' });
+  VIEWS.push({ type: 'allquestions' });
 }
 
 function buildSectionPills() {
@@ -118,23 +118,24 @@ function buildSectionPills() {
     html += `<button onclick="jumpToSection('voices')" data-target="voices">Voices</button>`;
   }
   html += `<button onclick="jumpToSection('prayer')" data-target="prayer">Prayer</button>`;
+  html += `<button class="list-toggle-btn" onclick="jumpToSection('allquestions')" data-target="allquestions"><span class="ltb-text">All Questions</span> &#9776;</button>`;
   document.getElementById('section-pills').innerHTML = html;
 }
 
-function buildListDrawer() {
+function allQuestionsHTML() {
   let html = '';
   DATA.sections.forEach((sec, sIdx) => {
     html += `<div class="list-section">${sec.label} &mdash; ${sec.name.replace(/<\/?em>/g, '')} &nbsp;&middot;&nbsp; ${sec.ref}</div>`;
     DATA.questions.forEach((q, qIdx) => {
       if (q.section !== sIdx) return;
       html += `
-        <div class="list-q-item" id="li-${qIdx}" onclick="goToQuestion(${qIdx}); toggleListOverlay();">
+        <div class="list-q-item" id="li-${qIdx}" onclick="goToQuestion(${qIdx});">
           <div class="lq-num">${q.n}</div>
           <div class="lq-text">${q.text}</div>
         </div>`;
     });
   });
-  document.getElementById('list-drawer-body').innerHTML = html;
+  return html;
 }
 
 function passagesHTML() {
@@ -240,6 +241,9 @@ function render() {
     } else if (view.type === 'prayer') {
       stage.innerHTML = `<div class="q-num-large">Prayer</div>${prayerHTML()}`;
       totalEl.textContent = 'Prayer';
+    } else if (view.type === 'allquestions') {
+      stage.innerHTML = `<div class="q-num-large">All Questions</div>${allQuestionsHTML()}`;
+      totalEl.textContent = 'All Questions';
     }
   }
 
@@ -269,7 +273,7 @@ function render() {
   const activePill = document.querySelector(`.section-pills button[data-target="${activeTarget}"]`);
   if (activePill) activePill.classList.add('active');
 
-  /* List drawer */
+  /* All-questions list (when visible) */
   document.querySelectorAll('.list-q-item').forEach((el, i) => {
     el.classList.remove('active-item');
     if (view.type === 'question' && i === view.qIndex) el.classList.add('active-item');
@@ -330,7 +334,7 @@ function nextQ() { current = Math.min(VIEWS.length - 1, current + 1); render(); 
 function prevQ() { current = Math.max(0, current - 1); render(); }
 
 function jumpToSection(target) {
-  if (target === 'passages' || target === 'voices' || target === 'prayer') {
+  if (target === 'passages' || target === 'voices' || target === 'prayer' || target === 'allquestions') {
     const idx = VIEWS.findIndex(v => v.type === target);
     if (idx !== -1) current = idx;
     render();
@@ -348,57 +352,6 @@ function adjustFont(dir) {
 }
 
 /* ════════════════════════════════════════
-   LIST OVERLAY
-════════════════════════════════════════ */
-function toggleListOverlay() {
-  document.getElementById('list-overlay').classList.toggle('open');
-}
-function closeListOnBackdrop(e) {
-  if (e.target === document.getElementById('list-overlay')) toggleListOverlay();
-}
-
-/* ════════════════════════════════════════
-   RESPONSIVE CHROME (mobile)
-   On narrow screens, move section pills, font
-   controls, and the theme toggle out of the
-   cramped top bar and into the "All Questions"
-   drawer, where there's room to breathe.
-════════════════════════════════════════ */
-function setupResponsiveChrome() {
-  const drawerHeader = document.querySelector('.list-drawer-header');
-  const pills        = document.getElementById('section-pills');
-  const fontControls = document.getElementById('font-controls');
-  const themeToggle  = document.getElementById('theme-toggle-btn');
-  if (!drawerHeader) return;
-
-  const movable = [pills, fontControls, themeToggle].filter(Boolean);
-  const originals = movable.map(el => ({ el, parent: el.parentNode, next: el.nextSibling }));
-
-  let quickActions = null;
-  const mq = window.matchMedia('(max-width: 760px)');
-
-  function layout(isMobile) {
-    if (isMobile) {
-      if (!quickActions) {
-        quickActions = document.createElement('div');
-        quickActions.className = 'drawer-quick-actions';
-        drawerHeader.insertAdjacentElement('afterend', quickActions);
-      }
-      movable.forEach(el => quickActions.appendChild(el));
-    } else {
-      originals.forEach(({ el, parent, next }) => {
-        if (next && next.parentNode === parent) parent.insertBefore(el, next);
-        else parent.appendChild(el);
-      });
-    }
-  }
-
-  layout(mq.matches);
-  mq.addEventListener('change', e => layout(e.matches));
-}
-setupResponsiveChrome();
-
-/* ════════════════════════════════════════
    KEYBOARD SHORTCUTS
 ════════════════════════════════════════ */
 document.addEventListener('keydown', e => {
@@ -407,9 +360,6 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); nextQ(); }
   if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   { e.preventDefault(); prevQ(); }
   if (e.key === 'd' || e.key === 'D') { toggleTheme(); }
-  if (e.key === 'Escape') {
-    document.getElementById('list-overlay').classList.remove('open');
-  }
 });
 
 /* ════════════════════════════════════════

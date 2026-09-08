@@ -17,16 +17,36 @@ test suite — it's plain HTML/CSS/JS served as static files.
   handles theming (light/dark, persisted in `localStorage`), font scaling,
   keyboard shortcuts (arrow keys to navigate, `d` to toggle theme), and the
   print-only overview section.
+- `js/i18n.js` — shared language/translation helper (`I18N`) used by both
+  `index.html` and `study.html`. Loads `data/languages.json` and
+  `data/strings.json`, tracks the current language (`?lang=` query param,
+  else `localStorage['bs-lang']`, else `en`), exposes `I18N.t(key)` for UI
+  copy, `I18N.localize(url)` for per-language data file URLs, and
+  `I18N.buildSwitcher(el)` to render the `<select>` language switcher.
 - `css/styles.css` — all styling (this is the stylesheet actually linked
   from the HTML pages).
 - `global_styles.css` (repo root) — appears to be an older/unused
   stylesheet; not referenced by any HTML file. Leave it alone unless asked.
+- `data/languages.json` — `{ languages: [{ code, label }, ...] }`, the
+  list of languages shown in the switcher. The switcher only renders when
+  there are 2+ languages.
+- `data/strings.json` — UI copy (button labels, section names, etc.) keyed
+  by language code, e.g. `{ "en": { "prev": "Prev", ... }, "es": { ... } }`.
+  Any language missing a key falls back to the `en` value.
 - `data/manifest.json` — array of `{ id, date, series, title, subtitle }`
-  entries, one per week, used by the landing page.
-- `data/<week_id>.json` — full content for one week's study: `meta`,
-  `sections`, `questions`, `passages`, `scholars` ("Voices for the
-  Discussion"), `prayer`. `week_id` matches the manifest `id` (e.g. `9_1`,
-  `9_8`) and the query param `study.html?week=9_8`.
+  entries, one per week, used by the landing page. Each entry may include
+  an optional `i18n: { "<lang>": { date, series, title, subtitle } }`
+  override map; missing fields/languages fall back to the base (English)
+  values.
+- `data/<week_id>.json` — full content for one week's study (English/
+  default): `meta`, `sections`, `questions`, `passages`, `scholars`
+  ("Voices for the Discussion"), `prayer`. `week_id` matches the manifest
+  `id` (e.g. `9_1`, `9_8`) and the query param `study.html?week=9_8`.
+- `data/<week_id>.<lang>.json` — optional fully-translated content for a
+  week in another language (same shape as `data/<week_id>.json`), e.g.
+  `data/9_8.es.json`. If it doesn't exist yet for the selected language,
+  `study.html` automatically falls back to the English file and shows a
+  small "not yet translated" notice.
 - `prompt_flow/<week_id>/` — source material per week (sermon notes,
   references, prompts) used to generate that week's `data/<week_id>.json`.
   Not loaded by the site itself; it's the human/agent workflow input.
@@ -44,6 +64,23 @@ test suite — it's plain HTML/CSS/JS served as static files.
 3. Append a `{ id, date, series, title, subtitle }` entry to
    `data/manifest.json`.
 4. No build step is required — just open/serve `index.html`.
+
+## Adding a language
+1. Add `{ code, label }` to `data/languages.json` (e.g.
+   `{ "code": "my", "label": "မြန်မာ" }`). This makes the switcher appear
+   (it's hidden when only one language is configured).
+2. Add a matching block of translated UI copy to `data/strings.json`,
+   keyed by the same code. Copy the `en` block as a starting point so no
+   keys are missing (missing keys fall back to English automatically, but
+   it's best to translate them all).
+3. Optionally translate landing-page metadata: add an `i18n.<code>` block
+   to the relevant entries in `data/manifest.json` (`date`, `series`,
+   `title`, `subtitle`).
+4. Optionally translate a week's full content: create
+   `data/<week_id>.<code>.json` with the same shape as
+   `data/<week_id>.json`. Weeks without a translated file just show the
+   English content plus a small notice when that language is selected —
+   so languages/weeks can be translated incrementally.
 
 ## Verifying changes
 There is no test runner or build. To sanity-check changes, serve the repo

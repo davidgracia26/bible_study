@@ -72,6 +72,17 @@ body {
   transition: background .25s, color .25s;
 }
 
+/* Myanmar script needs a font that actually ships Myanmar glyphs — none of
+   the defaults above ('Segoe UI', Arial, Helvetica) do, so relying on
+   automatic fallback risks tofu boxes on some platforms/browsers. Scope a
+   Myanmar-aware stack (plus a touch more line-height for stacked vowel
+   marks) to `lang="my"`, which js/i18n.js sets on <html> when that
+   language is selected. */
+html[lang="my"] body {
+  font-family: 'Myanmar Text', 'Noto Sans Myanmar', 'Padauk', 'Myanmar Sangam MN', 'Segoe UI', Arial, Helvetica, sans-serif;
+  line-height: 1.85;
+}
+
 /* ── TOP CHROME ── */
 .top-chrome {
   background: linear-gradient(90deg, var(--navy) 0%, var(--navy2) 100%);
@@ -230,6 +241,33 @@ body {
 }
 .theme-toggle-btn:hover { background: rgba(255,255,255,.2); }
 .theme-toggle-btn .theme-icon { font-size: 1rem; line-height: 1; }
+
+/* ── LANGUAGE SWITCHER ── */
+.lang-select {
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 20px;
+  color: white;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  padding: 5px 10px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.lang-select:hover { background: rgba(255,255,255,.2); }
+.lang-select option { color: var(--navy); }
+
+/* ── I18N FALLBACK NOTICE ── */
+.i18n-fallback-notice {
+  background: rgba(232,117,23,.12);
+  border: 1px solid rgba(232,117,23,.35);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-size: .78rem;
+  padding: 8px 14px;
+  margin: 0 0 12px;
+}
 
 /* ── TWO-COLUMN WORKSPACE ── */
 .workspace {
@@ -669,6 +707,12 @@ body {
   color: white;
   padding: 48px 24px 40px;
   text-align: center;
+  position: relative;
+}
+.landing-header .lang-switcher {
+  position: absolute;
+  top: 16px;
+  right: 20px;
 }
 .landing-header .eyebrow {
   font-size: .72rem;

@@ -12,7 +12,7 @@
      TOP CHROME
 ════════════════════════════════════════ -->
 <div class="top-chrome">
-  <a class="home-btn" href="index.html" title="Back to home"><span class="arrow">&#8592;</span> Home</a>
+  <a class="home-btn" id="home-btn" href="index.html" title="Back to home"><span class="arrow">&#8592;</span> <span id="home-btn-label">Home</span></a>
 
   <div class="chrome-title">
     <div class="eyebrow" id="chrome-eyebrow"></div>
@@ -25,9 +25,11 @@
 
   <div class="font-controls" id="font-controls">
     <span>Aa</span>
-    <button class="font-btn" onclick="adjustFont(-1)" title="Smaller">&#8722;</button>
-    <button class="font-btn" onclick="adjustFont(1)"  title="Larger">&#43;</button>
+    <button class="font-btn" id="font-btn-smaller" onclick="adjustFont(-1)" title="Smaller">&#8722;</button>
+    <button class="font-btn" id="font-btn-larger" onclick="adjustFont(1)"  title="Larger">&#43;</button>
   </div>
+
+  <div class="lang-switcher" id="lang-switcher"></div>
 
   <button class="theme-toggle-btn" id="theme-toggle-btn" onclick="toggleTheme()" title="Toggle light / dark mode">
     <span class="theme-icon" id="theme-icon">&#9790;</span>
@@ -60,15 +62,15 @@
     </div>
 
     <div class="q-stage" id="q-stage">
-      <div class="app-loading">Loading study&hellip;</div>
+      <div class="app-loading" id="app-loading">Loading study&hellip;</div>
     </div>
 
     <div class="q-nav-bar">
       <button class="nav-btn" id="btn-prev" onclick="prevQ()" disabled>
-        <span class="arrow">&#8592;</span> Prev
+        <span class="arrow">&#8592;</span> <span id="btn-prev-label">Prev</span>
       </button>
       <button class="nav-btn primary" id="btn-next" onclick="nextQ()">
-        Next <span class="arrow">&#8594;</span>
+        <span id="btn-next-label">Next</span> <span class="arrow">&#8594;</span>
       </button>
     </div>
   </div>
@@ -87,6 +89,7 @@
   <span id="page-footer-text"></span>
 </div>
 
+<script src="js/i18n.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

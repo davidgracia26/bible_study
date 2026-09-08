@@ -5,14 +5,42 @@
       "date": "September 1",
       "series": "Ordinary Glory",
       "title": "Love Like Dolly Parton",
-      "subtitle": "Give, Welcome, Transform"
+      "subtitle": "Give, Welcome, Transform",
+      "i18n": {
+        "es": {
+          "date": "1 de septiembre",
+          "series": "Gloria Cotidiana",
+          "title": "Amar como Dolly Parton",
+          "subtitle": "Dar, Acoger, Transformar"
+        },
+        "my": {
+          "date": "စက်တင်ဘာ ၁",
+          "series": "သာမန် ဘုန်းအသရေ",
+          "title": "ဒေါလီ ပါတွန် ကဲ့သို့ ချစ်ပါ",
+          "subtitle": "ပေးကမ်းပါ၊ ကြိုဆိုပါ၊ ပြောင်းလဲပါ"
+        }
+      }
     },
     {
       "id": "9_8",
       "date": "September 8",
       "series": "Ordinary Glory",
       "title": "Lose It to Find It",
-      "subtitle": "Bios, Rules, and Surrender"
+      "subtitle": "Bios, Rules, and Surrender",
+      "i18n": {
+        "es": {
+          "date": "8 de septiembre",
+          "series": "Gloria Cotidiana",
+          "title": "Perderlo para encontrarlo",
+          "subtitle": "Biografías, Reglas y Rendición"
+        },
+        "my": {
+          "date": "စက်တင်ဘာ ၈",
+          "series": "သာမန် ဘုန်းအသရေ",
+          "title": "ရှာဖွေတွေ့ရှိရန် စွန့်လွှတ်ပါ",
+          "subtitle": "ဇီဝ၊ စည်းမျဉ်းများနှင့် ဆက်ကပ်အပ်နှံခြင်း"
+        }
+      }
     }
   ]
 }

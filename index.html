@@ -9,46 +9,66 @@
 <body class="landing-body">
 
   <div class="landing-header">
-    <div class="eyebrow">Ordinary Glory</div>
-    <h1>Bible Study Guides</h1>
+    <div class="lang-switcher" id="lang-switcher"></div>
+    <div class="eyebrow" id="landing-eyebrow">Ordinary Glory</div>
+    <h1 id="landing-title">Bible Study Guides</h1>
   </div>
 
   <div class="landing-list" id="landing-list">
-    <div class="landing-empty">Loading studies&hellip;</div>
+    <div class="landing-empty" id="landing-loading">Loading studies&hellip;</div>
   </div>
 
+  <script src="js/i18n.js"></script>
   <script>
-    fetch('data/manifest.json')
-      .then(res => {
-        if (!res.ok) throw new Error('manifest not found');
-        return res.json();
-      })
-      .then(manifest => {
-        const list = document.getElementById('landing-list');
-        const weeks = manifest.weeks || [];
-        if (!weeks.length) {
-          list.innerHTML = '<div class="landing-empty">No studies available yet.</div>';
-          return;
-        }
-        const parseDate = (w) => {
-          const parsed = w.date ? new Date(`${w.date}, 2000`) : null;
-          if (parsed && !isNaN(parsed)) return parsed;
-          const [month, day] = (w.id || '').split('_').map(Number);
-          return new Date(2000, (month || 1) - 1, day || 1);
-        };
-        const sorted = weeks.slice().sort((a, b) => parseDate(b) - parseDate(a));
-        list.innerHTML = sorted.map(w => `
-          <a class="landing-card" href="study.html?week=${encodeURIComponent(w.id)}">
-            <div class="lc-date">${w.series ? w.series + ' &middot; ' : ''}${w.date || ''}</div>
-            <div class="lc-title">${w.title || w.id}</div>
-            ${w.subtitle ? `<div class="lc-subtitle">${w.subtitle}</div>` : ''}
-          </a>
-        `).join('');
-      })
-      .catch(err => {
-        document.getElementById('landing-list').innerHTML =
-          `<div class="landing-empty">Could not load studies (${err.message}).</div>`;
-      });
+    (async function () {
+      await I18N.init();
+
+      document.getElementById('landing-eyebrow').textContent = I18N.t('landingEyebrow');
+      document.getElementById('landing-title').textContent = I18N.t('landingTitle');
+      document.getElementById('landing-loading').textContent = I18N.t('landingLoading');
+      I18N.buildSwitcher(document.getElementById('lang-switcher'));
+
+      const lang = I18N.get();
+      const localize = (w, field) => (w.i18n && w.i18n[lang] && w.i18n[lang][field]) || w[field];
+
+      fetch('data/manifest.json')
+        .then(res => {
+          if (!res.ok) throw new Error('manifest not found');
+          return res.json();
+        })
+        .then(manifest => {
+          const list = document.getElementById('landing-list');
+          const weeks = manifest.weeks || [];
+          if (!weeks.length) {
+            list.innerHTML = `<div class="landing-empty">${I18N.t('landingEmpty')}</div>`;
+            return;
+          }
+          const parseDate = (w) => {
+            const parsed = w.date ? new Date(`${w.date}, 2000`) : null;
+            if (parsed && !isNaN(parsed)) return parsed;
+            const [month, day] = (w.id || '').split('_').map(Number);
+            return new Date(2000, (month || 1) - 1, day || 1);
+          };
+          const sorted = weeks.slice().sort((a, b) => parseDate(b) - parseDate(a));
+          list.innerHTML = sorted.map(w => {
+            const series = localize(w, 'series');
+            const date = localize(w, 'date');
+            const title = localize(w, 'title');
+            const subtitle = localize(w, 'subtitle');
+            return `
+              <a class="landing-card" href="study.html?week=${encodeURIComponent(w.id)}">
+                <div class="lc-date">${series ? series + ' &middot; ' : ''}${date || ''}</div>
+                <div class="lc-title">${title || w.id}</div>
+                ${subtitle ? `<div class="lc-subtitle">${subtitle}</div>` : ''}
+              </a>
+            `;
+          }).join('');
+        })
+        .catch(err => {
+          document.getElementById('landing-list').innerHTML =
+            `<div class="landing-empty">${I18N.t('landingError')} (${err.message}).</div>`;
+        });
+    })();
   </script>
 </body>
 </html>

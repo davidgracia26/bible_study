@@ -7,10 +7,10 @@ function applyTheme(theme) {
   const label = document.getElementById('theme-label');
   if (theme === 'dark') {
     icon.textContent  = '\u2600';
-    label.textContent = 'Light';
+    label.textContent = I18N.t('light', 'Light');
   } else {
     icon.innerHTML    = '&#9790;';
-    label.textContent = 'Dark';
+    label.textContent = I18N.t('dark', 'Dark');
   }
   try { localStorage.setItem('bs-theme', theme); } catch(e) {}
 }
@@ -46,20 +46,30 @@ async function loadWeek() {
   const weekId = params.get('week');
 
   if (!weekId) {
-    showAppError('No study was specified. Go back to the <a href="index.html">index</a> and pick a week.');
+    showAppError(
+      `${I18N.t('noStudySpecified')} <a href="index.html">${I18N.t('indexLinkText')}</a> ${I18N.t('andPickAWeek')}`
+    );
     return;
   }
+
+  const baseUrl = `data/${weekId}.json`;
+  const localizedUrl = I18N.localize(baseUrl);
+  let usedFallback = false;
 
   try {
-    const res = await fetch(`data/${weekId}.json`);
-    if (!res.ok) throw new Error(`Could not load data/${weekId}.json (${res.status})`);
+    let res = await fetch(localizedUrl);
+    if (!res.ok && localizedUrl !== baseUrl) {
+      usedFallback = true;
+      res = await fetch(baseUrl);
+    }
+    if (!res.ok) throw new Error(`Could not load ${baseUrl} (${res.status})`);
     DATA = await res.json();
   } catch (err) {
-    showAppError(`Sorry, this study could not be loaded. (${err.message})`);
+    showAppError(`${I18N.t('couldNotLoadStudy')} (${err.message})`);
     return;
   }
 
-  initPage();
+  initPage(usedFallback);
 }
 
 function showAppError(html) {
@@ -72,7 +82,7 @@ function showAppError(html) {
 /* ════════════════════════════════════════
    BUILD STATIC-ISH CHROME FROM DATA
 ════════════════════════════════════════ */
-function initPage() {
+function initPage(usedFallback) {
   if (DATA.meta && DATA.meta.pageTitle) document.title = DATA.meta.pageTitle;
 
   document.getElementById('chrome-eyebrow').innerHTML = DATA.meta.eyebrow || '';
@@ -89,8 +99,40 @@ function initPage() {
 
   document.getElementById('page-footer-text').innerHTML = DATA.meta.footer || '';
 
+  if (usedFallback) showFallbackNotice();
+
   current = VIEWS.findIndex(v => v.type === 'question');
   render();
+}
+
+/* Translate the bits of chrome that are static HTML (not injected per-view). */
+function applyStaticStrings() {
+  const set = (id, text) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = text;
+  };
+  set('home-btn-label', I18N.t('home'));
+  set('app-loading', I18N.t('loadingStudy'));
+  set('btn-prev-label', I18N.t('prev'));
+  set('btn-next-label', I18N.t('next'));
+  const homeBtn = document.getElementById('home-btn');
+  if (homeBtn) homeBtn.title = I18N.t('backToHome');
+  const themeBtn = document.getElementById('theme-toggle-btn');
+  if (themeBtn) themeBtn.title = I18N.t('toggleTheme');
+  const smallerBtn = document.getElementById('font-btn-smaller');
+  if (smallerBtn) smallerBtn.title = I18N.t('smaller');
+  const largerBtn = document.getElementById('font-btn-larger');
+  if (largerBtn) largerBtn.title = I18N.t('larger');
+  applyTheme(document.documentElement.getAttribute('data-theme') || 'light');
+}
+
+function showFallbackNotice() {
+  const stage = document.getElementById('q-stage');
+  if (!stage) return;
+  const note = document.createElement('div');
+  note.className = 'i18n-fallback-notice';
+  note.textContent = I18N.t('notTranslatedNotice');
+  stage.parentNode.insertBefore(note, stage);
 }
 
 /* ════════════════════════════════════════
@@ -110,15 +152,15 @@ function buildViews() {
 
 function buildSectionPills() {
   const hasVoices = Object.keys(DATA.scholars || {}).length > 0;
-  let html = `<button onclick="jumpToSection('passages')" data-target="passages">Passages</button>`;
+  let html = `<button onclick="jumpToSection('passages')" data-target="passages">${I18N.t('passages')}</button>`;
   DATA.sections.forEach((sec, i) => {
     html += `<button onclick="jumpToSection('${i}')" data-target="${i}">${sec.label}</button>`;
   });
   if (hasVoices) {
-    html += `<button onclick="jumpToSection('voices')" data-target="voices">Voices</button>`;
+    html += `<button onclick="jumpToSection('voices')" data-target="voices">${I18N.t('voices')}</button>`;
   }
-  html += `<button onclick="jumpToSection('prayer')" data-target="prayer">Prayer</button>`;
-  html += `<button class="list-toggle-btn" onclick="jumpToSection('allquestions')" data-target="allquestions"><span class="ltb-text">All Questions</span> &#9776;</button>`;
+  html += `<button onclick="jumpToSection('prayer')" data-target="prayer">${I18N.t('prayer')}</button>`;
+  html += `<button class="list-toggle-btn" onclick="jumpToSection('allquestions')" data-target="allquestions"><span class="ltb-text">${I18N.t('allQuestions')}</span> &#9776;</button>`;
   document.getElementById('section-pills').innerHTML = html;
 }
 
@@ -224,26 +266,26 @@ function render() {
     const refsHTML = q.refs.map(r => `<span>${r}</span>`).join('');
     stage.className = 'q-stage';
     stage.innerHTML = `
-      <div class="q-num-large">Question ${q.n}</div>
+      <div class="q-num-large">${I18N.t('question')} ${q.n}</div>
       <div class="q-text-main">${q.text}</div>
       <div class="q-refs">${refsHTML}</div>
     `;
-    totalEl.innerHTML = `<strong>Q${q.n}</strong> of ${DATA.questions.length}`;
+    totalEl.innerHTML = `<strong>Q${q.n}</strong> ${I18N.t('of')} ${DATA.questions.length}`;
   } else {
     leftPanel.classList.add('hidden');
     stage.className = 'q-stage list-view';
     if (view.type === 'passages') {
-      stage.innerHTML = `<div class="q-num-large">Scripture Passages</div>${passagesHTML()}`;
-      totalEl.textContent = 'Scripture Passages';
+      stage.innerHTML = `<div class="q-num-large">${I18N.t('scripturePassages')}</div>${passagesHTML()}`;
+      totalEl.textContent = I18N.t('scripturePassages');
     } else if (view.type === 'voices') {
-      stage.innerHTML = `<div class="q-num-large">Voices for the Discussion</div>${voicesHTML()}`;
-      totalEl.textContent = 'Voices for the Discussion';
+      stage.innerHTML = `<div class="q-num-large">${I18N.t('voicesForDiscussion')}</div>${voicesHTML()}`;
+      totalEl.textContent = I18N.t('voicesForDiscussion');
     } else if (view.type === 'prayer') {
-      stage.innerHTML = `<div class="q-num-large">Prayer</div>${prayerHTML()}`;
-      totalEl.textContent = 'Prayer';
+      stage.innerHTML = `<div class="q-num-large">${I18N.t('prayer')}</div>${prayerHTML()}`;
+      totalEl.textContent = I18N.t('prayer');
     } else if (view.type === 'allquestions') {
-      stage.innerHTML = `<div class="q-num-large">All Questions</div>${allQuestionsHTML()}`;
-      totalEl.textContent = 'All Questions';
+      stage.innerHTML = `<div class="q-num-large">${I18N.t('allQuestions')}</div>${allQuestionsHTML()}`;
+      totalEl.textContent = I18N.t('allQuestions');
     }
   }
 
@@ -260,8 +302,8 @@ function render() {
   document.getElementById('btn-prev').disabled = current === 0;
   document.getElementById('btn-next').disabled = current === VIEWS.length - 1;
   document.getElementById('btn-next').innerHTML = current === VIEWS.length - 1
-    ? 'The End'
-    : 'Next <span class="arrow">&#8594;</span>';
+    ? I18N.t('theEnd')
+    : `${I18N.t('next')} <span class="arrow">&#8594;</span>`;
 
   /* Section pills */
   document.querySelectorAll('.section-pills button[data-target]').forEach(btn => {
@@ -307,7 +349,7 @@ function renderLeftPanel(q) {
       if (!s) return;
       leftHTML += `
         <div class="scholar-block">
-          <div class="s-label">Voice for the Discussion</div>
+          <div class="s-label">${I18N.t('voiceForDiscussion')}</div>
           <div class="s-quote">&ldquo;${s.quote}&rdquo;</div>
           <div class="s-attr">&#x2014; ${s.name}${s.role ? ' &nbsp;&middot;&nbsp; ' + s.role : ''}</div>
         </div>`;
@@ -315,7 +357,7 @@ function renderLeftPanel(q) {
   }
 
   if (!leftHTML) {
-    leftHTML = `<div class="no-scholar">No citation for this question</div>`;
+    leftHTML = `<div class="no-scholar">${I18N.t('noCitation')}</div>`;
   }
 
   document.getElementById('left-body').innerHTML = leftHTML;
@@ -365,4 +407,9 @@ document.addEventListener('keydown', e => {
 /* ════════════════════════════════════════
    INIT
 ════════════════════════════════════════ */
-loadWeek();
+(async function main() {
+  await I18N.init();
+  applyStaticStrings();
+  I18N.buildSwitcher(document.getElementById('lang-switcher'));
+  loadWeek();
+})();

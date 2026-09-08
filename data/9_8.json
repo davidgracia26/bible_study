@@ -1,0 +1,95 @@
+{
+  "meta": {
+    "pageTitle": "Bible Study — September 8 | Lose It to Find It",
+    "eyebrow": "Ordinary Glory &middot; Bible Study &mdash; September 8",
+    "title": "Lose It to Find It:",
+    "titleHighlight": "Bios, Rules, and Surrender",
+    "translation": "NIV",
+    "footer": "Bible Study &mdash; September 8 &nbsp;&middot;&nbsp; Ordinary Glory: Lose It to Find It &nbsp;&middot;&nbsp; Scripture from the <strong>NIV</strong>"
+  },
+
+  "sections": [
+    { "label": "Part 1", "name": "Our Whole <em>Story</em>", "ref": "Matthew 16:21&ndash;23" },
+    { "label": "Part 2", "name": "Lose It to <em>Find</em> It", "ref": "Matthew 16:24&ndash;26" },
+    { "label": "Part 3", "name": "Rules Made for <em>People</em>", "ref": "Mark 2:23&ndash;28" },
+    { "label": "Part 4", "name": "What We <em>Surrender</em>", "ref": "Reflection &middot; Prayer" }
+  ],
+
+  "passages": {
+    "matt16_1": { "ref": "Matthew 16:21&ndash;23", "link": "https://www.biblegateway.com/passage/?search=Matthew%2016%3A21-23&version=NIV", "text": "&ldquo;From that time on Jesus began to explain to his disciples that he must go to Jerusalem and suffer many things at the hands of the elders, the chief priests and the teachers of the law, and that he must be killed and on the third day be raised to life. Peter took him aside and began to rebuke him. &lsquo;Never, Lord!&rsquo; he said. &lsquo;This shall never happen to you!&rsquo; Jesus turned and said to Peter, &lsquo;Get behind me, Satan! You are a stumbling block to me; you do not have in mind the concerns of God, but merely human concerns.&rsquo;&rdquo;" },
+    "matt16_2": { "ref": "Matthew 16:24&ndash;26", "link": "https://www.biblegateway.com/passage/?search=Matthew%2016%3A24-26&version=NIV", "text": "&ldquo;Then Jesus said to his disciples, &lsquo;Whoever wants to be my disciple must deny themselves and take up their cross and follow me. For whoever wants to save their life will lose it, but whoever loses their life for me will find it. What good will it be for someone to gain the whole world, yet forfeit their soul? Or what can anyone give in exchange for their soul?&rsquo;&rdquo;" },
+    "mark2": { "ref": "Mark 2:23&ndash;28", "link": "https://www.biblegateway.com/passage/?search=Mark%202%3A23-28&version=NIV", "text": "&ldquo;One Sabbath Jesus was going through the grainfields, and as his disciples walked along, they began to pick some heads of grain. The Pharisees said to him, &lsquo;Look, why are they doing what is unlawful on the Sabbath?&rsquo; He answered, &lsquo;Have you never read what David did when he and his companions were hungry and in need? In the days of Abiathar the high priest, he entered the house of God and ate the consecrated bread, which is lawful only for priests to eat. And he also gave some to his companions.&rsquo; Then he said to them, &lsquo;The Sabbath was made for man, not man for the Sabbath. So the Son of Man is Lord even of the Sabbath.&rsquo;&rdquo;" }
+  },
+
+  "scholars": {
+    "bonhoeffer": { "name": "Dietrich Bonhoeffer", "role": "Pastor &amp; Theologian", "quote": "I have a public image that is self-assured and confident, and in my private life I feel like a weak and wobbling person. Am I one person today and another tomorrow? Am I both at once?" },
+    "obieblyn": { "name": "Meghan O&rsquo;Gieblyn", "role": "Author", "quote": "Ask anyone who has spent years in the grip of an obsession, a self-destructive habit, irrational fears, chronic self-hatred, or a persistent lack of faith whether they would prefer some external adversary, and most will assent without hesitation. Those who don&rsquo;t? They are still under the delusion they can win." },
+    "weil": { "name": "Simone Weil", "role": "Philosopher", "quote": "We have to try to cure our faults by attention and not by will." },
+    "serenity": { "name": "The Serenity Prayer", "role": "", "quote": "God, grant me the serenity to accept the things I cannot change, courage to change the things I can, and the wisdom to know the difference." }
+  },
+
+  "questions": [
+    {
+      "n": 1, "section": 0,
+      "text": "When Erica wrote a short bio for a talk, she only wrote the good things about herself. But her friend Joshua Carney wanted people to know his hard story too &mdash; not just his success. Dietrich Bonhoeffer wrote that he felt like a confident person on the outside, but a weak person on the inside. Do you show only the &ldquo;good parts&rdquo; of your story to others? What is one true and hard part of your story that you usually hide?",
+      "refs": ["Dietrich Bonhoeffer"],
+      "passages": [],
+      "scholars": ["bonhoeffer"]
+    },
+    {
+      "n": 2, "section": 0,
+      "text": "In Matthew 16, Jesus tells his disciples he must suffer and die before he rises again. Peter does not want to hear the hard part &mdash; he says, &ldquo;This will never happen to you!&rdquo; But Jesus tells him, &ldquo;Get behind me, Satan.&rdquo; Why do you think it is hard for us to accept the difficult parts of our own story, or someone else&rsquo;s story? Have you ever tried to stop someone from facing a hard truth, like Peter did?",
+      "refs": ["Matthew 16:21&ndash;23"],
+      "passages": ["matt16_1"],
+      "scholars": []
+    },
+    {
+      "n": 3, "section": 1,
+      "text": "Jesus says, &ldquo;Whoever wants to save their life will lose it, but whoever loses their life for me will find it.&rdquo; This sounds like a puzzle. What do you think it means to &ldquo;lose your life&rdquo; in order to &ldquo;find&rdquo; it? Can you think of a time when giving something up actually gave you a better life?",
+      "refs": ["Matthew 16:24&ndash;26"],
+      "passages": ["matt16_2"],
+      "scholars": []
+    },
+    {
+      "n": 4, "section": 1,
+      "text": "Meghan O&rsquo;Gieblyn says that people with an addiction or a hard habit often want to believe they are still &ldquo;in control&rdquo; and can win the fight alone. The Serenity Prayer asks God for the wisdom to know what we can and cannot change. Is there something in your life right now that you keep trying to control by yourself, but maybe you need to surrender to God instead? What would it look like to let go of that control this week?",
+      "refs": ["Meghan O&rsquo;Gieblyn", "The Serenity Prayer"],
+      "passages": [],
+      "scholars": ["obieblyn", "serenity"]
+    },
+    {
+      "n": 5, "section": 2,
+      "text": "In Mark 2, the Pharisees are upset because Jesus&rsquo; disciples pick grain to eat on the Sabbath, which was against their rules. Jesus reminds them that &ldquo;the Sabbath was made for man, not man for the Sabbath.&rdquo; What are some rules &mdash; in church, at home, or in your own mind &mdash; that may have started for a good reason, but now cause more harm than good?",
+      "refs": ["Mark 2:23&ndash;28"],
+      "passages": ["mark2"],
+      "scholars": []
+    },
+    {
+      "n": 6, "section": 2,
+      "text": "Simone Weil says, &ldquo;We have to try to cure our faults by attention and not by will.&rdquo; This means that instead of forcing ourselves to change through sheer willpower, we grow by paying close, honest attention. How is &ldquo;paying attention&rdquo; different from just &ldquo;trying harder&rdquo;? Which one do you usually rely on when you want to change something about yourself?",
+      "refs": ["Simone Weil"],
+      "passages": [],
+      "scholars": ["weil"]
+    },
+    {
+      "n": 7, "section": 3,
+      "text": "The sermon talked about an arbitrary rule &mdash; only inviting friends over when the house is clean. When that rule was broken one night, it led to a better, more connected time with friends. What is a rule you have made for yourself that, if you let go of it, might actually bring you closer to other people or to God?",
+      "refs": [],
+      "passages": [],
+      "scholars": []
+    },
+    {
+      "n": 8, "section": 3,
+      "text": "The sermon ends by asking: What do you need to surrender this week? It could be a need for certainty, a habit, a desire to control someone else, or an addiction. Name one thing, big or small, that you feel God is asking you to let go of. What do you think you might find on the other side of that surrender?",
+      "refs": [],
+      "passages": [],
+      "scholars": []
+    }
+  ],
+
+  "prayer": {
+    "label": "Closing Prayer",
+    "text": "Dear God,<br><br>Thank you that we do not have to hide our whole story from you. You already know our good parts and our hard parts, and you love us anyway.<br><br>Give us the courage to lose what needs to be lost &mdash; our need for control, our need to be certain about everything, and our endless attempts to prove ourselves to others.<br><br>Teach us, like David and his friends, to remember that your rules were always made to help people, not to hurt them. Help us to pay attention to what truly helps us grow, instead of only trying harder by our own strength.<br><br>When we are holding on too tightly to something &mdash; a habit, a fear, a person, or an old version of ourselves &mdash; give us the wisdom to know what to release into your hands.<br><br>We believe that when we lose our life for you, we will find it. Help us trust this, even when it feels like a mystery.<br><br>We ask this in the name of Jesus, who showed us the way through both suffering and new life. Amen.",
+    "source": "&mdash; Based on this week&rsquo;s study: telling our whole story, losing to find life, letting rules serve people, and surrendering what we cannot control."
+  }
+}

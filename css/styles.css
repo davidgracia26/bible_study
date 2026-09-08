@@ -85,6 +85,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 200;
+  overflow: hidden;
 }
 .chrome-title { flex: 1; min-width: 0; }
 .chrome-title .eyebrow {
@@ -95,6 +96,9 @@ body {
   color: var(--gold2);
   line-height: 1;
   margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .chrome-title h1 {
   font-size: .95rem;

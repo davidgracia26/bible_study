@@ -475,6 +475,49 @@ document.addEventListener('keydown', e => {
 });
 
 /* ════════════════════════════════════════
+   SWIPE GESTURES (mobile)
+   Swipe left/right over the main workspace to
+   go next/prev, mirroring the arrow-key nav.
+   Vertical scrolling is left untouched.
+════════════════════════════════════════ */
+(function() {
+  const SWIPE_MIN_DISTANCE = 50;   // px, minimum horizontal travel to count as a swipe
+  const SWIPE_MAX_DURATION = 600;  // ms, ignore slow drags
+  let touchStartX = 0, touchStartY = 0, touchStartTime = 0;
+  let tracking = false;
+
+  function onTouchStart(e) {
+    if (e.touches.length !== 1) { tracking = false; return; }
+    const t = e.touches[0];
+    touchStartX = t.clientX;
+    touchStartY = t.clientY;
+    touchStartTime = Date.now();
+    tracking = true;
+  }
+
+  function onTouchEnd(e) {
+    if (!tracking) return;
+    tracking = false;
+    const t = e.changedTouches[0];
+    if (!t) return;
+    const dx = t.clientX - touchStartX;
+    const dy = t.clientY - touchStartY;
+    const dt = Date.now() - touchStartTime;
+    if (dt > SWIPE_MAX_DURATION) return;
+    if (Math.abs(dx) < SWIPE_MIN_DISTANCE) return;
+    if (Math.abs(dx) < Math.abs(dy) * 1.5) return; // mostly vertical, treat as scroll
+    if (!DATA) return;
+    if (dx < 0) nextQ(); else prevQ();
+  }
+
+  const workspace = document.getElementById('main-workspace');
+  if (workspace) {
+    workspace.addEventListener('touchstart', onTouchStart, { passive: true });
+    workspace.addEventListener('touchend', onTouchEnd, { passive: true });
+  }
+})();
+
+/* ════════════════════════════════════════
    INIT
 ════════════════════════════════════════ */
 (async function main() {

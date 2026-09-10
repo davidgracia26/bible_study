@@ -55,12 +55,18 @@
             const date = localize(w, 'date');
             const title = localize(w, 'title');
             const subtitle = localize(w, 'subtitle');
+            const videoLink = w.videoUrl
+              ? `<a class="lc-video-link" href="${w.videoUrl}" target="_blank" rel="noopener">&#9658; ${I18N.t('watchSermon')}</a>`
+              : '';
             return `
-              <a class="landing-card" href="study.html?week=${encodeURIComponent(w.id)}">
-                <div class="lc-date">${series ? series + ' &middot; ' : ''}${date || ''}</div>
-                <div class="lc-title">${title || w.id}</div>
-                ${subtitle ? `<div class="lc-subtitle">${subtitle}</div>` : ''}
-              </a>
+              <div class="landing-card">
+                <a class="lc-main-link" href="study.html?week=${encodeURIComponent(w.id)}">
+                  <div class="lc-date">${series ? series + ' &middot; ' : ''}${date || ''}</div>
+                  <div class="lc-title">${title || w.id}</div>
+                  ${subtitle ? `<div class="lc-subtitle">${subtitle}</div>` : ''}
+                </a>
+                ${videoLink}
+              </div>
             `;
           }).join('');
         })

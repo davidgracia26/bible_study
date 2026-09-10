@@ -31,7 +31,8 @@
     "landingEyebrow": "Ordinary Glory",
     "landingLoading": "Loading studies\u2026",
     "landingEmpty": "No studies available yet.",
-    "landingError": "Could not load studies"
+    "landingError": "Could not load studies",
+    "watchSermon": "Watch Sermon"
   },
   "es": {
     "language": "Idioma",
@@ -65,7 +66,8 @@
     "landingEyebrow": "Gloria ordinaria",
     "landingLoading": "Cargando estudios…",
     "landingEmpty": "Todavía no hay estudios disponibles.",
-    "landingError": "No se pudieron cargar los estudios"
+    "landingError": "No se pudieron cargar los estudios",
+    "watchSermon": "Ver sermón"
   },
   "my": {
     "language": "ဘာသာစကား",
@@ -99,6 +101,7 @@
     "landingEyebrow": "Ordinary Glory",
     "landingLoading": "လေ့လာမှုများကို ရယူနေသည်\u2026",
     "landingEmpty": "မည်သည့် လေ့လာမှုမှ မရှိသေးပါ။",
-    "landingError": "လေ့လာမှုများကို ရယူ၍ မရပါ"
+    "landingError": "လေ့လာမှုများကို ရယူ၍ မရပါ",
+    "watchSermon": "တရားဒေသနာ ကြည့်ရန်"
   }
 }

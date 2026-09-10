@@ -89,6 +89,16 @@ function initPage(usedFallback) {
   document.getElementById('chrome-title').innerHTML =
     `${DATA.meta.title || ''} <span>${DATA.meta.titleHighlight || ''}</span>`;
 
+  const videoLink = document.getElementById('chrome-video-link');
+  if (videoLink) {
+    if (DATA.meta.videoUrl) {
+      videoLink.href = DATA.meta.videoUrl;
+      videoLink.classList.remove('hidden');
+    } else {
+      videoLink.classList.add('hidden');
+    }
+  }
+
   SECTION_Q_START = DATA.sections.map((_, i) =>
     DATA.questions.findIndex(q => q.section === i)
   );
@@ -113,6 +123,7 @@ function applyStaticStrings() {
   };
   set('home-btn-label', I18N.t('home'));
   set('app-loading', I18N.t('loadingStudy'));
+  set('chrome-video-link-label', I18N.t('watchSermon'));
   set('btn-prev-label', I18N.t('prev'));
   set('btn-next-label', I18N.t('next'));
   const homeBtn = document.getElementById('home-btn');

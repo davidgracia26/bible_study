@@ -122,6 +122,25 @@ html[lang="my"] body {
 }
 .chrome-title h1 span { color: var(--gold2); }
 
+.video-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  padding: 6px 12px;
+  border: 1px solid rgba(232,117,23,.4);
+  border-radius: 20px;
+  background: rgba(232,117,23,.12);
+  color: var(--gold2);
+  font-size: .78rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.video-link:hover { background: rgba(232,117,23,.22); }
+.video-link.hidden { display: none; }
+.video-link-icon { font-size: .7rem; }
+
 .section-pills { display: flex; gap: 5px; flex-shrink: 0; }
 .section-pills button {
   background: rgba(232,117,23,.12);
@@ -742,11 +761,14 @@ html[lang="my"] body {
   border-left: 4px solid var(--gold);
   border-radius: var(--radius);
   padding: 18px 22px;
-  text-decoration: none;
-  color: var(--text-primary);
   transition: box-shadow .15s, border-color .15s;
 }
 .landing-card:hover { border-color: var(--gold); box-shadow: 0 4px 18px rgba(15,35,64,.1); }
+.landing-card .lc-main-link {
+  display: block;
+  text-decoration: none;
+  color: var(--text-primary);
+}
 .landing-card .lc-date {
   font-size: .68rem;
   font-weight: 700;
@@ -757,6 +779,17 @@ html[lang="my"] body {
 }
 .landing-card .lc-title { font-size: 1.15rem; font-weight: 600; }
 .landing-card .lc-subtitle { font-size: .92rem; color: var(--text-muted); margin-top: 4px; }
+.landing-card .lc-video-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 10px;
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--gold-dark);
+  text-decoration: none;
+}
+.landing-card .lc-video-link:hover { text-decoration: underline; }
 .landing-empty { text-align: center; color: var(--text-muted); padding: 40px 0; }
 
 /* ── PRINT ── */
@@ -793,6 +826,7 @@ html[lang="my"] body {
   .top-chrome #section-pills { flex-wrap: wrap; gap: 6px; order: 5; flex-basis: 100%; }
   .top-chrome #font-controls,
   .top-chrome #theme-toggle-btn { order: 5; }
+  .top-chrome .video-link { order: 4; }
 
   /* ── Stack the workspace: passage/context above, question below ── */
   .workspace {

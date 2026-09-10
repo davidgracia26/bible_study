@@ -32,7 +32,9 @@
     "landingLoading": "Loading studies\u2026",
     "landingEmpty": "No studies available yet.",
     "landingError": "Could not load studies",
-    "watchSermon": "Watch Sermon"
+    "watchSermon": "Watch Sermon",
+    "copyLink": "Copy Link",
+    "linkCopied": "Link Copied!"
   },
   "es": {
     "language": "Idioma",
@@ -67,7 +69,9 @@
     "landingLoading": "Cargando estudios…",
     "landingEmpty": "Todavía no hay estudios disponibles.",
     "landingError": "No se pudieron cargar los estudios",
-    "watchSermon": "Ver sermón"
+    "watchSermon": "Ver sermón",
+    "copyLink": "Copiar enlace",
+    "linkCopied": "¡Enlace copiado!"
   },
   "my": {
     "language": "ဘာသာစကား",
@@ -102,6 +106,8 @@
     "landingLoading": "လေ့လာမှုများကို ရယူနေသည်\u2026",
     "landingEmpty": "မည်သည့် လေ့လာမှုမှ မရှိသေးပါ။",
     "landingError": "လေ့လာမှုများကို ရယူ၍ မရပါ",
-    "watchSermon": "တရားဒေသနာ ကြည့်ရန်"
+    "watchSermon": "တရားဒေသနာ ကြည့်ရန်",
+    "copyLink": "လင့်ခ်ကို ကူးယူရန်",
+    "linkCopied": "လင့်ခ် ကူးယူပြီးပါပြီ!"
   }
 }

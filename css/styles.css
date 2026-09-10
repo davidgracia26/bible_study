@@ -505,6 +505,36 @@ html[lang="my"] body {
   letter-spacing: .04em;
 }
 
+/* ── COPY LINK BUTTON (share a question) ── */
+.copy-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  align-self: flex-start;
+  margin-top: 22px;
+  padding: 7px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  cursor: pointer;
+  transition: background .15s, border-color .15s, color .15s;
+}
+.copy-link-btn:hover {
+  border-color: var(--gold-dark);
+  color: var(--gold-dark);
+  background: rgba(232,117,23,.08);
+}
+.copy-link-btn .clb-icon { font-size: .85rem; }
+.copy-link-btn.copied {
+  border-color: var(--gold-dark);
+  background: rgba(232,117,23,.12);
+  color: var(--gold-dark);
+}
+
 .q-nav-bar {
   background: var(--bg-q-nav);
   border-top: 1px solid var(--border-color);

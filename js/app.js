@@ -32,6 +32,7 @@ function toggleTheme() {
    STATE
 ════════════════════════════════════════ */
 let DATA = null;
+let WEEK_ID = null;
 let SECTION_Q_START = [];
 let VIEWS = [];
 let current = 0;
@@ -52,6 +53,7 @@ async function loadWeek() {
     return;
   }
 
+  WEEK_ID = weekId;
   const baseUrl = `data/${weekId}.json`;
   const localizedUrl = I18N.localize(baseUrl);
   let usedFallback = false;
@@ -69,7 +71,8 @@ async function loadWeek() {
     return;
   }
 
-  initPage(usedFallback);
+  const requestedQ = parseInt(params.get('q'), 10);
+  initPage(usedFallback, requestedQ);
 }
 
 function showAppError(html) {
@@ -82,7 +85,7 @@ function showAppError(html) {
 /* ════════════════════════════════════════
    BUILD STATIC-ISH CHROME FROM DATA
 ════════════════════════════════════════ */
-function initPage(usedFallback) {
+function initPage(usedFallback, requestedQ) {
   if (DATA.meta && DATA.meta.pageTitle) document.title = DATA.meta.pageTitle;
 
   document.getElementById('chrome-eyebrow').innerHTML = DATA.meta.eyebrow || '';
@@ -111,7 +114,10 @@ function initPage(usedFallback) {
 
   if (usedFallback) showFallbackNotice();
 
-  current = VIEWS.findIndex(v => v.type === 'question');
+  const requestedIdx = Number.isInteger(requestedQ)
+    ? VIEWS.findIndex(v => v.type === 'question' && DATA.questions[v.qIndex].n === requestedQ)
+    : -1;
+  current = requestedIdx !== -1 ? requestedIdx : VIEWS.findIndex(v => v.type === 'question');
   render();
 }
 
@@ -280,6 +286,9 @@ function render() {
       <div class="q-num-large">${I18N.t('question')} ${q.n}</div>
       <div class="q-text-main">${q.text}</div>
       <div class="q-refs">${refsHTML}</div>
+      <button class="copy-link-btn" onclick="copyQuestionLink(${q.n}, this)" title="${I18N.t('copyLink')}">
+        <span class="clb-icon">&#128279;</span> <span class="clb-label">${I18N.t('copyLink')}</span>
+      </button>
     `;
     totalEl.innerHTML = `<strong>Q${q.n}</strong> ${I18N.t('of')} ${DATA.questions.length}`;
   } else {
@@ -372,6 +381,56 @@ function renderLeftPanel(q) {
   }
 
   document.getElementById('left-body').innerHTML = leftHTML;
+}
+
+/* ════════════════════════════════════════
+   COPY / SHARE A QUESTION
+════════════════════════════════════════ */
+function questionLinkUrl(n) {
+  const url = new URL(location.href);
+  url.searchParams.set('week', WEEK_ID);
+  url.searchParams.set('q', n);
+  const lang = I18N.get();
+  if (lang && lang !== 'en') url.searchParams.set('lang', lang);
+  else url.searchParams.delete('lang');
+  return url.toString();
+}
+
+function copyQuestionLink(n, btn) {
+  const url = questionLinkUrl(n);
+  copyToClipboard(url).then(() => showCopyFeedback(btn));
+}
+
+function copyToClipboard(text) {
+  if (navigator.clipboard && window.isSecureContext) {
+    return navigator.clipboard.writeText(text).catch(() => fallbackCopy(text));
+  }
+  return Promise.resolve(fallbackCopy(text));
+}
+
+function fallbackCopy(text) {
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.style.position = 'fixed';
+  textarea.style.opacity = '0';
+  document.body.appendChild(textarea);
+  textarea.select();
+  try { document.execCommand('copy'); } catch (e) {}
+  document.body.removeChild(textarea);
+}
+
+function showCopyFeedback(btn) {
+  if (!btn) return;
+  const label = btn.querySelector('.clb-label');
+  if (!label) return;
+  const original = label.textContent;
+  btn.classList.add('copied');
+  label.textContent = I18N.t('linkCopied');
+  clearTimeout(btn._copyTimeout);
+  btn._copyTimeout = setTimeout(() => {
+    btn.classList.remove('copied');
+    label.textContent = original;
+  }, 1800);
 }
 
 /* ════════════════════════════════════════

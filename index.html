@@ -10,7 +10,6 @@
 
   <div class="landing-header">
     <div class="lang-switcher" id="lang-switcher"></div>
-    <div class="eyebrow" id="landing-eyebrow">Ordinary Glory</div>
     <h1 id="landing-title">Bible Study Guides</h1>
   </div>
 
@@ -31,7 +30,6 @@
     (async function () {
       await I18N.init();
 
-      document.getElementById('landing-eyebrow').textContent = I18N.t('landingEyebrow');
       document.getElementById('landing-title').textContent = I18N.t('landingTitle');
       document.getElementById('landing-loading').textContent = I18N.t('landingLoading');
       I18N.buildSwitcher(document.getElementById('lang-switcher'));

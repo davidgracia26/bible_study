@@ -14,6 +14,14 @@
     <h1 id="landing-title">Bible Study Guides</h1>
   </div>
 
+  <div class="landing-search-wrap">
+    <div class="landing-search">
+      <span class="ls-icon">&#128269;</span>
+      <input type="search" id="landing-search-input" autocomplete="off" />
+      <button class="ls-clear hidden" id="landing-search-clear" title="Clear" aria-label="Clear search">&times;</button>
+    </div>
+  </div>
+
   <div class="landing-list" id="landing-list">
     <div class="landing-empty" id="landing-loading">Loading studies&hellip;</div>
   </div>
@@ -28,8 +36,61 @@
       document.getElementById('landing-loading').textContent = I18N.t('landingLoading');
       I18N.buildSwitcher(document.getElementById('lang-switcher'));
 
+      const searchInput = document.getElementById('landing-search-input');
+      const searchClear = document.getElementById('landing-search-clear');
+      searchInput.placeholder = I18N.t('searchPlaceholder');
+
       const lang = I18N.get();
       const localize = (w, field) => (w.i18n && w.i18n[lang] && w.i18n[lang][field]) || w[field];
+      const list = document.getElementById('landing-list');
+      let sortedWeeks = [];
+
+      function cardHTML(w) {
+        const series = localize(w, 'series');
+        const date = localize(w, 'date');
+        const title = localize(w, 'title');
+        const subtitle = localize(w, 'subtitle');
+        const videoLink = w.videoUrl
+          ? `<a class="lc-video-link" href="${w.videoUrl}" target="_blank" rel="noopener">&#9658; ${I18N.t('watchSermon')}</a>`
+          : '';
+        return `
+          <div class="landing-card">
+            <a class="lc-main-link" href="study.html?week=${encodeURIComponent(w.id)}">
+              <div class="lc-date">${series ? series + ' &middot; ' : ''}${date || ''}</div>
+              <div class="lc-title">${title || w.id}</div>
+              ${subtitle ? `<div class="lc-subtitle">${subtitle}</div>` : ''}
+            </a>
+            ${videoLink}
+          </div>
+        `;
+      }
+
+      function searchableText(w) {
+        return [
+          localize(w, 'series'), localize(w, 'date'), localize(w, 'title'), localize(w, 'subtitle'),
+          w.series, w.date, w.title, w.subtitle,
+        ].filter(Boolean).join(' ').toLowerCase();
+      }
+
+      function renderList(query) {
+        const q = (query || '').trim().toLowerCase();
+        searchClear.classList.toggle('hidden', !q);
+        const filtered = q
+          ? sortedWeeks.filter(w => searchableText(w).includes(q))
+          : sortedWeeks;
+        if (!filtered.length) {
+          list.innerHTML = `<div class="landing-empty">${I18N.t('searchNoResults')}</div>`;
+          return;
+        }
+        list.innerHTML = filtered.map(cardHTML).join('');
+      }
+
+      searchInput.addEventListener('input', () => renderList(searchInput.value));
+      searchClear.addEventListener('click', () => {
+        searchInput.value = '';
+        searchInput.focus();
+        renderList('');
+      });
 
       fetch('data/manifest.json')
         .then(res => {
@@ -37,7 +98,6 @@
           return res.json();
         })
         .then(manifest => {
-          const list = document.getElementById('landing-list');
           const weeks = manifest.weeks || [];
           if (!weeks.length) {
             list.innerHTML = `<div class="landing-empty">${I18N.t('landingEmpty')}</div>`;
@@ -49,26 +109,8 @@
             const [month, day] = (w.id || '').split('_').map(Number);
             return new Date(2000, (month || 1) - 1, day || 1);
           };
-          const sorted = weeks.slice().sort((a, b) => parseDate(b) - parseDate(a));
-          list.innerHTML = sorted.map(w => {
-            const series = localize(w, 'series');
-            const date = localize(w, 'date');
-            const title = localize(w, 'title');
-            const subtitle = localize(w, 'subtitle');
-            const videoLink = w.videoUrl
-              ? `<a class="lc-video-link" href="${w.videoUrl}" target="_blank" rel="noopener">&#9658; ${I18N.t('watchSermon')}</a>`
-              : '';
-            return `
-              <div class="landing-card">
-                <a class="lc-main-link" href="study.html?week=${encodeURIComponent(w.id)}">
-                  <div class="lc-date">${series ? series + ' &middot; ' : ''}${date || ''}</div>
-                  <div class="lc-title">${title || w.id}</div>
-                  ${subtitle ? `<div class="lc-subtitle">${subtitle}</div>` : ''}
-                </a>
-                ${videoLink}
-              </div>
-            `;
-          }).join('');
+          sortedWeeks = weeks.slice().sort((a, b) => parseDate(b) - parseDate(a));
+          renderList(searchInput.value);
         })
         .catch(err => {
           document.getElementById('landing-list').innerHTML =

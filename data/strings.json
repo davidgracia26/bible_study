@@ -34,7 +34,9 @@
     "landingError": "Could not load studies",
     "watchSermon": "Watch Sermon",
     "copyLink": "Copy Link",
-    "linkCopied": "Link Copied!"
+    "linkCopied": "Link Copied!",
+    "searchPlaceholder": "Search studies by title, series, or date\u2026",
+    "searchNoResults": "No studies match your search."
   },
   "es": {
     "language": "Idioma",
@@ -71,7 +73,9 @@
     "landingError": "No se pudieron cargar los estudios",
     "watchSermon": "Ver sermón",
     "copyLink": "Copiar enlace",
-    "linkCopied": "¡Enlace copiado!"
+    "linkCopied": "¡Enlace copiado!",
+    "searchPlaceholder": "Buscar estudios por título, serie o fecha…",
+    "searchNoResults": "Ningún estudio coincide con tu búsqueda."
   },
   "my": {
     "language": "ဘာသာစကား",
@@ -108,6 +112,8 @@
     "landingError": "လေ့လာမှုများကို ရယူ၍ မရပါ",
     "watchSermon": "တရားဒေသနာ ကြည့်ရန်",
     "copyLink": "လင့်ခ်ကို ကူးယူရန်",
-    "linkCopied": "လင့်ခ် ကူးယူပြီးပါပြီ!"
+    "linkCopied": "လင့်ခ် ကူးယူပြီးပါပြီ!",
+    "searchPlaceholder": "ခေါင်းစဉ်၊ စီးရီး သို့မဟုတ် ရက်စွဲဖြင့် လေ့လာမှုများကို ရှာဖွေပါ\u2026",
+    "searchNoResults": "သင့်ရှာဖွေမှုနှင့် ကိုက်ညီသော လေ့လာမှု မရှိပါ။"
   }
 }

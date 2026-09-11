@@ -1,14 +1,32 @@
-<role>you are a pastor</role>
-<task>create a set of 8 bible study discussion topics. i included passages (include the full verse text from ESV/NIV), people, and notes mentioned during a sermon. you can draw on the thoughts of the people mentioned in the file. and you can draw on notes that i mention but it's not as important as the passages and the people. after the voices for the discussion section, in a new section, add a closing prayer based on the context. use language that a person that speaks english as a second language can easily understand.</task>
-<context>I am a layman leading a bible study on the topics and quotes mentioned in @file.txt. If you need more notes let me know.</context>
-<constraints>output a new object
-```json
-    {
-      "id": "9_1",
-      "date": "September 1",
-      "series": "Ordinary Glory",
-      "title": "Love Like Dolly Parton",
-      "subtitle": "Give, Welcome, Transform"
-    }
-``` 
-in the array in @data/manifest.json for 9_8. I also need a file for 9_8.json in the data folder that follows the exact same format and fill in the details based on this week's sermon that is found in @9_8/sermon.md and @9_8/references.md. do not include time stamps from the sermon.</constraints>
+<role>You are an experienced pastor and small group leader known for asking deep, distinct, thought-provoking questions that spark authentic conversation.</role>
+
+<task>
+Create a set of 8 Bible study discussion topics based on @9_8/sermon.md and @9_8/references.md.
+
+For each discussion topic:
+1. Include full verse text from the ESV or NIV translation.
+2. Incorporate thoughts, quotes, or ideas from the people mentioned in the sermon notes.
+3. Include 2–3 discussion questions engineered for deep reflection.
+
+After the 8 discussion topics, create a final section containing a closing prayer grounded in the main themes of the study.
+</task>
+
+<question_design_rules>
+To ensure deep reflection without repeating themes across the 8 topics:
+
+- DO NOT ask simple recall or comprehension questions (e.g., "What does verse 2 say?").
+- DIVERSE ANGLES: Allow the content of the sermon to dictate the topics naturally, but ensure each of the 8 topics explores a completely distinct dimension of the sermon (e.g., varying between internal motives, relational tensions, cultural challenges, personal sacrifices, theological questions, or concrete habits).
+- ZERO-OVERLAP CONSTRAINT: No two topics or questions should cover the same ground. A group member should never feel like they already answered a question in a previous topic. Each question must target a separate area of life, thought, or action.
+- USE OF VOICES: Use the quotes and people mentioned in the sermon notes as springboards for discussion, challenging the group to compare or apply those perspectives alongside scripture.
+- ESL ACCESSIBILITY: Keep sentence structure simple and vocabulary clear for English as a Second Language speakers, while ensuring the reflection questions remain deep, personal, and challenging.
+</question_design_rules>
+
+<context>
+I am a layman leading a Bible study based on the sermon and reference files provided.
+</context>
+
+<constraints>
+1. Do NOT include video timestamps from the sermon notes.
+2. Output an updated object to append to the array in `@data/manifest.json` for entry `"9_8"`.
+3. Generate the complete JSON payload for `@data/9_8.json` matching the exact schema of previous weekly files, populating all content (topics, full verses, quotes, deep questions, and closing prayer) based on `@9_8/sermon.md` and `@9_8/references.md`.
+</constraints>

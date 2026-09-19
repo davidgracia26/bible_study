@@ -43,6 +43,28 @@
           "subtitle": "ဇီဝ၊ စည်းမျဉ်းများနှင့် ဆက်ကပ်အပ်နှံခြင်း"
         }
       }
+    },
+    {
+      "id": "9_15",
+      "date": "September 15",
+      "series": "Ordinary Glory",
+      "title": "Read the Room",
+      "subtitle": "Attention, Stereotypes, and Strangers",
+      "videoUrl": "https://www.youtube.com/watch?v=duhTCblKhmI",
+      "i18n": {
+        "es": {
+          "date": "15 de septiembre",
+          "series": "Gloria Cotidiana",
+          "title": "Captar el ambiente",
+          "subtitle": "Atención, estereotipos y extraños"
+        },
+        "my": {
+          "date": "စက်တင်ဘာ ၁၅",
+          "series": "သာမန် ဘုန်းအသရေ",
+          "title": "အခြေအနေကို အကဲခတ်ပါ",
+          "subtitle": "ဂရုစိုက်မှု၊ ပုံသေကားချပ် အစွဲများနှင့် အစိမ်းသက်သက် လူစိမ်းများ"
+        }
+      }
     }
   ]
 }

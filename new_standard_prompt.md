@@ -1,13 +1,23 @@
 <role>You are an experienced pastor and small group leader known for asking deep, distinct, thought-provoking questions that spark authentic, vulnerable conversation.</role>
 
 <task>
-Create a set of 8 Bible study discussion topics based on @9_8/sermon.md and @9_8/references.md.
+Create a set of 8 Bible study discussion topics based on @9_15/sermon.md and @9_15/references.md.
 
 For each discussion topic:
 1. Include full verse text from the ESV or NIV translation.
 2. Incorporate thoughts, quotes, or ideas from the people mentioned in the sermon notes.
-3. Include 2–3 discussion questions engineered for deep reflection and active group discussion.
-4. Include a short "Leader Tip" (1 sentence) advising the leader on how to follow up or keep the conversation flowing for that specific topic.
+3. Combine 2–3 discussion questions engineered for deep reflection and active group discussion into a
+   single flowing question entry for that topic (do NOT add a "Leader Tip" field or any other new
+   schema field — the existing `data/<week_id>.json` schema has no leader-tip concept, and the site's
+   UI has no place to render one, so this stays data-only work with no app.js/CSS changes).
+
+Map the 8 discussion topics onto the existing schema as 3&ndash;4 `sections` ("Parts"), grouping 2&ndash;3
+related topics per part, NOT one section per topic. There should still be exactly 8 entries in the flat
+`questions` array (one per topic, `section` pointing at its grouped part) — this matches the number of
+sections/parts and questions-per-section used by every prior week (e.g. `data/9_1.json`, `data/9_8.json`,
+both of which use 4 parts with 2 questions each). Not every topic needs its own Bible passage or quoted
+voice if the source material doesn't clearly provide one for that angle; it's fine for a topic to rely on
+reflection alone.
 
 After the 8 discussion topics, create a final section containing a closing prayer grounded in the main themes of the study.
 </task>
@@ -29,6 +39,6 @@ I am a layman leading a Bible study based on the sermon and reference files prov
 
 <constraints>
 1. Do NOT include video timestamps from the sermon notes.
-2. Output an updated object to append to the array in `@data/manifest.json` for entry `"9_8"`.
-3. Generate the complete JSON payload for `@data/9_8.json` matching the exact schema of previous weekly files, populating all content (topics, full verses, quotes, deep questions, leader tips, and closing prayer) based on `@9_8/sermon.md` and `@9_8/references.md`.
+2. Output an updated object to append to the array in `@data/manifest.json` for entry `"9_15 "`.
+3. Generate the complete JSON payload for `@data/9_15 .json` matching the exact schema of previous weekly files, unchanged (no new fields like a leader tip), populating all content (topics as sections, full verses, quotes, combined deep questions, and closing prayer) based on `@9_15 /sermon.md` and `@9_15 /references.md`.
 </constraints>

@@ -1,0 +1,126 @@
+{
+  "meta": {
+    "pageTitle": "Estudio Bíblico — 15 de Septiembre | Captar el ambiente: Atención, estereotipos y extraños",
+    "eyebrow": "Gloria Ordinaria &middot; Estudio Bíblico &mdash; 15 de Septiembre",
+    "title": "Captar el ambiente:",
+    "titleHighlight": "Atención, Estereotipos y Extraños",
+    "translation": "NVI",
+    "footer": "Estudio Bíblico &mdash; 15 de Septiembre &nbsp;&middot;&nbsp; Gloria Cotidiana: Captar el ambiente&nbsp;&middot;&nbsp; Escritura de la <strong>NVI</strong>",
+    "videoUrl": "https://www.youtube.com/watch?v=duhTCblKhmI"
+  },
+
+  "sections": [
+    { "label": "Parte 1", "name": "Aprender a <em>Ver</em>", "ref": "Mateo 6:25&ndash;27 &middot; Reflexión" },
+    { "label": "Parte 2", "name": "La Atención como Práctica <em>Espiritual</em>", "ref": "Éxodo 3:1&ndash;4 &middot; Reflexión" },
+    { "label": "Parte 3", "name": "Escuchar <em>Bien</em>", "ref": "Lucas 10:38&ndash;42 &middot; Reflexión" },
+    { "label": "Parte 4", "name": "Convertirse en <em>Amigos</em>", "ref": "Mateo 6:28&ndash;34 &middot; Reflexión" }
+  ],
+
+  "passages": {
+    "matt6_1": {
+      "ref": "Mateo 6:25&ndash;27",
+      "link": "https://www.biblegateway.com/passage/?search=Matthew%206%3A25-27&version=NIV",
+      "text": "&ldquo;Por eso les digo: No se angustien por su vida, qué comerán o qué beberán; ni por su cuerpo, qué vestirán. ¿No tiene la vida más valor que la comida, y el cuerpo más que la ropa? Fíjense en las aves del cielo: no siembran ni cosechan ni almacenan en graneros; sin embargo, el Padre celestial las alimenta. ¿No valen ustedes mucho más que ellas? ¿Quién de ustedes, por mucho que se angustie, puede añadir una sola hora a su vida?&rdquo;"
+    },
+    "exod3": {
+      "ref": "Éxodo 3:1&ndash;4",
+      "link": "https://www.biblegateway.com/passage/?search=Exodus%203%3A1-4&version=NIV",
+      "text": "&ldquo;Moisés apacentaba el rebaño de Jetro, su suegro, sacerdote de Madián. Un día llevó el rebaño al extremo del desierto y llegó a Horeb, el monte de Dios. Allí se le apareció el ángel del Señor en una llama de fuego, en medio de una zarza. Moisés se fijó y vio que la zarza ardía en fuego, pero no se consumía. Entonces pensó: &lsquo;Irú a ver este espectáculo tan extraño, por qué no se quema la zarza.&rsquo; Cuando el Señor vio que él se acercaba a mirar, lo llamó desde la zarza: &lsquo;¡Moisés, Moisés!&rsquo; Y él respondió: &lsquo;Aquí estoy.&rsquo;&rdquo;"
+    },
+    "luke10": {
+      "ref": "Lucas 10:38&ndash;42",
+      "link": "https://www.biblegateway.com/passage/?search=Luke%2010%3A38-42&version=NIV",
+      "text": "&ldquo;Mientras iba de camino con sus discípulos, Jesús entró en una aldea donde una mujer llamada Marta lo recibió en su casa. Tenía ella una hermana llamada María, la cual se sentó a los pies del Señor a escuchar lo que él decía. Marta, por su parte, se sentía abrumada por todos los preparativos. Se acercó a él y le dijo: &lsquo;Señor, ¿no te importa que mi hermana me haya dejado sola con el servicio? ¡Dile que me ayude!&rsquo; &lsquo;Marta, Marta&rsquo;, le contestó el Señor, &lsquo;estás inquieta y preocupada por muchas cosas, pero solo una es necesaria. María ha escogido la mejor parte, y nadie se la quitará.&rsquo;&rdquo;"
+    },
+    "matt6_2": {
+      "ref": "Mateo 6:28&ndash;34",
+      "link": "https://www.biblegateway.com/passage/?search=Matthew%206%3A28-34&version=NIV",
+      "text": "&ldquo;¿Y por qué se angustian por la ropa? Observen cómo crecen los lirios del campo. No trabajan ni hilan. Sin embargo, les digo que ni siquiera Salomón, con todo su esplendor, se vistió como uno de ellos. Si así viste Dios a la hierba del campo, que hoy está verde y mañana se echa en el fuego, ¿no hará mucho más por ustedes, gente de poca fe? Así que no se angustien diciendo: &lsquo;¿Qué comeremos?&rsquo;, o &lsquo;¿Qué beberemos?&rsquo;, o &lsquo;¿Qué vestiremos?&rsquo; Porque los paganos andan tras todas estas cosas, y el Padre celestial sabe que ustedes las necesitan. Más bien, busquen primeramente el reino de Dios y su justicia, y todas estas cosas les serán añadidas. Por lo tanto, no se angustien por el mañana, el cual tendrá sus propias fatigas. Cada día tiene ya sus propios problemas.&rdquo;"
+    }
+  },
+
+  "scholars": {
+    "gladwell": { "name": "Malcolm Gladwell", "role": "Autor", "quote": "La forma correcta de hablar con extraños es con cautela y humildad." },
+    "fredrogers": { "name": "Fred Rogers", "role": "", "quote": "Escuchar es donde comienza el amor: escuchándonos a nosotros mismos y luego a nuestros prójimos." },
+    "maryoliver": { "name": "Mary Oliver", "role": "Poeta", "quote": "Presta atención. Asómbrate. Cuéntalo." },
+    "simoneweil": { "name": "Simone Weil", "role": "Filósofa", "quote": "La atención es la forma más rara y pura de generosidad." },
+    "remen": { "name": "Rachel Naomi Remen", "role": "Médico y Autora", "quote": "La forma más básica y poderosa de conectarse con otra persona es escuchar. Tan solo escuchar." },
+    "carlrogers": { "name": "Carl Rogers", "role": "Psicólogo", "quote": "Escuchar, de este tipo tan especial, es una de las fuerzas de cambio más potentes que conozco." },
+    "thurman": { "name": "Howard Thurman", "role": "Teólogo", "quote": "Debo esperar y escuchar el sonido de lo auténtico en ti." },
+    "dollyparton": { "name": "Dolly Parton", "role": "", "quote": "Descubre quién eres y hazlo a propósito." },
+    "brenebrown": { "name": "Bren&eacute; Brown", "role": "Investigadora y Autora", "quote": "La empatía&hellip;es ser curioso y construir confianza narrativa mientras te cuentan la experiencia de estar en sus propios zapatos." }
+  },
+
+  "questions": [
+    {
+      "n": 1,
+      "section": 0,
+      "text": "El sermón contó la historia de un grupo de amigos de toda la vida que se convirtieron en observadores de aves, excepto uno. Las aves siempre habían estado allí, pero nadie las notaba hasta que bajaron el ritmo y prestaron atención. Jesús hace un punto similar en Mateo 6: miren las aves del cielo y verán que Dios ya las está cuidando. ¿Qué es algo &mdash; una persona, una necesidad, una pequeña amabilidad &mdash; que probablemente ha estado justo frente a ti durante mucho tiempo, pero que nunca notaste realmente? ¿Por qué crees que se te pasó por alto?",
+      "refs": ["Mateo 6:25&ndash;27"],
+      "passages": ["matt6_1"],
+      "scholars": []
+    },
+    {
+      "n": 2,
+      "section": 0,
+      "text": "Sandra Bland fue detenida en su auto por una infracción de tránsito menor. El oficial interpretó su frustración como una amenaza, y ella lo percibió a él como injusto &mdash; y la falta de entendimiento terminó en tragedia. Malcolm Gladwell dice que la forma correcta de hablar con extraños es con &ldquo;cautela y humildad.&rdquo; Describe alguna ocasión en la que malinterpretaste por completo el tono, el rostro o las palabras de alguien &mdash; y luego te diste cuenta de que estabas equivocado. ¿Qué hizo que fuera tan fácil sacar conclusiones precipitadas e incorrectas en ese momento?",
+      "refs": ["Malcolm Gladwell"],
+      "passages": [],
+      "scholars": ["gladwell"]
+    },
+    {
+      "n": 3,
+      "section": 1,
+      "text": "Moisés estaba haciendo su trabajo cotidiano y ordinario &mdash; cuidar ovejas &mdash; cuando notó una zarza que estaba en llamas pero no se consumía. Solo escuchó a Dios hablar porque se detuvo a mirar más de cerca. Mary Oliver escribe: &ldquo;Presta atención. Asómbrate. Cuéntalo,&rdquo; y Simone Weil llama a la atención &ldquo;la forma más rara y pura de generosidad.&rdquo; Piensa en tu semana normal &mdash; trabajo, mandados, tráfico, buscar a los niños en la escuela. ¿En qué aspecto podría Dios estar tratando de llamar tu atención en medio de tu rutina ordinaria? ¿Qué es lo que usualmente te impide detenerte lo suficiente como para darte cuenta?",
+      "refs": ["Éxodo 3:1&ndash;4", "Mary Oliver", "Simone Weil"],
+      "passages": ["exod3"],
+      "scholars": ["maryoliver", "simoneweil"]
+    },
+    {
+      "n": 4,
+      "section": 1,
+      "text": "El sermón mencionó que a veces entras a una habitación sintiéndote ansioso y asumes que todos los demás también están ansiosos &mdash; pero en realidad, fuiste tú quien llevó la ansiedad. Fred Rogers dijo: &ldquo;Escuchar es donde comienza el amor: escuchándonos a nosotros mismos y luego a nuestros prójimos.&rdquo; ¿Recuerdas alguna ocasión en la que asumiste que alguien estaba molesto, aburrido o fastidiado contigo &mdash; pero resulta que ese sentimiento en realidad te pertenecía a ti? ¿Cómo se vería esta semana hacer una pausa y examinar sinceramente tus propios sentimientos antes de decidir qué está sintiendo la otra persona?",
+      "refs": ["Fred Rogers"],
+      "passages": [],
+      "scholars": ["fredrogers"]
+    },
+    {
+      "n": 5,
+      "section": 2,
+      "text": "Marta estaba ocupada sirviendo a Jesús, pero María simplemente se sentó a escucharlo. Cuando Marta se quejó, Jesús le dijo que solo una cosa era realmente necesaria. Rachel Naomi Remen, quien dedica su carrera a acompañar a personas que enfrentan enfermedades graves, dice que la presencia no requiere respuestas: &ldquo;la forma más básica y poderosa de conectarse con otra persona es escuchar. Tan solo escuchar.&rdquo; Cuando alguien a quien amas está sufriendo, ¿te pareces más a Marta &mdash; intentando arreglar o explicar las cosas &mdash; o más a María, dispuesta a simplemente sentarse y escuchar? Describe un momento en el que la presencia silenciosa de alguien te ayudó más de lo que cualquier consejo podría haberlo hecho.",
+      "refs": ["Lucas 10:38&ndash;42", "Rachel Naomi Remen"],
+      "passages": ["luke10"],
+      "scholars": ["remen"]
+    },
+    {
+      "n": 6,
+      "section": 2,
+      "text": "El sermón decía que detrás de la ira de alguien suele haber una herida, y detrás de su actitud defensiva suele haber un temor. Howard Thurman dice que él espera y escucha &ldquo;el sonido de lo auténtico&rdquo; en una persona, y Brené Brown describe la empatía como &ldquo;ser curioso y construir confianza narrativa mientras te cuentan la experiencia de estar en sus propios zapatos.&rdquo; Carl Rogers llamó a este tipo de escucha &ldquo;una de las fuerzas de cambio más potentes.&rdquo; Piensa en alguien cuya ira o frialdad hacia ti sea difícil de entender. ¿Qué herida o temor podría estar escondiéndose debajo de eso? ¿Qué te costaría mostrar curiosidad al respecto en lugar de reaccionar a la ira superficial?",
+      "refs": ["Howard Thurman", "Bren&eacute; Brown"],
+      "passages": [],
+      "scholars": ["thurman", "brenebrown"]
+    },
+    {
+      "n": 7,
+      "section": 3,
+      "text": "Jesús nos dice que no nos preocupemos por la comida o la ropa, sino que busquemos primero el reino de Dios, confiando en que nuestras necesidades serán cubiertas. Dolly Parton lo expresa de otra manera: &ldquo;Descubre quién eres y hazlo a propósito.&rdquo; El sermón sugería que una vez que sabemos quiénes somos, podemos acercarnos a los demás a propósito y no por accidente. ¿En qué gastas la mayor parte de tu energía preocupándote o tratando de demostrar algo &mdash; tu apariencia, tu trabajo, lo que la gente piensa de ti? ¿Qué podría cambiar en tu trato hacia los demás si dejaras de preocuparte por eso y simplemente supieras quién eres en Dios?",
+      "refs": ["Mateo 6:28&ndash;34", "Dolly Parton"],
+      "passages": ["matt6_2"],
+      "scholars": ["dollyparton"]
+    },
+    {
+      "n": 8,
+      "section": 3,
+      "text": "En un bar viendo fútbol americano, el pastor y su esposa se sentaron con unos extraños &mdash; un exjugador de la NFL y una pareja judía de la Universidad de Texas A&M &mdash; y al final del partido ya eran amigos cercanos con un chat grupal. En Puebla, México, un empleado de un supermercado llamado Louis notó algo que nadie más notó y por ello se convirtió en el Empleado del Año. Brené Brown dice que la empatía significa mantener la curiosidad sobre la historia de alguien en lugar de asumir que ya la conoces. ¿Quién es un &ldquo;extraño&rdquo; en tu vida en este momento &mdash; un vecino, un compañero de trabajo, alguien en la iglesia &mdash; que podría convertirse en un amigo verdadero si simplemente le prestaras toda tu atención esta semana? ¿Qué paso concreto podrías dar hacia esa persona antes del próximo domingo?",
+      "refs": ["Bren&eacute; Brown"],
+      "passages": [],
+      "scholars": ["brenebrown"]
+    }
+  ],
+
+  "prayer": {
+    "label": "Oración de Cierre",
+    "text": "Querido Dios,<br><br>Gracias por las personas que has puesto a nuestro alrededor &mdash; aquellas a las que miramos todos los días pero que rara vez vemos de verdad. Haz que reduzcamos el ritmo lo suficiente como para notarlas, de la misma manera en que notaríamos un ave que nunca antes habíamos visto.<br><br>Perdónanos por las veces en que hemos malinterpretado el rostro, el tono o las palabras de un extraño, y hemos sacado conclusiones precipitadas en lugar de acercarnos con cautela y humildad.<br><br>Enséñanos, como a Moisés, a prestar atención a los momentos ordinarios de nuestro día, porque a menudo estás hablando en medio de ellos.<br><br>Ayúdanos a escuchar primero a nuestro propio corazón, para no confundir nuestro propio temor o ansiedad con los de alguien más.<br><br>Como María a tus pies, danos el valor de simplemente sentarnos con las personas que amamos, ofreciendo nuestra presencia en lugar de apresurarnos a arreglar o explicar las cosas.<br><br>Cuando nos encontremos con alguien cuya ira o distancia sea difícil de entender, danos la paciencia para buscar la herida o el temor que se oculta debajo.<br><br>Ayúdanos a descubrir quiénes somos en ti, para que podamos acercarnos a los demás a propósito, no por accidente, y transformar a extraños en amigos.<br><br>Te lo pedimos en el nombre de Jesús, quien siempre vio a la persona que tenía frente a él. Amén.",
+    "source": "&mdash; Basado en el estudio de esta semana: ver lo que usualmente pasamos por alto, interpretar a los extraños con humildad, la atención como práctica espiritual, escuchar sin la necesidad de arreglar todo, ver la herida debajo de la ira y saber quiénes somos para poder ver verdaderamente a los demás."
+  }
+}

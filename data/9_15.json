@@ -1,0 +1,102 @@
+{
+  "meta": {
+    "pageTitle": "Bible Study — September 15 | Read the Room",
+    "eyebrow": "Ordinary Glory &middot; Bible Study &mdash; September 15",
+    "title": "Read the Room:",
+    "titleHighlight": "Attention, Stereotypes, and Strangers",
+    "translation": "NIV",
+    "footer": "Bible Study &mdash; September 15 &nbsp;&middot;&nbsp; Ordinary Glory: Read the Room &nbsp;&middot;&nbsp; Scripture from the <strong>NIV</strong>",
+    "videoUrl": "https://www.youtube.com/watch?v=duhTCblKhmI"
+  },
+
+  "sections": [
+    { "label": "Part 1", "name": "Learning to <em>See</em>", "ref": "Matthew 6:25&ndash;27 &middot; Reflection" },
+    { "label": "Part 2", "name": "Attention as a <em>Spiritual</em> Practice", "ref": "Exodus 3:1&ndash;4 &middot; Reflection" },
+    { "label": "Part 3", "name": "Listening <em>Well</em>", "ref": "Luke 10:38&ndash;42 &middot; Reflection" },
+    { "label": "Part 4", "name": "Becoming <em>Friends</em>", "ref": "Matthew 6:28&ndash;34 &middot; Reflection" }
+  ],
+
+  "passages": {
+    "matt6_1": { "ref": "Matthew 6:25&ndash;27", "link": "https://www.biblegateway.com/passage/?search=Matthew%206%3A25-27&version=NIV", "text": "&ldquo;Therefore I tell you, do not worry about your life, what you will eat or drink; or about your body, what you will wear. Is not life more than food, and the body more than clothes? Look at the birds of the air; they do not sow or reap or store away in barns, and yet your heavenly Father feeds them. Are you not much more valuable than they? Can any one of you by worrying add a single hour to your life?&rdquo;" },
+    "exod3": { "ref": "Exodus 3:1&ndash;4", "link": "https://www.biblegateway.com/passage/?search=Exodus%203%3A1-4&version=NIV", "text": "&ldquo;Now Moses was tending the flock of Jethro his father-in-law, the priest of Midian, and he led the flock to the far side of the wilderness and came to Horeb, the mountain of God. There the angel of the Lord appeared to him in flames of fire from within a bush. Moses saw that though the bush was on fire it did not burn up. So Moses thought, &lsquo;I will go over and see this strange sight&mdash;why the bush does not burn up.&rsquo; When the Lord saw that he had gone over to look, God called to him from within the bush, &lsquo;Moses! Moses!&rsquo; And Moses said, &lsquo;Here I am.&rsquo;&rdquo;" },
+    "luke10": { "ref": "Luke 10:38&ndash;42", "link": "https://www.biblegateway.com/passage/?search=Luke%2010%3A38-42&version=NIV", "text": "&ldquo;As Jesus and his disciples were on their way, he came to a village where a woman named Martha opened her home to him. She had a sister called Mary, who sat at the Lord&rsquo;s feet listening to what he said. But Martha was distracted by all the preparations that had to be made. She came to him and asked, &lsquo;Lord, don&rsquo;t you care that my sister has left me to do the work by myself? Tell her to help me!&rsquo; &lsquo;Martha, Martha,&rsquo; the Lord answered, &lsquo;you are worried and upset about many things, but few things are needed&mdash;or indeed only one. Mary has chosen what is better, and it will not be taken away from her.&rsquo;&rdquo;" },
+    "matt6_2": { "ref": "Matthew 6:28&ndash;34", "link": "https://www.biblegateway.com/passage/?search=Matthew%206%3A28-34&version=NIV", "text": "&ldquo;And why do you worry about clothes? See how the flowers of the field grow. They do not labor or spin. Yet I tell you that not even Solomon in all his splendor was dressed like one of these. If that is how God clothes the grass of the field, which is here today and tomorrow is thrown into the fire, will he not much more clothe you&mdash;you of little faith? So do not worry, saying, &lsquo;What shall we eat?&rsquo; or &lsquo;What shall we drink?&rsquo; or &lsquo;What shall we wear?&rsquo; For the pagans run after all these things, and your heavenly Father knows that you need them. But seek first his kingdom and his righteousness, and all these things will be given to you as well. Therefore do not worry about tomorrow, for tomorrow will worry about itself. Each day has enough trouble of its own.&rdquo;" }
+  },
+
+  "scholars": {
+    "gladwell": { "name": "Malcolm Gladwell", "role": "Author", "quote": "The right way to talk to strangers is with caution and humility." },
+    "fredrogers": { "name": "Fred Rogers", "role": "", "quote": "Listening is where love begins: listening to ourselves and then to our neighbors." },
+    "maryoliver": { "name": "Mary Oliver", "role": "Poet", "quote": "Pay attention. Be astonished. Tell about it." },
+    "simoneweil": { "name": "Simone Weil", "role": "Philosopher", "quote": "Attention is the rarest and purest form of generosity." },
+    "remen": { "name": "Rachel Naomi Remen", "role": "Physician &amp; Author", "quote": "The most basic and powerful way to connect to another person is to listen. Just listen." },
+    "carlrogers": { "name": "Carl Rogers", "role": "Psychologist", "quote": "Listening, of this very special kind, is one of the most potent forces for change that I know." },
+    "thurman": { "name": "Howard Thurman", "role": "Theologian", "quote": "I must wait and listen for the sound of the genuine in you." },
+    "dollyparton": { "name": "Dolly Parton", "role": "", "quote": "Find out who you are and do it on purpose." },
+    "brenebrown": { "name": "Bren&eacute; Brown", "role": "Researcher &amp; Author", "quote": "Empathy&hellip;is being curious and building narrative trust as they tell you about the experience of being in their own shoes." }
+  },
+
+  "questions": [
+    {
+      "n": 1, "section": 0,
+      "text": "The sermon told a story about lifelong friends who all became birdwatchers &mdash; except one. The birds had always been there, but no one noticed them until they slowed down and paid attention. Jesus makes a similar point in Matthew 6: look at the birds of the air, and you&rsquo;ll see that God is already taking care of them. What is something &mdash; a person, a need, a small kindness &mdash; that has probably been right in front of you for a long time, but you never really noticed? Why do you think you missed it?",
+      "refs": ["Matthew 6:25&ndash;27"],
+      "passages": ["matt6_1"],
+      "scholars": []
+    },
+    {
+      "n": 2, "section": 0,
+      "text": "Sandra Bland was pulled over for a small traffic mistake. The officer read her frustration as a threat, and she read him as unfair &mdash; and the misunderstanding ended in tragedy. Malcolm Gladwell says the right way to talk to strangers is with &ldquo;caution and humility.&rdquo; Describe a time you completely misread someone&rsquo;s tone, face, or words &mdash; and later found out you had it wrong. What made it so easy to jump to the wrong conclusion in that moment?",
+      "refs": ["Malcolm Gladwell"],
+      "passages": [],
+      "scholars": ["gladwell"]
+    },
+    {
+      "n": 3, "section": 1,
+      "text": "Moses was doing his ordinary, everyday job &mdash; tending sheep &mdash; when he noticed a bush that was on fire but not burning up. He only heard God speak because he stopped to look closer. Mary Oliver writes, &ldquo;Pay attention. Be astonished. Tell about it,&rdquo; and Simone Weil calls attention &ldquo;the rarest and purest form of generosity.&rdquo; Think about your normal week &mdash; work, errands, traffic, school pickup. Where might God be trying to get your attention in the middle of your ordinary routine? What usually keeps you from slowing down enough to notice?",
+      "refs": ["Exodus 3:1&ndash;4", "Mary Oliver", "Simone Weil"],
+      "passages": ["exod3"],
+      "scholars": ["maryoliver", "simoneweil"]
+    },
+    {
+      "n": 4, "section": 1,
+      "text": "The sermon shared that sometimes you walk into a room feeling anxious, and you assume everyone else is anxious too &mdash; but really, you brought the anxiety in with you. Fred Rogers said, &ldquo;Listening is where love begins: listening to ourselves and then to our neighbors.&rdquo; Can you think of a time you assumed someone else was upset, bored, or annoyed with you &mdash; but it turned out that feeling actually belonged to you? What would it look like this week to check in with yourself honestly before deciding what someone else is feeling?",
+      "refs": ["Fred Rogers"],
+      "passages": [],
+      "scholars": ["fredrogers"]
+    },
+    {
+      "n": 5, "section": 2,
+      "text": "Martha was busy serving Jesus, but Mary simply sat and listened to him. When Martha complained, Jesus told her that only one thing was truly needed. Rachel Naomi Remen, who spends her career sitting with people facing serious illness, says presence doesn&rsquo;t require answers &mdash; &ldquo;the most basic and powerful way to connect to another person is to listen. Just listen.&rdquo; When someone you love is hurting, are you more like Martha &mdash; trying to fix or explain things &mdash; or more like Mary, willing to simply sit and listen? Describe a time someone&rsquo;s quiet presence helped you more than any advice could have.",
+      "refs": ["Luke 10:38&ndash;42", "Rachel Naomi Remen"],
+      "passages": ["luke10"],
+      "scholars": ["remen"]
+    },
+    {
+      "n": 6, "section": 2,
+      "text": "The sermon said that below someone&rsquo;s anger there is usually a wound, and below their defensiveness there is usually a fear. Howard Thurman says he waits and listens &ldquo;for the sound of the genuine&rdquo; in a person, and Bren&eacute; Brown describes empathy as &ldquo;being curious and building narrative trust as they tell you about the experience of being in their own shoes.&rdquo; Carl Rogers called this kind of listening &ldquo;one of the most potent forces for change.&rdquo; Think of someone whose anger or coldness toward you is hard to understand. What wound or fear might be hiding underneath it? What would it cost you to get curious about that instead of reacting to the anger on the surface?",
+      "refs": ["Howard Thurman", "Bren&eacute; Brown"],
+      "passages": [],
+      "scholars": ["thurman", "brenebrown"]
+    },
+    {
+      "n": 7, "section": 3,
+      "text": "Jesus tells us not to worry about food or clothes, but instead to seek God&rsquo;s kingdom first, trusting that our needs will be met. Dolly Parton says it a different way: &ldquo;Find out who you are and do it on purpose.&rdquo; The sermon suggested that once we know who we are, we can move toward other people on purpose instead of by accident. What do you spend the most energy worrying about or trying to prove &mdash; your looks, your job, what people think of you? What might change in how you treat other people if you stopped worrying about that and simply knew who you were in God?",
+      "refs": ["Matthew 6:28&ndash;34", "Dolly Parton"],
+      "passages": ["matt6_2"],
+      "scholars": ["dollyparton"]
+    },
+    {
+      "n": 8, "section": 3,
+      "text": "At a bar watching football, the pastor and his wife sat with strangers &mdash; a former NFL player, a Jewish Aggie couple &mdash; and by the end of the game they were lifelong friends with a group text. In Puebla, Mexico, a grocery store worker named Louis noticed something no one else did and became Employee of the Year for it. Bren&eacute; Brown says empathy means staying curious about someone&rsquo;s story instead of assuming you already know it. Who is a &ldquo;stranger&rdquo; in your life right now &mdash; a neighbor, a coworker, someone at church &mdash; who could become a real friend if you simply gave them your full attention this week? What is one specific step you could take toward them before next Sunday?",
+      "refs": ["Bren&eacute; Brown"],
+      "passages": [],
+      "scholars": ["brenebrown"]
+    }
+  ],
+
+  "prayer": {
+    "label": "Closing Prayer",
+    "text": "Dear God,<br><br>Thank you for the people you have placed all around us &mdash; the ones we look at every day but rarely truly see. Slow us down enough to notice them, the way we&rsquo;d notice a bird we&rsquo;d never seen before.<br><br>Forgive us for the times we have misread a stranger&rsquo;s face, tone, or words, and jumped to conclusions instead of approaching them with caution and humility.<br><br>Teach us, like Moses, to pay attention to the ordinary moments of our day, because you are often speaking right in the middle of them.<br><br>Help us listen to our own hearts first, so we don&rsquo;t confuse our own fear or anxiety for someone else&rsquo;s.<br><br>Like Mary at your feet, give us the courage to simply sit with the people we love, offering our presence instead of rushing to fix or explain.<br><br>When we meet someone whose anger or distance is hard to understand, give us the patience to look for the wound or the fear underneath it.<br><br>Help us find out who we are in you, so that we can move toward others on purpose, not by accident, and turn strangers into friends.<br><br>We ask this in the name of Jesus, who always saw the person in front of him. Amen.",
+    "source": "&mdash; Based on this week&rsquo;s study: seeing what we usually miss, reading strangers with humility, attention as a spiritual practice, listening without needing to fix, seeing the wound beneath anger, and knowing who we are so we can truly see others."
+  }
+}

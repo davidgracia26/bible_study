@@ -33,20 +33,30 @@ test suite — it's plain HTML/CSS/JS served as static files.
 - `data/strings.json` — UI copy (button labels, section names, etc.) keyed
   by language code, e.g. `{ "en": { "prev": "Prev", ... }, "es": { ... } }`.
   Any language missing a key falls back to the `en` value.
-- `data/manifest.json` — array of `{ id, date, series, title, subtitle }`
-  entries, one per week, used by the landing page. Each entry may include
-  an optional `i18n: { "<lang>": { date, series, title, subtitle } }`
-  override map; missing fields/languages fall back to the base (English)
-  values.
+- `data/manifest.json` — array of `{ id, videoUrl }` entries, one per
+  week, used by the landing page and study page to know which weeks exist
+  and their (language-independent) sermon video link. It intentionally
+  does **not** duplicate `date`/`series`/`title`/`subtitle` — those are
+  translatable content and live only in each week's own
+  `data/<week_id>[.<lang>].json` (`meta.date`, `meta.series`,
+  `meta.title`, `meta.titleHighlight`), so there is exactly one place to
+  update per language instead of also having to keep the manifest in
+  sync.
 - `data/<week_id>.json` — full content for one week's study (English/
   default): `meta`, `sections`, `questions`, `passages`, `scholars`
   ("Voices for the Discussion"), `prayer`. `week_id` matches the manifest
   `id` (e.g. `9_1`, `9_8`) and the query param `study.html?week=9_8`.
+  `meta.date` and `meta.series` are the plain-text values shown on the
+  landing page card (and folded into `meta.eyebrow`/`meta.footer` for the
+  study page chrome).
 - `data/<week_id>.<lang>.json` — optional fully-translated content for a
   week in another language (same shape as `data/<week_id>.json`), e.g.
   `data/9_8.es.json`. If it doesn't exist yet for the selected language,
-  `study.html` automatically falls back to the English file and shows a
-  small "not yet translated" notice.
+  `study.html` (and the landing page cards) automatically fall back to
+  the English file and `study.html` shows a small "not yet translated"
+  notice. `js/i18n.js`'s `I18N.loadWeekJSON(weekId)` is the single place
+  that implements this localized-file-with-fallback loading, used by both
+  `index.html` and `js/app.js`.
 - `prompt_flow/<week_id>/` — source material per week (sermon notes,
   references, prompts) used to generate that week's `data/<week_id>.json`.
   Not loaded by the site itself; it's the human/agent workflow input.
@@ -59,10 +69,11 @@ test suite — it's plain HTML/CSS/JS served as static files.
 1. Add source material under `prompt_flow/<week_id>/` (sermon notes,
    references).
 2. Create `data/<week_id>.json` following the exact shape of an existing
-   week (e.g. `data/9_8.json`): `meta`, `sections`, `questions`,
+   week (e.g. `data/9_8.json`): `meta` (including `date` and `series`,
+   which also drive the landing page card), `sections`, `questions`,
    `passages`, `scholars`, `prayer`.
-3. Append a `{ id, date, series, title, subtitle }` entry to
-   `data/manifest.json`.
+3. Append a `{ id, videoUrl }` entry to `data/manifest.json` (omit
+   `videoUrl` if there's no sermon video yet).
 4. No build step is required — just open/serve `index.html`.
 
 ## Adding a language
@@ -73,14 +84,14 @@ test suite — it's plain HTML/CSS/JS served as static files.
    keyed by the same code. Copy the `en` block as a starting point so no
    keys are missing (missing keys fall back to English automatically, but
    it's best to translate them all).
-3. Optionally translate landing-page metadata: add an `i18n.<code>` block
-   to the relevant entries in `data/manifest.json` (`date`, `series`,
-   `title`, `subtitle`).
-4. Optionally translate a week's full content: create
+3. Optionally translate a week's full content: create
    `data/<week_id>.<code>.json` with the same shape as
-   `data/<week_id>.json`. Weeks without a translated file just show the
-   English content plus a small notice when that language is selected —
-   so languages/weeks can be translated incrementally.
+   `data/<week_id>.json`, including `meta.date`/`meta.series`/
+   `meta.title`/`meta.titleHighlight` (these also drive that week's
+   landing page card — there's no separate manifest translation to keep
+   in sync). Weeks without a translated file just show the English
+   content plus a small notice when that language is selected — so
+   languages/weeks can be translated incrementally.
 
 ## Verifying changes
 There is no test runner or build. To sanity-check changes, serve the repo

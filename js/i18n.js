@@ -68,6 +68,26 @@ const I18N = (function () {
     return baseUrl.replace(/\.json$/, `.${current}.json`);
   }
 
+  /* Loads a week's content JSON for the current language, falling back to
+     the base (English) file if no translated version exists yet. Used by
+     both study.html (single week) and index.html (landing page cards) so
+     there is exactly one place that knows how to resolve a week's
+     localized data. Returns { data, usedFallback }. */
+  async function loadWeekJSON(weekId) {
+    const baseUrl = `data/${weekId}.json`;
+    const localizedUrl = localize(baseUrl);
+    let usedFallback = false;
+
+    let res = await fetch(localizedUrl);
+    if (!res.ok && localizedUrl !== baseUrl) {
+      usedFallback = true;
+      res = await fetch(baseUrl);
+    }
+    if (!res.ok) throw new Error(`Could not load ${baseUrl} (${res.status})`);
+    const data = await res.json();
+    return { data, usedFallback };
+  }
+
   function buildSwitcher(mountEl) {
     if (!mountEl || languages.length < 2) return;
     const select = document.createElement('select');
@@ -84,5 +104,5 @@ const I18N = (function () {
     mountEl.appendChild(select);
   }
 
-  return { init, t, get, set, localize, buildSwitcher };
+  return { init, t, get, set, localize, loadWeekJSON, buildSwitcher };
 })();

@@ -54,18 +54,21 @@ async function loadWeek() {
   }
 
   WEEK_ID = weekId;
-  const baseUrl = `data/${weekId}.json`;
-  const localizedUrl = I18N.localize(baseUrl);
   let usedFallback = false;
 
   try {
-    let res = await fetch(localizedUrl);
-    if (!res.ok && localizedUrl !== baseUrl) {
-      usedFallback = true;
-      res = await fetch(baseUrl);
+    const loaded = await I18N.loadWeekJSON(weekId);
+    DATA = loaded.data;
+    usedFallback = loaded.usedFallback;
+
+    // videoUrl is language-independent, so it lives only in manifest.json
+    // rather than being duplicated into every translated week file.
+    const manifestRes = await fetch('data/manifest.json');
+    if (manifestRes.ok) {
+      const manifest = await manifestRes.json();
+      const entry = (manifest.weeks || []).find(w => w.id === weekId);
+      if (entry && entry.videoUrl) DATA.meta.videoUrl = entry.videoUrl;
     }
-    if (!res.ok) throw new Error(`Could not load ${baseUrl} (${res.status})`);
-    DATA = await res.json();
   } catch (err) {
     showAppError(`${I18N.t('couldNotLoadStudy')} (${err.message})`);
     return;

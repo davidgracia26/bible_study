@@ -106,3 +106,12 @@ then visit `http://localhost:8000/index.html` and
 `http://localhost:8000/study.html?week=<id>`. Check the browser console for
 fetch/JS errors, and validate any hand-edited JSON with a JSON linter
 (`python -m json.tool data/<week_id>.json`) before committing.
+
+## Cache-busting for js/i18n.js and js/app.js
+Both `index.html` and `study.html` load these scripts with a `?v=N` query
+string (e.g. `js/app.js?v=2`). Browsers otherwise cache these files
+aggressively with no cache-busting, so a returning visitor's browser can
+keep running stale JS (e.g. calling a function that was added/renamed in
+a later commit) until a hard refresh. When you change `js/i18n.js` or
+`js/app.js` in a way that matters for already-visited users, bump the
+`?v=N` on that script tag in every HTML file that references it.

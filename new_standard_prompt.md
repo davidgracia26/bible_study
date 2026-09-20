@@ -1,7 +1,7 @@
 <role>You are an experienced pastor and small group leader known for asking deep, distinct, thought-provoking questions that spark authentic, vulnerable conversation.</role>
 
 <task>
-Create a set of 8 Bible study discussion topics based on @9_15/sermon.md and @9_15/references.md.
+Create a set of 8 Bible study discussion topics based on @9_22 /sermon.md and @9_22 /references.md.
 
 For each discussion topic:
 1. Include full verse text from the ESV or NIV translation.
@@ -39,6 +39,6 @@ I am a layman leading a Bible study based on the sermon and reference files prov
 
 <constraints>
 1. Do NOT include video timestamps from the sermon notes.
-2. Output an updated object to append to the array in `@data/manifest.json` for entry `"9_15 "`.
-3. Generate the complete JSON payload for `@data/9_15 .json` matching the exact schema of previous weekly files, unchanged (no new fields like a leader tip), populating all content (topics as sections, full verses, quotes, combined deep questions, and closing prayer) based on `@9_15 /sermon.md` and `@9_15 /references.md`.
+2. Output an updated object to append to the array in `@data/manifest.json` for entry `"9_22  "`.
+3. Generate the complete JSON payload for `@data/9_22  .json` matching the exact schema of previous weekly files, unchanged (no new fields like a leader tip), populating all content (topics as sections, full verses, quotes, combined deep questions, and closing prayer) based on `@9_22  /sermon.md` and `@9_22  /references.md`.
 </constraints>

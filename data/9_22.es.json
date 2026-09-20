@@ -1,0 +1,180 @@
+{
+    "meta": {
+        "pageTitle": "Estudio Bíblico — 22 de Septiembre | Huesos Secos, Sueños Audaces",
+        "eyebrow": "Gloria Ordinaria &middot; Estudio Bíblico &mdash; 22 de Septiembre",
+        "date": "22 de Septiembre",
+        "series": "Gloria Ordinaria",
+        "title": "Huesos Secos, Sueños Audaces:",
+        "titleHighlight": "Atención, Identidad e Imaginación",
+        "translation": "NVI",
+        "footer": "Estudio Bíblico &mdash; 22 de Septiembre &nbsp;&middot;&nbsp; Gloria Ordinaria: Huesos Secos, Sueños Audaces &nbsp;&middot;&nbsp; Escritura de la <strong>NVI</strong>"
+    },
+    "sections": [
+        {
+            "label": "Parte 1",
+            "name": "La Más Rara <em>Generosidad</em>",
+            "ref": "Reflexión &middot; Atención"
+        },
+        {
+            "label": "Parte 2",
+            "name": "Llegar a Ser Quien <em>Ya</em> Eres",
+            "ref": "Génesis 2:7 &middot; Mateo 5:14&ndash;16 &middot; 1 Pedro 4:10"
+        },
+        {
+            "label": "Parte 3",
+            "name": "El Don de la <em>Imaginación</em>",
+            "ref": "Ezequiel 37:1&ndash;14"
+        },
+        {
+            "label": "Parte 4",
+            "name": "Viviendo la <em>Esperanza</em>",
+            "ref": "Ezequiel 37 &middot; Reflexión &middot; Oración"
+        }
+    ],
+    "passages": {
+        "genesis2": {
+            "ref": "Génesis 2:7",
+            "link": "https://www.biblegateway.com/passage/?search=Genesis%202%3A7&version=NVI",
+            "text": "&ldquo;Y Dios el Señor formó al hombre del polvo de la tierra, y sopló en su nariz hálito de vida, y el hombre se convirtió en un ser viviente.&rdquo;"
+        },
+        "matt5": {
+            "ref": "Mateo 5:14&ndash;16",
+            "link": "https://www.biblegateway.com/passage/?search=Matthew%205%3A14-16&version=NVI",
+            "text": "&ldquo;Ustedes son la luz del mundo. Una ciudad en la cumbre de un monte no puede ocultarse. Tampoco se enciende una lámpara para ponerla debajo de un cajón, sino sobre el candelero, para que alumbre a todos los que están en la casa. Hagan brillar su luz delante de todos, para que ellos vean sus buenas obras y me glorifiquen a su Padre que está en el cielo.&rdquo;"
+        },
+        "pet4": {
+            "ref": "1 Pedro 4:10",
+            "link": "https://www.biblegateway.com/passage/?search=1%20Peter%204%3A10&version=NVI",
+            "text": "&ldquo;Cada uno ponga al servicio de los demás el don que haya recibido, administrando fielmente la gracia de Dios en sus diversas formas.&rdquo;"
+        },
+        "ezek37": {
+            "ref": "Ezequiel 37:1&ndash;14",
+            "link": "https://www.biblegateway.com/passage/?search=Ezekiel%2037%3A1-14&version=NVI",
+            "text": "&ldquo;La mano del Señor vino sobre mí, y su Espíritu me llevó y me puso en medio de un valle que estaba lleno de huesos. Me hizo pasear entre ellos, y pude ver que había muchísimos huesos en el valle, y que estaban completamente secos. Me preguntó: &lsquo;Hijo de hombre, ¿podrán revivir estos huesos?&rsquo; Yo respondí: &lsquo;Señor Omnipotente, tú solo lo sabes.&rsquo; Entonces me dijo: &lsquo;Profetiza sobre estos huesos, y diles: “¡Huesos secos, escuchen la palabra del Señor! Así dice el Señor Omnipotente a estos huesos: Voy a hacer que entre aliento en ustedes, y revivirán. Les pondré tendones, haré que les salga carne, los cubriré de piel y les pondré aliento de vida; así revivirán. Entonces sabrán que yo soy el Señor.”&rsquo; Profeticé, pues, como se me había mandado. Y mientras profetizaba, se oyó un ruido, un estrépito, y los huesos se juntaron entre sí. Miré, y vi que les salían tendones y carne, y que la piel los cubría, pero no tenían aliento de vida. Entonces me dijo: &lsquo;Profetiza al aliento de vida; profetiza, hijo de hombre, y dile: “Así dice el Señor Omnipotente: Ven de los cuatro vientos, aliento de vida, y sopla sobre estos muertos para que revivan.”&rsquo; Profeticé tal como me lo había mandado, y el aliento de vida entró en ellos; revivieron y se pusieron de pie. ¡Era un ejército impresionante! Luego me dijo: &lsquo;Hijo de hombre, estos huesos son la casa entera de Israel. Ellos dicen: “Nuestros huesos se han secado, nuestra esperanza ha muerto; ¡estamos perdidos!” Por eso, profetiza y diles: “Así dice el Señor Omnipotente: Pueblo mío, voy a abrir sus tumbas; voy a sacarlos de ellas y los llevaré de vuelta a la tierra de Israel. Y cuando abra sus tumbas y los saque de ellas, ustedes, pueblo mío, sabrán que yo soy el Señor. Pondré mi Espíritu en ustedes, y revivirán; los estableceré en su propia tierra. Entonces sabrán que yo, el Señor, lo he dicho y lo he cumplido. Lo afirma el Señor.”&rsquo;&rdquo;"
+        }
+    },
+    "scholars": {
+        "weil": {
+            "name": "Simone Weil",
+            "role": "Filósofa",
+            "quote": "La atención es la forma más rara y pura de generosidad."
+        },
+        "merton": {
+            "name": "Thomas Merton",
+            "role": "Monje y Autor",
+            "quote": "Un árbol da gloria a Dios siendo un árbol."
+        },
+        "dubois": {
+            "name": "W.E.B. Du Bois",
+            "role": "Sociólogo y Autor",
+            "quote": "Estate dispuesto en cualquier momento a renunciar a lo que eres por lo que podrías llegar a ser."
+        },
+        "tarfon": {
+            "name": "Rabí Tarfón",
+            "role": "Sabio Judío &middot; Pirkei Avot",
+            "quote": "No te dejes intimidar por la enormidad del dolor del mundo. Haz justicia ahora, ama la misericordia ahora, camina humildemente ahora. No estás obligado a completar la obra, pero tampoco eres libre de abandonarla."
+        }
+    },
+    "questions": [
+        {
+            "n": 1,
+            "section": 0,
+            "text": "La semana pasada, el pastor Chris contó una historia sobre cómo hablaba por teléfono con su hijo. Si su hijo se daba cuenta de que el pastor Chris estaba distraído con un mensaje de texto, simplemente le colgaba. Simone Weil dice: &ldquo;La atención es la forma más rara y pura de generosidad.&rdquo; Vivimos en un mundo donde las aplicaciones y los teléfonos están diseñados para robar nuestra atención, y puede sentirse casi imposible luchar contra ello. Piensa en una persona en tu vida que merezca tu plena atención en este momento &mdash; un cónyuge, un hijo, un amigo, un compañero de trabajo. ¿Cuándo fue la última vez que tu teléfono le &ldquo;ganó&rdquo; a esa persona y cómo se sintió después, para ambos?",
+            "refs": [
+                "Simone Weil"
+            ],
+            "passages": [],
+            "scholars": [
+                "weil"
+            ]
+        },
+        {
+            "n": 2,
+            "section": 0,
+            "text": "Prestar mucha atención al mundo no siempre es cómodo. La pastora describió cómo observaba a su escorpión mascota, Scout, y cómo hizo contacto visual accidentalmente con el grillo que estaba a punto de convertirse en su cena &mdash; y de repente sintió el peso del miedo de esa pequeña criatura. De la misma manera, notar cuántos árboles frondosos alinean las calles más adineradas de Houston, en comparación con los pocos que hay en las más pobres, puede convertir un simple paseo al aire libre en un recordatorio de la desigualdad real. Describe un momento en el que reducir la velocidad para notar realmente algo &mdash; una persona, un vecindario, un titular de prensa &mdash; terminó mostrándote una verdad difícil que desearías no haber visto. ¿Aún valió la pena prestar atención?",
+            "refs": [],
+            "passages": [],
+            "scholars": []
+        },
+        {
+            "n": 3,
+            "section": 1,
+            "text": "El director espiritual de la pastora le hizo una vez una pregunta sencilla: &ldquo;¿Cuál es el propósito de una flor?&rdquo; Su primera respuesta fue: &ldquo;Florecer. Ser una flor.&rdquo; Thomas Merton escribió algo similar: &ldquo;Un árbol da gloria a Dios siendo un árbol.&rdquo; En Génesis 2:7, Dios simplemente sopla vida en el polvo, y este se convierte en un ser viviente &mdash; que ya da gloria a Dios con solo existir, respirar y estar vivo. Muchos de nosotros vivimos como si nuestro valor dependiera de lograr algo impresionante, en lugar de simplemente llegar a ser plenamente quienes Dios ya nos hizo ser. Si &ldquo;florecer&rdquo; es realmente tu único trabajo, ¿cuál es una forma en la que actualmente estás trabajando demasiado duro para ser algo que no eres? ¿Cómo se vería esta semana dejarte florecer en su lugar?",
+            "refs": [
+                "Génesis 2:7",
+                "Thomas Merton"
+            ],
+            "passages": [
+                "genesis2"
+            ],
+            "scholars": [
+                "merton"
+            ]
+        },
+        {
+            "n": 4,
+            "section": 1,
+            "text": "Jesús nos dice: &ldquo;Ustedes son la luz del mundo&hellip; hagan brillar su luz delante de todos&rdquo; (Mateo 5:14&ndash;16), y Pedro nos recuerda que usemos cualquier don que hayamos recibido para servir a los demás (1 Pedro 4:10). A una amiga de la pastora, Judy Lee, le preguntaron una vez frente a toda una sala: &ldquo;¿Estás donde quieres estar en la vida?&rdquo; Ella respondió: &ldquo;Sinceramente, no sé si estoy donde quiero estar, pero soy quien quiero ser, y el resto se puede ir resolviendo.&rdquo; W.E.B. Du Bois escribió: &ldquo;Estate dispuesto en cualquier momento a renunciar a lo que eres por lo que podrías llegar a ser.&rdquo; ¿En qué gastas más energía: en preocuparte por dónde estás &mdash; tu trabajo, tu casa, tu estado civil &mdash; o en llegar a ser quien eres? ¿Qué don te ha dado Dios que podrías usar para &ldquo;iluminar&rdquo; la vida de alguien más esta semana, sin importar tus circunstancias actuales?",
+            "refs": [
+                "Mateo 5:14&ndash;16",
+                "1 Pedro 4:10",
+                "W.E.B. Du Bois"
+            ],
+            "passages": [
+                "matt5",
+                "pet4"
+            ],
+            "scholars": [
+                "dubois"
+            ]
+        },
+        {
+            "n": 5,
+            "section": 2,
+            "text": "Ezequiel se paró en un valle lleno de huesos secos y muertos y escuchó a Dios preguntarle: &ldquo;Hijo de hombre, ¿podrán revivir estos huesos?&rdquo; La respuesta sincera de Ezequiel fue básicamente: &ldquo;Solo tú lo sabes, Dios&rdquo; (Ezequiel 37:1&ndash;14). Los seres humanos parecemos ser de las pocas criaturas que pueden imaginar un futuro que aún no existe &mdash; una ardilla entierra nueces para un invierno que puede visualizar, pero no puede imaginar un mundo sin hambre en absoluto. El primer milagro en esta historia puede no ser que los huesos vuelvan a la vida, sino la disposición de Ezequiel a siquiera imaginar que fuera posible. Piensa en una situación de tu vida en este momento que se sienta tan muerta y sin esperanza como un valle de huesos secos. Si Dios te preguntara hoy: &ldquo;¿Puede esta situación volver a vivir?&rdquo;, ¿cuál sería tu respuesta sincera en voz alta?",
+            "refs": [
+                "Ezequiel 37:1&ndash;14"
+            ],
+            "passages": [
+                "ezek37"
+            ],
+            "scholars": []
+        },
+        {
+            "n": 6,
+            "section": 2,
+            "text": "Hace años, un desconocido llamado Greg Gómez estaba marcando al pastor en un partido informal de baloncesto y, casi de la nada, le preguntó: &ldquo;¿Alguna vez has pensado en ser profesor?&rdquo; Esa sola pregunta cambió el rumbo de toda su vida. En una historia similar, un jugador de fútbol americano solo empezó a salir con la mujer que se convirtió en su esposa después de que su propio padre le preguntara: &ldquo;¿Por qué no sales con ella?&rdquo; A veces no podemos imaginar un nuevo futuro para nosotros mismos hasta que alguien más nos hace la pregunta correcta. ¿Alguien te ha hecho alguna vez una pregunta inesperada que sembró la semilla para un futuro que no habías imaginado para ti mismo? ¿Hay alguna pregunta que podrías hacerle a alguien más esta semana que le abra una nueva posibilidad?",
+            "refs": [],
+            "passages": [],
+            "scholars": []
+        },
+        {
+            "n": 7,
+            "section": 3,
+            "text": "Dios no solo le entregó a Ezequiel un milagro terminado &mdash; Dios le pidió a Ezequiel que profetizara a los huesos y al aliento de vida, convirtiendo a Ezequiel en un compañero en la resurrección (Ezequiel 37:1&ndash;14). Esto es como la vieja historia del predicador que rechazó una canoa, una lancha de motor y finalmente un helicóptero durante una inundación, insistiendo en que Dios lo salvaría solo a través de la fe &mdash; solo para enterarse después de que Dios ya le había enviado la ayuda. La conocida sabiduría del Rabí Tarfón dice: &ldquo;No estás obligado a completar la obra, pero tampoco eres libre de abandonarla.&rdquo; ¿En qué parte de tu vida estás esperando pasivamente a que Dios arregle algo, cuando en realidad Dios podría estar pidiéndote que participes &mdash; que contestes el teléfono, te presentes o hagas lo difícil? ¿Cuál es una parte de &ldquo;la obra&rdquo; frente a ti que has estado evitando, aunque sabes que no eres libre de abandonarla?",
+            "refs": [
+                "Ezequiel 37:1&ndash;14",
+                "Rabí Tarfón"
+            ],
+            "passages": [
+                "ezek37"
+            ],
+            "scholars": [
+                "tarfon"
+            ]
+        },
+        {
+            "n": 8,
+            "section": 3,
+            "text": "Dios nunca le dijo a Ezequiel que el exilio no era tan malo, o que todo estaba secretamente bien &mdash; Dios dejó que los huesos permanecieran completamente muertos y sin esperanza antes de darle a Ezequiel una visión de nueva vida. La verdadera esperanza no pretende ignorar el dolor; sostiene ambas verdades al mismo tiempo. Al final del servicio, se le pidió a la congregación que imaginara exactamente dónde estarían a esta misma hora mañana &mdash; en casa, en el trabajo, en la escuela, en una cafetería &mdash; y que nombraran, en una palabra, lo que necesitarían de Dios en ese lugar. Sin pretender que tus luchas actuales son más pequeñas de lo que son, ¿dónde estarás a esta misma hora mañana y qué es lo que más necesitas de Dios para encontrarte allí?",
+            "refs": [],
+            "passages": [],
+            "scholars": []
+        }
+    ],
+    "prayer": {
+        "label": "Oración Final",
+        "text": "Querido Dios,<br><br>Gracias por el don de la atención, y perdónanos por las veces que se la hemos dado a una pantalla en lugar de a las personas que teníamos frente a nosotros y que más la necesitaban.<br><br>Danos el valor de seguir prestando atención a tu mundo incluso cuando nos muestre un dolor que preferiríamos no ver, confiando en que darnos cuenta es el primer paso para demostrar interés.<br><br>Enséñanos, como a una flor o a un árbol, a dejar de esforzarnos por ser algo impresionante y simplemente llegar a ser quienes tú ya nos hiciste ser &mdash; y luego dejar que esa luz brille para que otros la vean.<br><br>Gracias por el don de la imaginación. Donde solo vemos huesos secos y callejones sin salida, danos el valor de preguntar, con Ezequiel, si aún es posible una nueva vida.<br><br>Ayúdanos a no esperar pasivamente el rescate, sino a participar en la esperanza que estás construyendo &mdash; recordando que no estamos obligados a terminar la obra, pero tampoco somos libres de alejarnos de ella.<br><br>Y Dios, encuéntranos a esta hora mañana, dondequiera que estemos. Danos exactamente lo que necesitamos &mdash; paz, fuerza, paciencia o valor &mdash; y ayúdanos a notarte allí.<br><br>Te lo pedimos en el nombre de Jesús, quien sopla nueva vida en los lugares secos. Amén.",
+        "source": "&mdash; Basado en el estudio de esta semana: la atención como generosidad, llegar a ser quienes ya somos, el don de la imaginación y participar en la esperanza de Dios hoy y mañana."
+    }
+}

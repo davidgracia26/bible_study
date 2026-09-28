@@ -60,8 +60,8 @@ const I18N = (function () {
     location.reload();
   }
 
-  /* Given a base data URL like "data/9_8.json", returns the localized
-     variant for the current language, e.g. "data/9_8.es.json". For the
+  /* Given a base data URL like "data/9_8/9_8.json", returns the localized
+     variant for the current language, e.g. "data/9_8/9_8.es.json". For the
      default language ("en") this just returns the base URL unchanged. */
   function localize(baseUrl) {
     if (current === 'en') return baseUrl;
@@ -74,7 +74,7 @@ const I18N = (function () {
      there is exactly one place that knows how to resolve a week's
      localized data. Returns { data, usedFallback }. */
   async function loadWeekJSON(weekId) {
-    const baseUrl = `data/${weekId}.json`;
+    const baseUrl = `data/${weekId}/${weekId}.json`;
     const localizedUrl = localize(baseUrl);
     let usedFallback = false;
 

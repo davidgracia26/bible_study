@@ -84,8 +84,8 @@
       // manifest.json only lists which weeks exist and their (language-
       // independent) video links. All translatable display fields (date,
       // series, title, subtitle) live solely in each week's own
-      // data/<id>.json / data/<id>.<lang>.json, so there's exactly one
-      // place to update per language instead of also editing the manifest.
+      // data/<id>/<id>.json / data/<id>/<id>.<lang>.json, so there's exactly
+      // one place to update per language instead of also editing the manifest.
       fetch('data/manifest.json')
         .then(res => {
           if (!res.ok) throw new Error('manifest not found');

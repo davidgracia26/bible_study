@@ -45,8 +45,11 @@ test suite — it's plain HTML/CSS/JS served as static files.
 - `data/<week_id>/` — everything for one week lives together in this
   folder: the rendered content JSON *and* the source material used to
   produce it (sermon notes, references, prompts). `week_id` matches the
-  manifest `id` (e.g. `9_1`, `9_8`) and the query param
-  `study.html?week=9_8`.
+  manifest `id` (e.g. `9_1_26`, `9_8_26`) and the query param
+  `study.html?week=9_8_26`. `week_id` is `<month>_<day>_<2-digit year>`
+  (e.g. `9_1_26` for September 1, 2026) — the year suffix keeps weeks
+  from different years (e.g. a future `9_1_27`) from colliding, since
+  `meta.date` itself only stores the month/day, not the year.
   - `data/<week_id>/<week_id>.json` — full content for the week (English/
     default): `meta`, `sections`, `questions`, `passages`, `scholars`
     ("Voices for the Discussion"), `prayer`. `meta.date` and
@@ -55,12 +58,13 @@ test suite — it's plain HTML/CSS/JS served as static files.
     page chrome).
   - `data/<week_id>/<week_id>.<lang>.json` — optional fully-translated
     content for the week (same shape as the base file), e.g.
-    `data/9_8/9_8.es.json`. If it doesn't exist yet for the selected
-    language, `study.html` (and the landing page cards) automatically
-    fall back to the English file and `study.html` shows a small "not
-    yet translated" notice. `js/i18n.js`'s `I18N.loadWeekJSON(weekId)`
-    is the single place that implements this localized-file-with-
-    fallback loading, used by both `index.html` and `js/app.js`.
+    `data/9_8_26/9_8_26.es.json`. If it doesn't exist yet for the
+    selected language, `study.html` (and the landing page cards)
+    automatically fall back to the English file and `study.html` shows
+    a small "not yet translated" notice. `js/i18n.js`'s
+    `I18N.loadWeekJSON(weekId)` is the single place that implements
+    this localized-file-with-fallback loading, used by both
+    `index.html` and `js/app.js`.
   - Any other files in the folder (e.g. `sermon.md`, `references.md`,
     `prompt.md`) are source material/workflow input, not loaded by the
     site itself.
@@ -71,11 +75,12 @@ test suite — it's plain HTML/CSS/JS served as static files.
 
 ## Adding a new week
 1. Add source material under `data/<week_id>/` (sermon notes,
-   references).
+   references), where `week_id` is `<month>_<day>_<2-digit year>` (e.g.
+   `9_1_26`).
 2. Create `data/<week_id>/<week_id>.json` following the exact shape of
-   an existing week (e.g. `data/9_8/9_8.json`): `meta` (including `date`
-   and `series`, which also drive the landing page card), `sections`,
-   `questions`, `passages`, `scholars`, `prayer`.
+   an existing week (e.g. `data/9_8_26/9_8_26.json`): `meta` (including
+   `date` and `series`, which also drive the landing page card),
+   `sections`, `questions`, `passages`, `scholars`, `prayer`.
 3. Append a `{ id, videoUrl }` entry to `data/manifest.json` (omit
    `videoUrl` if there's no sermon video yet).
 4. No build step is required — just open/serve `index.html`.

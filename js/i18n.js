@@ -60,9 +60,10 @@ const I18N = (function () {
     location.reload();
   }
 
-  /* Given a base data URL like "data/9_8/9_8.json", returns the localized
-     variant for the current language, e.g. "data/9_8/9_8.es.json". For the
-     default language ("en") this just returns the base URL unchanged. */
+  /* Given a base data URL like "data/9_8_26/9_8_26.json", returns the
+     localized variant for the current language, e.g.
+     "data/9_8_26/9_8_26.es.json". For the default language ("en") this
+     just returns the base URL unchanged. */
   function localize(baseUrl) {
     if (current === 'en') return baseUrl;
     return baseUrl.replace(/\.json$/, `.${current}.json`);

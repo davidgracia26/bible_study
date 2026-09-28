@@ -1,0 +1,103 @@
+{
+  "meta": {
+    "pageTitle": "Estudio Bíblico — 29 de septiembre | Sigue a Jesús a Tu Propia Manera",
+    "eyebrow": "Gloria Ordinaria · Estudio Bíblico — 29 de septiembre",
+    "date": "29 de septiembre",
+    "series": "Gloria Ordinaria",
+    "title": "Sigue a Jesús a Tu Propia Manera:",
+    "titleHighlight": "Autenticidad, Fruto y Reconciliación",
+    "translation": "NVI",
+    "footer": "Estudio Bíblico — 29 de septiembre  ·  Gloria Ordinaria: Sigue a Jesús a Tu Propia Manera  ·  Escritura de la <strong>NVI</strong>"
+  },
+
+  "sections": [
+    { "label": "Parte 1", "name": "Sé Plenamente <em>Tú</em>", "ref": "1 Pedro 3:15–16 · Reflexión" },
+    { "label": "Parte 2", "name": "Gracia Sobre <em>Juicio</em>", "ref": "Mateo 7:15–20 · Reflexión" },
+    { "label": "Parte 3", "name": "Bendecidos para Ser una <em>Bendición</em>", "ref": "Juan 13:34–35 · 1 Juan 4:12 · Mateo 25:34–40" },
+    { "label": "Parte 4", "name": "Vasijas Rotas, Audaz <em>Reconciliación</em>", "ref": "2 Corintios 4:7, 12:9 · 2 Corintios 5:18–20" }
+  ],
+
+  "passages": {
+    "pet3": { "ref": "1 Pedro 3:15–16", "link": "https://www.biblegateway.com/passage/?search=1%20Peter%203%3A15-16&version=NIV", "text": "“Más bien, honren en su corazón a Cristo como Señor. Estén siempre preparados para responder a todo el que les pida razón de la esperanza que hay en ustedes. Pero háganlo con gentilidad y respeto, manteniendo una conciencia limpia, para que los que hablan mal de la buena conducta de ustedes en Cristo se avergüencen de sus calumnias.”" },
+    "matt7": { "ref": "Mateo 7:15–20", "link": "https://www.biblegateway.com/passage/?search=Matthew%207%3A15-20&version=NIV", "text": "“Cuídense de los falsos profetas. Vienen a ustedes disfrazados de ovejas, pero por dentro son lobos feroces. Por sus frutos los reconocerán. ¿Acaso se cosechan uvas de los espinos o higos de los cardos? Así mismo, todo árbol bueno da fruto bueno, pero el árbol malo da fruto malo. Un árbol bueno no puede dar fruto malo, y un árbol malo no puede dar fruto bueno. Todo árbol que no da buen fruto se corta y se echa al fuego. Así que por sus frutos los reconocerán.”" },
+    "john13": { "ref": "Juan 13:34–35", "link": "https://www.biblegateway.com/passage/?search=John%2013%3A34-35&version=NIV", "text": "“Este mandamiento nuevo les doy: que se amen los unos a los otros. Así como yo los he amado, también ustedes deben amarse los unos a los otros. De este modo todos sabrán que son mis discípulos, si se aman los unos a los otros.”" },
+    "john4": { "ref": "1 Juan 4:12", "link": "https://www.biblegateway.com/passage/?search=1%20John%204%3A12&version=NIV", "text": "“Nadie ha visto jamás a Dios; pero, si nos amamos los unos a los otros, Dios permanece en nosotros y su amor se ha perfeccionado en nosotros.”" },
+    "matt25": { "ref": "Mateo 25:34–40", "link": "https://www.biblegateway.com/passage/?search=Matthew%2025%3A34-40&version=NIV", "text": "“Entonces el Rey dirá a los de su derecha: ‘Vengan, ustedes que son bendecidos por mi Padre; hereden el reino preparado para ustedes desde la creación del mundo. Porque tuve hambre y me dieron de comer, tuve sed y me dieron de beber, fui forastero y me recogieron, necesité ropa y me vistieron, estuve enfermo y me atendieron, estuve en la cárcel y me visitaron.’ Entonces los justos le responderán: ‘Señor, ¿cuándo te vimos con hambre y te alimentamos, o con sed y te dimos de beber? ¿Cuándo te vimos como forastero y te recogimos, o necesitado de ropa y te vestimos? ¿Cuándo te vimos enfermo o en la cárcel y fuimos a visitarte?’ El Rey les responderá: ‘Les aseguro que todo lo que hicieron por uno de mis hermanos más pequeños, por mí lo hicieron.’”" },
+    "cor4": { "ref": "2 Corintios 4:7", "link": "https://www.biblegateway.com/passage/?search=2%20Corinthians%204%3A7&version=NIV", "text": "“Pero tenemos este tesoro en vasijas de barro para enseñar que tan excelente poder es de Dios y no de nosotros.”" },
+    "cor12": { "ref": "2 Corintios 12:9", "link": "https://www.biblegateway.com/passage/?search=2%20Corinthians%2012%3A9&version=NIV", "text": "“Pero él me dijo: ‘Te basta mi gracia, pues mi poder se perfecciona en la debilidad.’ Por lo tanto, gustosamente me gloriaré más bien en mis debilidades, para que el poder de Cristo me cubra.”" },
+    "cor5": { "ref": "2 Corintios 5:18–20", "link": "https://www.biblegateway.com/passage/?search=2%20Corinthians%205%3A18-20&version=NIV", "text": "“Todo esto proviene de Dios, quien nos reconcilió consigo mismo por medio de Cristo y nos dio el ministerio de la reconciliación: esto es, que en Cristo, Dios estaba reconciliando al mundo consigo mismo, no tomándole en cuenta sus pecados. Y a nosotros nos encargó el mensaje de la reconciliación. Así que somos embajadores de Cristo, como si Dios hiciera su llamamiento por medio de nosotros. En nombre de Cristo les rogamos: Reconcíliense con Dios.”" }
+  },
+
+  "scholars": {
+    "shakespeare": { "name": "William Shakespeare", "role": "Dramaturgo · Hamlet", "quote": "Y esto sobre todo: sé fiel a ti mismo." },
+    "rogers": { "name": "Fred Rogers", "role": "Presentador de Televisión y Ministro", "quote": "Me gustas tal como eres." },
+    "mlk": { "name": "Martin Luther King Jr.", "role": "Ministro y Líder de los Derechos Civiles", "quote": "Con qué frecuencia nuestras vidas se caracterizan por una alta presión arterial de credos y una anemia de obras." },
+    "bonhoeffer": { "name": "Dietrich Bonhoeffer", "role": "Teólogo · Cartas y papeles desde la prisión", "quote": "La iglesia es iglesia solo cuando existe para los demás." },
+    "nouwen": { "name": "Henri Nouwen", "role": "Sacerdote y Autor · Compasión", "quote": "La compasión nos pide ir adonde duele, entrar en los lugares de dolor." }
+  },
+
+  "questions": [
+    {
+      "n": 1, "section": 0,
+      "text": "El pastor Chris dijo que a veces quisiera una camiseta que dijera: “Soy un tipo de cristiano estilo Dolly Parton” — un poco desordenado, pero lleno de una fe real y vibrante. También dijo que quiere ser un “cristiano al estilo de Fred Rogers,” del tipo que le dice a la gente que importa, haciendo eco de las propias palabras de Fred Rogers: “Me gustas tal como eres.” En Hamlet, Shakespeare hace que un padre imperfecto le diga a su hijo: “Y esto sobre todo: sé fiel a ti mismo.” El pastor Chris dijo que la invitación es a dejar de compararte con alguna versión de quien crees que se suponía que debías ser, y simplemente comenzar a ser plenamente tú — lo bueno, lo malo y lo feo. Piensa en una descripción del “tipo de cristiano” que honestamente podrías darte a ti mismo, basada en tu personalidad y en tu historia real, no en una versión dominical perfecta de ti. ¿Cuál es una parte del tú real y sin pulir que has estado escondiendo de tu grupo pequeño o familia de la iglesia, y qué se necesitaría para que saques esa parte a la luz?",
+      "refs": ["William Shakespeare", "Fred Rogers"],
+      "passages": [],
+      "scholars": ["shakespeare", "rogers"]
+    },
+    {
+      "n": 2, "section": 0,
+      "text": "El punto principal del pastor Chris hoy fue simple: “Sigue a Jesús a tu propia manera. Nadie más es como tú. Nadie más tiene los dones o talentos que tú tienes.” Pedro escribe que cuando vivimos con una esperanza real, debemos estar “siempre preparados para responder a todo el que les pida razón de la esperanza que hay en ustedes” (1 Pedro 3:15–16), porque la gente nota la esperanza que no se desmorona bajo presión. El pastor Chris dio ejemplos: mantener la esperanza mientras tu hijo atraviesa una crisis de salud mental, o confiar en que Dios está preparando algo bueno después de perder un trabajo. Piensa en una temporada difícil que estés atravesando en este momento, o una que ya hayas vivido — algo en el trabajo, en casa o con tu salud. ¿Cómo se vería realmente para ti, con tu propia personalidad y dones, vivir esa temporada de una manera que haga que la gente sienta la suficiente curiosidad como para preguntarte por qué todavía tienes esperanza?",
+      "refs": ["1 Pedro 3:15–16"],
+      "passages": ["pet3"],
+      "scholars": []
+    },
+    {
+      "n": 3, "section": 1,
+      "text": "El pastor Chris recordó cuando viajaba suelto en la parte trasera de una camioneta pickup cuando era niño — algo que todos los padres hacían en ese entonces sin pensarlo dos veces, pero algo por lo que te arrestarían hoy. Dijo: “La mayoría de los cristianos son profesionales en contemplar los pecados de los demás,” y que nos encanta jugar a ser la policía de la moral en lugar de lidiar con nuestras propias luchas. En su lugar, preguntó: “¿Cómo vivo tan fielmente como pueda hoy? ¿Cómo vivo tan amorosamente como pueda hoy?” Piensa en algo de tu propio pasado — una elección, un hábito, una creencia — que se sentía completamente normal en ese momento pero que tú, o el mundo, ahora ven de manera muy diferente. ¿Cómo cambia el recordar eso la forma en que juzgas las elecciones de otras personas hoy, especialmente las elecciones que te sientes más tentado a criticar?",
+      "refs": [],
+      "passages": [],
+      "scholars": []
+    },
+    {
+      "n": 4, "section": 1,
+      "text": "El pastor Chris advirtió que cualquier versión del cristianismo con un adjetivo al frente — “nacionalista cristiano,” “cristiano progresista” — es en realidad otra cosa usando a Jesús como disfraz. Jesús mismo advirtió que los falsos profetas “vienen a ustedes disfrazados de ovejas, pero por dentro son lobos feroces,” y que “por sus frutos los reconocerán” (Mateo 7:15–20). El pastor Chris dijo que la prueba real es simple: ve a un restaurante con alguien y observa cómo trata al mesero. Piensa en una persona cuya política, denominación o etiqueta te hizo dudar de ella, pero cuya conducta real hacia los demás te convenció de que era auténtica — o te convenció de que no lo era. ¿Qué etiqueta u adjetivo dejas a veces que defina tu propia fe más que Jesús, y cómo se vería esta semana examinar en su lugar el fruto real de tu vida?",
+      "refs": ["Mateo 7:15–20"],
+      "passages": ["matt7"],
+      "scholars": []
+    },
+    {
+      "n": 5, "section": 2,
+      "text": "En un restaurante en Waco, el mesero del pastor Chris admitió que había luchado contra la adicción toda su vida y que acababa de cumplir seis meses de sobriedad. El pastor Chris dijo que en ese momento, su misión no era ser bien atendido, sino ser una bendición para un hombre vulnerable — porque, como dice la Biblia, fuimos “bendecidos para ser una bendición.” Jesús dijo que el mundo reconocería a sus seguidores “en esto… en que se aman los unos a los otros” (Juan 13:34–35), y Juan añade que cuando nos amamos unos a otros, “Dios permanece en nosotros y su amor se ha perfeccionado en nosotros” (1 Juan 4:12) — nuestro amor ordinario es literalmente la forma en que un Dios invisible se hace visible. Piensa en el lugar más común y cotidiano en el que estarás esta semana — la fila de la caja, tu trayecto al trabajo, una sala de espera. ¿Quién es una persona a la que podrías bendecir inesperadamente allí, y qué te impide hacerlo realmente en lugar de solo notarla?",
+      "refs": ["Juan 13:34–35", "1 Juan 4:12"],
+      "passages": ["john13", "john4"],
+      "scholars": []
+    },
+    {
+      "n": 6, "section": 2,
+      "text": "Jesús dijo que todo lo que hacemos por “uno de estos más pequeños” — el hambriento, el forastero, el inmigrante, el enfermo, el encarcelado — se lo hacemos directamente a él (Mateo 25:34–40). El pastor Chris fue directo: “No necesitas a un teólogo… no necesitas orar al respecto. Sabes lo que tienes que hacer si conoces a un inmigrante. Si conoces a un extranjero, le muestras amor, amabilidad u hospitalidad.” También describió a hombres que casi se pierden un fin de semana sirviendo en una prisión, solo para luego llamarlo el mejor fin de semana de su año. ¿Qué grupo de la lista de Mateo 25 — el forastero, el enfermo, el encarcelado, el pobre — es el más difícil de acoger para ti personalmente, y por qué crees que ese es más difícil para ti que los demás? ¿Cuál es un paso concreto e incómodo que podrías dar este mes para mostrar hospitalidad a alguien de ese grupo exacto?",
+      "refs": ["Mateo 25:34–40"],
+      "passages": ["matt25"],
+      "scholars": []
+    },
+    {
+      "n": 7, "section": 3,
+      "text": "Pablo dice que el poder de Dios se lleva deliberadamente en recipientes frágiles y ordinarios — “tenemos este tesoro en vasijas de barro” (2 Corintios 4:7) — y que Dios le dijo directamente: “mi poder se perfecciona en la debilidad” (2 Corintios 12:9). Martin Luther King Jr. advirtió que nuestras vidas a menudo se caracterizan por una “alta presión arterial de credos y una anemia de obras” — sabemos mucho, pero hacemos muy poco. El pastor Chris dijo que algunos de nosotros nos mantenemos en silencio sobre nuestra fe porque pensamos que hemos “arruinado las cosas demasiado” como para representar bien a Dios. ¿Cuál es un error, fallo o debilidad de tu propia vida que has estado tratando como una descalificación, en lugar de la forma de vasija de barro agrietada que Dios realmente planea usar? ¿Cuál es una pequeña acción fiel — una “obra,” no solo una creencia — que podrías realizar esta semana en lugar de esperar a sentirte listo?",
+      "refs": ["2 Corintios 4:7", "2 Corintios 12:9", "Martin Luther King Jr."],
+      "passages": ["cor4", "cor12"],
+      "scholars": ["mlk"]
+    },
+    {
+      "n": 8, "section": 3,
+      "text": "Pablo dice que a cada creyente se le ha dado “el ministerio de la reconciliación” — somos “embajadores de Cristo” enviados para recordar a la gente que es amada y que no se le toman en cuenta sus pecados (2 Corintios 5:18–20). Dietrich Bonhoeffer escribió: “La iglesia es iglesia solo cuando existe para los demás,” y Henri Nouwen escribió que “la compasión nos pide ir adonde duele, entrar en los lugares de dolor.” El pastor Chris describió a las mujeres de su iglesia pasando un fin de semana en un refugio para sobrevivientes de trata en la Ciudad de México, haciendo manicuras y conversando en una fiesta de barrio para los hombres y mujeres que trabajan en las calles de allí — y regresando a casa diciendo que había sido lo más feliz que habían estado en todo el año. ¿Dónde hay un “lugar de dolor” cerca de ti — en tu propia familia, lugar de trabajo o vecindario — que has estado evitando porque entrar en él parece inconveniente e incómodo? ¿Qué te costaría personalmente convertirte en un embajador de la reconciliación allí, y crees, como las mujeres de ese viaje, que en realidad podría convertirse en lo mejor que hagas este año?",
+      "refs": ["2 Corintios 5:18–20", "Dietrich Bonhoeffer", "Henri Nouwen"],
+      "passages": ["cor5"],
+      "scholars": ["bonhoeffer", "nouwen"]
+    }
+  ],
+
+  "prayer": {
+    "label": "Oración de Cierre",
+    "text": "Querido Dios,<br><br>Gracias por hacernos a cada uno diferentes, con nuestros propios dones, nuestro propio humor y nuestra propia manera de seguirte. Perdónanos por la energía que desperdiciamos comparándonos con quienes creemos que se supone que debemos ser en lugar de convertirnos en quienes tú ya nos creaste.<br><br>Enséñanos a vivir con una esperanza que sea visible para las personas que nos rodean — en las temporadas difíciles, no solo en las fáciles — para que nuestras vidas despierten la curiosidad de la gente sobre ti.<br><br>Líbranos de ser profesionales en notar las faltas de todos los demás. Ayúdanos en cambio a preguntarnos simplemente, cada día, cómo podemos vivir de manera fiel y amorosa hoy.<br><br>Permite que Jesús, y no una etiqueta o un eslogan, defina lo que significa para nosotros seguirle. Y que el fruto de nuestras vidas — cómo tratamos a un mesero, a un forastero, a un inmigrante, a una persona necesitada — sea la prueba más verdadera de lo que creemos.<br><br>Gracias porque usas vasijas de barro, no recipientes perfectos, y porque tu poder se muestra más claro en nuestra debilidad. Danos el valor para actuar en lugar de solo creer, y para ir hacia los lugares de dolor que preferiríamos evitar.<br><br>Recuérdanos que fuimos bendecidos para ser una bendición, y que nos has hecho embajadores de la reconciliación — enviados para recordar a todos los que conozcamos que son amados, tal como son.<br><br>Te lo pedimos en el nombre de Jesús, quien nos llama a seguirle a cada uno a nuestra propia y verdadera manera. Amén.",
+    "source": "— Basado en el estudio de esta semana: autenticidad, gracia sobre juicio, ser bendecidos para ser una bendición, y el ministerio de la reconciliación."
+  }
+}

@@ -1,1 +1,1 @@
-i have this javascript object. i need to keep the object keys in english but i need the values to be translated to spanish. keep in mind some of the values are names or proper nouns.
+i have this javascript object. i need to keep the object keys in english but i need the values to be translated to burmese. keep in mind some of the values are names or proper nouns.

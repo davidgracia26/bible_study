@@ -10,6 +10,35 @@
     "footer": "Estudio Bíblico — 29 de septiembre  ·  Gloria Ordinaria: Sigue a Jesús a Tu Propia Manera  ·  Escritura de la <strong>NVI</strong>"
   },
 
+  "summary": {
+    "speaker": "Pastor Chris",
+    "bigIdea": "Sigue a Jesús a tu propia manera. Sé plenamente tú mismo y deja que el amor de Dios se vea a través de tu vida.",
+    "overview": "Chris cuenta cómo su hija explicó por qué él ama su trabajo. Dice que el mundo necesita cristianos que sean reales, no un estereotipo, y ofrece cuatro puntos sobre cómo se ve eso.",
+    "points": [
+      {
+        "title": "Sé Plenamente Tú",
+        "text": "Nadie más tiene tus dones, humor o personalidad. Cuando vives con esperanza como la persona que Dios te creó para ser, la gente lo nota y te pregunta al respecto. Mira tu propia vida antes de juzgar a los demás.",
+        "ref": "1 Pedro 3:15&ndash;16"
+      },
+      {
+        "title": "Gracia Sobre Juicio",
+        "text": "Deja que Jesús defina lo que es un cristiano, no las voces más ruidosas. Jesús dice que conocemos a las personas por sus frutos, lo que significa cómo viven y cómo tratan a los demás.",
+        "ref": "Mateo 7:15&ndash;20"
+      },
+      {
+        "title": "Bendecidos para Ser una Bendición",
+        "text": "Somos bendecidos para que podamos bendecir a otros, incluso a un mesero que está teniendo un día difícil. Jesús dice que la gente nos reconocerá por nuestro amor, especialmente hacia aquellos que a menudo son ignorados.",
+        "ref": "Juan 13:34&ndash;35 &middot; 1 Juan 4:12 &middot; Mateo 25:34&ndash;40"
+      },
+      {
+        "title": "Vasijas Rotas, Audaz Reconciliación",
+        "text": "No necesitas ser perfecto para que Dios te use, porque el poder de Dios se muestra en la debilidad. Hemos sido reconciliados con Dios, y se nos pide ayudar a otros a volver a Dios y reconciliarse entre sí.",
+        "ref": "2 Corintios 4:7, 12:9 &middot; 2 Corintios 5:18&ndash;20"
+      }
+    ],
+    "takeaway": "Piensa en alguien que te mostró el amor de Dios, y pregúntate cómo puedes ser esa clase de persona para alguien más esta semana."
+  },
+
   "sections": [
     { "label": "Parte 1", "name": "Sé Plenamente <em>Tú</em>", "ref": "1 Pedro 3:15–16 · Reflexión" },
     { "label": "Parte 2", "name": "Gracia Sobre <em>Juicio</em>", "ref": "Mateo 7:15–20 · Reflexión" },

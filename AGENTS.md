@@ -33,7 +33,7 @@ test suite — it's plain HTML/CSS/JS served as static files.
 - `data/strings.json` — UI copy (button labels, section names, etc.) keyed
   by language code, e.g. `{ "en": { "prev": "Prev", ... }, "es": { ... } }`.
   Any language missing a key falls back to the `en` value.
-- `data/manifest.json` — array of `{ id, videoUrl }` entries, one per
+- `data/manifest.json` — `{ "weeks": [{ id, videoUrl }, ...] }`, one entry per
   week, used by the landing page and study page to know which weeks exist
   and their (language-independent) sermon video link. It intentionally
   does **not** duplicate `date`/`series`/`title`/`subtitle` — those are
@@ -68,10 +68,11 @@ test suite — it's plain HTML/CSS/JS served as static files.
   - Any other files in the folder (e.g. `sermon.md`, `references.md`,
     `prompt.md`) are source material/workflow input, not loaded by the
     site itself.
-- `standard_prompt.md` / `new_standard_prompt.md` — example prompt
-  templates showing how a new week's study guide has historically been
-  requested (role: pastor, task: build discussion questions from sermon
-  notes, output as data JSON + manifest entry).
+- `new_standard_prompt.md` — the current prompt template for requesting a
+  new week's study guide (role: pastor, task: build discussion questions
+  from sermon notes, output as data JSON + manifest entry). It is the
+  source of truth for question style (see "Question style" below). Per-week
+  `data/<week_id>/prompt.md` files are historical copies of past prompts.
 
 ## Adding a new week
 1. Add source material under `data/<week_id>/` (sermon notes,
@@ -81,9 +82,23 @@ test suite — it's plain HTML/CSS/JS served as static files.
    an existing week (e.g. `data/9_8_26/9_8_26.json`): `meta` (including
    `date` and `series`, which also drive the landing page card),
    `sections`, `questions`, `passages`, `scholars`, `prayer`.
-3. Append a `{ id, videoUrl }` entry to `data/manifest.json` (omit
-   `videoUrl` if there's no sermon video yet).
+3. Append a `{ id, videoUrl }` entry to the `weeks` array in
+   `data/manifest.json` (omit `videoUrl` if there's no sermon video yet).
 4. No build step is required — just open/serve `index.html`.
+
+### Question style
+When writing or editing `questions[].text` (follow the full rules in
+`new_standard_prompt.md`):
+- One short question per entry: exactly one question mark, ~25 words max
+  (50 words max total including an optional one-sentence lead-in). No
+  stacked or "and why...?" questions.
+- No sermon recap or verse/quote restating in `text` — verses go in
+  `passages`, quotes go in `scholars`.
+- Not invasive: no asking people to confess sins/failures or share
+  addictions, health, family crises, finances, or politics. Prefer
+  observations, past lessons, other people, or hypotheticals.
+- Simple English (ESL-friendly), no idioms. Apply the same rules when
+  translating questions into other languages.
 
 ## Adding a language
 1. Add `{ code, label }` to `data/languages.json` (e.g.

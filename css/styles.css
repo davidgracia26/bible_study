@@ -669,12 +669,63 @@ html[lang="my"] body {
   font-size: .72rem; font-weight: 700; color: var(--gold2); margin-top: 12px;
 }
 
+/* ── SERMON SUMMARY VIEW ── */
+.sum-label {
+  font-size: .62rem; font-weight: 700; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 8px;
+}
+.sum-big-idea {
+  background: var(--navy);
+  border-radius: var(--radius);
+  border-top: 3px solid var(--gold);
+  padding: 18px 20px;
+}
+[data-theme="dark"] .sum-big-idea { background: #111111; }
+.sum-big-idea .sum-idea-text {
+  font-size: 1.15rem; line-height: 1.5; font-weight: 600; color: rgba(255,255,255,.95);
+}
+.sum-overview { font-size: .95rem; line-height: 1.7; color: var(--text-primary); }
+.sum-point {
+  display: flex; gap: 14px;
+  background: var(--sp-scholar-bg);
+  border: 1px solid var(--sp-scholar-border);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  transition: background .25s;
+}
+.sum-point-num {
+  min-width: 32px; height: 32px;
+  background: var(--navy); color: var(--gold2);
+  border-radius: 50%; font-size: .8rem; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 2px;
+}
+[data-theme="dark"] .sum-point-num { background: #262626; }
+.sum-point-title { font-size: 1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
+.sum-point-text { font-size: .92rem; line-height: 1.65; color: var(--text-primary); }
+.sum-point-ref { margin-top: 8px; }
+.sum-point-ref span {
+  background: rgba(232,117,23,.1);
+  border: 1px solid var(--gold-dark);
+  border-radius: 4px;
+  padding: 1px 8px;
+  font-size: .72rem; font-weight: 600; color: var(--gold-dark);
+}
+.sum-takeaway {
+  border-left: 4px solid var(--gold);
+  background: var(--sp-scholar-bg);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 14px 18px;
+}
+.sum-takeaway .sum-takeaway-text { font-size: 1rem; line-height: 1.6; font-style: italic; color: var(--text-primary); }
+
 /* ── OVERVIEW (print) ── */
 .overview-section { display: none; }
 .overview-section.visible { display: block; }
 .main-workspace { display: flex; flex-direction: column; flex: 1; }
 .main-workspace.hidden { display: none; }
 
+.overview-summary { padding: 16px 28px; }
 .overview-part-header {
   background: linear-gradient(90deg, var(--navy) 0%, var(--navy2) 100%);
   color: white;
@@ -869,6 +920,9 @@ html[lang="my"] body {
   .overview-part-header { background: none; border: 1px solid black; color: black; page-break-after: avoid; }
   .overview-part-header .op-label, .overview-part-header .op-title,
   .overview-part-header .op-title em, .overview-part-header .op-ref { color: black; }
+  .overview-summary { padding: 0 28px 12px; page-break-after: avoid; color: black; }
+  .overview-summary .os-heading { font-weight: 700; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 6px; }
+  .overview-summary p { margin: 0 0 6px; line-height: 1.45; }
   .overview-q-card { page-break-inside: avoid; border: 1px solid #ccc; margin-bottom: 4px; }
   .overview-q-card .oq-num { background: none; border: 1px solid black; color: black; }
   .overview-q-card .oq-refs span { border-color: #333; color: #333; background: none; }

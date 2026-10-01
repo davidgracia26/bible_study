@@ -22,6 +22,9 @@ voice if the source material doesn't clearly provide one for that angle; it's fi
 reflection alone.
 
 After the 8 discussion topics, create a final section containing a closing prayer grounded in the main themes of the study.
+
+Also write a short sermon `summary` object (see <summary_format_rules>) for the week's JSON. This is the
+one schema addition beyond the leader-tip restriction above.
 </task>
 
 <question_format_rules>
@@ -56,6 +59,27 @@ Bad (too long, recaps the sermon, asks 2+ questions):
 Good (one short question):
   "Think of something that once felt normal to you but looks wrong now. How does that change the way you see other people's choices?"
 </question_format_rules>
+
+<summary_format_rules>
+Add a top-level `summary` key to `data/<week_id>/<week_id>.json` (placed before `sections`). It is shown as the
+first view on the study page and in the print overview. Shape:
+
+  "summary": {
+    "speaker": "Pastor Chris",
+    "bigIdea": "One sentence: the sermon's main claim.",
+    "overview": "2-3 sentences: the opening story and where the sermon goes.",
+    "points": [ { "title": "...", "text": "2-3 sentences", "ref": "1 Peter 3:15&ndash;16" } ],
+    "takeaway": "One sentence: what to do or think about this week."
+  }
+
+- 150-250 words in total (about a one-minute read), written as prose, not copied from the transcript.
+- `points`: 2-4 entries that mirror `sections` (same order; `title` = the part name without `<em>` tags,
+  `ref` = the part's ref). Use fewer points if the sermon is one idea.
+- Do not restate full verses (they go in `passages`) or quotes (they go in `scholars`); use `ref` to point to them.
+- Same ESL-friendly rules as the questions: simple English, no idioms, no slang.
+- Not invasive: do not repeat personal stories about addictions, health, or family crises told by the speaker; keep to the main idea.
+- No timestamps or filler words. Use the same HTML entities as the rest of the file.
+</summary_format_rules>
 
 <discussion_optimization_rules>
 To maximize participation and keep the conversation lively:

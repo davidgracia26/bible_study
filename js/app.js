@@ -61,6 +61,16 @@ async function loadWeek() {
     DATA = loaded.data;
     usedFallback = loaded.usedFallback;
 
+    // A translated week file may not have its own summary yet; show the
+    // English one rather than dropping the Summary view for that language.
+    if (!DATA.summary && !usedFallback) {
+      const baseRes = await fetch(`data/${weekId}/${weekId}.json`);
+      if (baseRes.ok) {
+        const base = await baseRes.json();
+        if (base.summary) DATA.summary = base.summary;
+      }
+    }
+
     // videoUrl is language-independent, so it lives only in manifest.json
     // rather than being duplicated into every translated week file.
     const manifestRes = await fetch('data/manifest.json');
@@ -120,7 +130,10 @@ function initPage(usedFallback, requestedQ) {
   const requestedIdx = Number.isInteger(requestedQ)
     ? VIEWS.findIndex(v => v.type === 'question' && DATA.questions[v.qIndex].n === requestedQ)
     : -1;
-  current = requestedIdx !== -1 ? requestedIdx : VIEWS.findIndex(v => v.type === 'question');
+  const summaryIdx = VIEWS.findIndex(v => v.type === 'summary');
+  current = requestedIdx !== -1 ? requestedIdx
+    : summaryIdx !== -1 ? summaryIdx
+    : VIEWS.findIndex(v => v.type === 'question');
   render();
 }
 
@@ -157,22 +170,33 @@ function showFallbackNotice() {
 
 /* ════════════════════════════════════════
    VIEWS
-   One continuous sequence: Passages, then
-   each question, then Voices (if any), then
+   One continuous sequence: Summary (if any),
+   Passages, then each question, then Voices (if any), then
    Prayer. Prev/Next step through all of it.
 ════════════════════════════════════════ */
 function buildViews() {
   const hasVoices = Object.keys(DATA.scholars || {}).length > 0;
-  VIEWS = [{ type: 'passages' }];
+  VIEWS = [];
+  if (hasSummary()) VIEWS.push({ type: 'summary' });
+  VIEWS.push({ type: 'passages' });
   DATA.questions.forEach((q, i) => VIEWS.push({ type: 'question', qIndex: i }));
   if (hasVoices) VIEWS.push({ type: 'voices' });
   VIEWS.push({ type: 'prayer' });
   VIEWS.push({ type: 'allquestions' });
 }
 
+function hasSummary() {
+  const s = DATA.summary;
+  return !!(s && (s.bigIdea || s.overview || (s.points && s.points.length)));
+}
+
 function buildSectionPills() {
   const hasVoices = Object.keys(DATA.scholars || {}).length > 0;
-  let html = `<button onclick="jumpToSection('passages')" data-target="passages">${I18N.t('passages')}</button>`;
+  let html = '';
+  if (hasSummary()) {
+    html += `<button onclick="jumpToSection('summary')" data-target="summary">${I18N.t('summary')}</button>`;
+  }
+  html += `<button onclick="jumpToSection('passages')" data-target="passages">${I18N.t('passages')}</button>`;
   DATA.sections.forEach((sec, i) => {
     html += `<button onclick="jumpToSection('${i}')" data-target="${i}">${sec.label}</button>`;
   });
@@ -197,6 +221,38 @@ function allQuestionsHTML() {
         </div>`;
     });
   });
+  return html;
+}
+
+function summaryHTML() {
+  const s = DATA.summary || {};
+  let html = '';
+  if (s.bigIdea) {
+    html += `
+      <div class="sum-big-idea">
+        <div class="sum-label">${I18N.t('bigIdea')}${s.speaker ? ' &nbsp;&middot;&nbsp; ' + s.speaker : ''}</div>
+        <div class="sum-idea-text">${s.bigIdea}</div>
+      </div>`;
+  }
+  if (s.overview) html += `<div class="sum-overview">${s.overview}</div>`;
+  (s.points || []).forEach((pt, i) => {
+    html += `
+      <div class="sum-point">
+        <div class="sum-point-num">${i + 1}</div>
+        <div>
+          <div class="sum-point-title">${pt.title || ''}</div>
+          <div class="sum-point-text">${pt.text || ''}</div>
+          ${pt.ref ? `<div class="sum-point-ref"><span>${pt.ref}</span></div>` : ''}
+        </div>
+      </div>`;
+  });
+  if (s.takeaway) {
+    html += `
+      <div class="sum-takeaway">
+        <div class="sum-label">${I18N.t('takeaway')}</div>
+        <div class="sum-takeaway-text">${s.takeaway}</div>
+      </div>`;
+  }
   return html;
 }
 
@@ -241,6 +297,16 @@ function prayerHTML() {
 ════════════════════════════════════════ */
 function buildOverview() {
   let html = '';
+  if (hasSummary()) {
+    const s = DATA.summary;
+    html += `<div class="overview-summary">
+      <div class="os-heading">${I18N.t('sermonSummary')}${s.speaker ? ' &mdash; ' + s.speaker : ''}</div>
+      ${s.bigIdea ? `<p class="os-big-idea"><strong>${I18N.t('bigIdea')}:</strong> ${s.bigIdea}</p>` : ''}
+      ${s.overview ? `<p>${s.overview}</p>` : ''}
+      ${(s.points || []).map((pt, i) => `<p><strong>${i + 1}. ${pt.title || ''}</strong>${pt.ref ? ' (' + pt.ref + ')' : ''}<br>${pt.text || ''}</p>`).join('')}
+      ${s.takeaway ? `<p><strong>${I18N.t('takeaway')}:</strong> ${s.takeaway}</p>` : ''}
+    </div>`;
+  }
   DATA.sections.forEach((sec, sIdx) => {
     html += `
       <div class="overview-part-header">
@@ -267,7 +333,7 @@ function buildOverview() {
 /* ════════════════════════════════════════
    RENDER
    `current` indexes into VIEWS, which is one
-   continuous sequence: Passages, Q1..Qn,
+   continuous sequence: Summary, Passages, Q1..Qn,
    Voices, Prayer. All views render into the
    same main panel (#q-stage) — no overlays.
 ════════════════════════════════════════ */
@@ -297,7 +363,10 @@ function render() {
   } else {
     leftPanel.classList.add('hidden');
     stage.className = 'q-stage list-view';
-    if (view.type === 'passages') {
+    if (view.type === 'summary') {
+      stage.innerHTML = `<div class="q-num-large">${I18N.t('sermonSummary')}</div>${summaryHTML()}`;
+      totalEl.textContent = I18N.t('sermonSummary');
+    } else if (view.type === 'passages') {
       stage.innerHTML = `<div class="q-num-large">${I18N.t('scripturePassages')}</div>${passagesHTML()}`;
       totalEl.textContent = I18N.t('scripturePassages');
     } else if (view.type === 'voices') {
@@ -449,7 +518,7 @@ function nextQ() { current = Math.min(VIEWS.length - 1, current + 1); render(); 
 function prevQ() { current = Math.max(0, current - 1); render(); }
 
 function jumpToSection(target) {
-  if (target === 'passages' || target === 'voices' || target === 'prayer' || target === 'allquestions') {
+  if (target === 'summary' || target === 'passages' || target === 'voices' || target === 'prayer' || target === 'allquestions') {
     const idx = VIEWS.findIndex(v => v.type === target);
     if (idx !== -1) current = idx;
     render();

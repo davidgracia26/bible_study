@@ -13,7 +13,9 @@ test suite — it's plain HTML/CSS/JS served as static files.
   for passages/voices, right panel for the current question). All content
   is injected by `js/app.js` based on `data/<week_id>/<week_id>.json`.
 - `js/app.js` — all client-side logic: loads week JSON, builds the view
-  sequence (Passages → Q1..Qn → Voices (if any) → Prayer → All Questions),
+  sequence (Summary (if the week has a `summary`) → Passages → Q1..Qn →
+  Voices (if any) → Prayer → All Questions; with no `?q=` the page opens on
+  Summary, else on Q1),
   handles theming (light/dark, persisted in `localStorage`), font scaling,
   keyboard shortcuts (arrow keys to navigate, `d` to toggle theme), and the
   print-only overview section.
@@ -52,7 +54,11 @@ test suite — it's plain HTML/CSS/JS served as static files.
   `meta.date` itself only stores the month/day, not the year.
   - `data/<week_id>/<week_id>.json` — full content for the week (English/
     default): `meta`, `sections`, `questions`, `passages`, `scholars`
-    ("Voices for the Discussion"), `prayer`. `meta.date` and
+    ("Voices for the Discussion"), `prayer`, and an optional `summary`
+    (`{ speaker, bigIdea, overview, points: [{ title, text, ref }],
+    takeaway }`, ~150–250 words, shown as the first view and in the print
+    overview; weeks without it simply skip that view — rules are in
+    `new_standard_prompt.md`). `meta.date` and
     `meta.series` are the plain-text values shown on the landing page
     card (and folded into `meta.eyebrow`/`meta.footer` for the study
     page chrome).
@@ -81,7 +87,7 @@ test suite — it's plain HTML/CSS/JS served as static files.
 2. Create `data/<week_id>/<week_id>.json` following the exact shape of
    an existing week (e.g. `data/9_8_26/9_8_26.json`): `meta` (including
    `date` and `series`, which also drive the landing page card),
-   `sections`, `questions`, `passages`, `scholars`, `prayer`.
+   `summary`, `sections`, `questions`, `passages`, `scholars`, `prayer`.
 3. Append a `{ id, videoUrl }` entry to the `weeks` array in
    `data/manifest.json` (omit `videoUrl` if there's no sermon video yet).
 4. No build step is required — just open/serve `index.html`.

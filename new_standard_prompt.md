@@ -2,7 +2,7 @@
 
 <task>
 Create a set of 8 Bible study discussion topics based on `@data/<week_id>/sermon.md` and
-`@data/<week_id>/references.md` (e.g. `<week_id>` = `10_20_26`).
+`@data/<week_id>/references.md` (e.g. `<week_id>` = `10_27_26`).
 
 For each discussion topic:
 1. Include full verse text from the ESV or NIV translation (in the week's `passages`, not in the question `text`).

@@ -1,0 +1,16 @@
+- Hebrews 12:1-2
+- "Prepare youself so you can be a rainbow in someone else's cloud" - Maya Angelou
+- Genesis 2:18
+- John 14:1-3
+- 1 Corinthians 13:8-13
+- "There are no ordinary people. You have never talked to a mere mortal." - C.S. Lewis, The Weight of Glory
+- "No one ever told me that grief felt so like fear." - C.S. Lewis, A Grief Observed
+- Luke 24:36-43
+- 1 Corinthians 13:12
+- 1 Thessalonians 4:13-18
+- Ephesians 2:8-9
+- Matthew 17:20
+- John 3:16-17
+- "Everybody who can stand that much love." - Dallas Willard
+- John 20:11-18
+- "Death, thou shalt die" - John Donne, Holy Sonnet X

@@ -1,152 +1,79 @@
 # Bible Study Guides — Agent Notes
 
+Strict negative constraints:
+- Use Plain Direct English (active voice, imperative mood, anglo-saxon words)
+- Every word should be load bearing
+- Treat every query as a direct programming execution. 
+- ABSOLUTELY ZERO conversational filler, robotic pleasantries, pleasantries, or introductory preambles.
+- DO NOT restate, paraphrase, or acknowledge the prompt. 
+- DO NOT write a concluding summary, a "Let me know if you need help", or a closing paragraph.
+
+Structural enforcement:
+- Output the direct answer or solution starting on character 1, line 1 of the response.
+- If the response requires multiple points, use a markdown list with bold headers (e.g., "**Key Factor:** Detail").
+- If the answer is code, output ONLY the code block. No explanation before or after.
+
+Config location: this repo uses `.claude/` only. This overrides any default of `.devin/`. Never create config in `.devin/`.
+- Skills: `.claude/skills/<name>/SKILL.md`
+- Hooks, permissions, env: `.claude/settings.json` (personal: `.claude/settings.local.json`)
+- Commands: `.claude/commands/<name>.md`
+- Subagents: `.claude/agents/<name>.md`
+- MCP servers: `.mcp.json`
+- Rules: `AGENTS.md`
+Leave `.devin/config.json` as is.
+
+Scope: these rules govern agent replies and agent-written docs (this file, skills). Site content (week JSON, translations) follows the content rules below, not this style.
+
 ## What this is
-A static, no-build website ("Ordinary Glory" series) that renders weekly
-Bible study discussion guides. There is no package manager, bundler, or
-test suite — it's plain HTML/CSS/JS served as static files.
+Static, no-build site ("Ordinary Glory" series). Renders weekly Bible study discussion guides. Plain HTML/CSS/JS, no package manager, bundler, or tests.
 
 ## Structure
-- `index.html` — landing page. Fetches `data/manifest.json` and lists all
-  weeks as cards (sorted by date, newest first), linking to
-  `study.html?week=<id>`.
-- `study.html` — the study viewer shell (two-column workspace: left panel
-  for passages/voices, right panel for the current question). All content
-  is injected by `js/app.js` based on `data/<week_id>/<week_id>.json`.
-- `js/app.js` — all client-side logic: loads week JSON, builds the view
-  sequence (Summary (if the week has a `summary`) → Passages → Q1..Qn →
-  Voices (if any) → Prayer → All Questions; with no `?q=` the page opens on
-  Summary, else on Q1),
-  handles theming (light/dark, persisted in `localStorage`), font scaling,
-  keyboard shortcuts (arrow keys to navigate, `d` to toggle theme), and the
-  print-only overview section.
-- `js/i18n.js` — shared language/translation helper (`I18N`) used by both
-  `index.html` and `study.html`. Loads `data/languages.json` and
-  `data/strings.json`, tracks the current language (`?lang=` query param,
-  else `localStorage['bs-lang']`, else `en`), exposes `I18N.t(key)` for UI
-  copy, `I18N.localize(url)` for per-language data file URLs, and
-  `I18N.buildSwitcher(el)` to render the `<select>` language switcher.
-- `css/styles.css` — all styling (this is the stylesheet actually linked
-  from the HTML pages).
-- `global_styles.css` (repo root) — appears to be an older/unused
-  stylesheet; not referenced by any HTML file. Leave it alone unless asked.
-- `data/languages.json` — `{ languages: [{ code, label }, ...] }`, the
-  list of languages shown in the switcher. The switcher only renders when
-  there are 2+ languages.
-- `data/strings.json` — UI copy (button labels, section names, etc.) keyed
-  by language code, e.g. `{ "en": { "prev": "Prev", ... }, "es": { ... } }`.
-  Any language missing a key falls back to the `en` value.
-- `data/manifest.json` — `{ "weeks": [{ id, videoUrl }, ...] }`, one entry per
-  week, used by the landing page and study page to know which weeks exist
-  and their (language-independent) sermon video link. It intentionally
-  does **not** duplicate `date`/`series`/`title`/`subtitle` — those are
-  translatable content and live only in each week's own
-  `data/<week_id>/<week_id>[.<lang>].json` (`meta.date`, `meta.series`,
-  `meta.title`, `meta.titleHighlight`), so there is exactly one place to
-  update per language instead of also having to keep the manifest in
-  sync.
-- `data/<week_id>/` — everything for one week lives together in this
-  folder: the rendered content JSON *and* the source material used to
-  produce it (sermon notes, references, prompts). `week_id` matches the
-  manifest `id` (e.g. `9_1_26`, `9_8_26`) and the query param
-  `study.html?week=9_8_26`. `week_id` is `<month>_<day>_<2-digit year>`
-  (e.g. `9_1_26` for September 1, 2026) — the year suffix keeps weeks
-  from different years (e.g. a future `9_1_27`) from colliding, since
-  `meta.date` itself only stores the month/day, not the year.
-  - `data/<week_id>/<week_id>.json` — full content for the week (English/
-    default): `meta`, `sections`, `questions`, `passages`, `scholars`
-    ("Voices for the Discussion"), `prayer`, and an optional `summary`
-    (`{ speaker, bigIdea, overview, points: [{ title, text, ref }],
-    takeaway }`, ~150–250 words, shown as the first view and in the print
-    overview; weeks without it simply skip that view — rules are in the
-    `create-bible-study-deck` skill's `references/content-rules.md`). `meta.date` and
-    `meta.series` are the plain-text values shown on the landing page
-    card (and folded into `meta.eyebrow`/`meta.footer` for the study
-    page chrome).
-  - `data/<week_id>/<week_id>.<lang>.json` — optional fully-translated
-    content for the week (same shape as the base file), e.g.
-    `data/9_8_26/9_8_26.es.json`. If it doesn't exist yet for the
-    selected language, `study.html` (and the landing page cards)
-    automatically fall back to the English file and `study.html` shows
-    a small "not yet translated" notice. `js/i18n.js`'s
-    `I18N.loadWeekJSON(weekId)` is the single place that implements
-    this localized-file-with-fallback loading, used by both
-    `index.html` and `js/app.js`.
-  - Any other files in the folder (e.g. `sermon.md`, `references.md`,
-    `prompt.md`) are source material/workflow input, not loaded by the
-    site itself.
-- `.devin/skills/create-bible-study-deck/` — skill that builds a new week
-  end to end (English JSON + manifest entry + Spanish and Burmese
-  translations) from `data/<week_id>/sermon.md` and `references.md`. Invoke
-  with `/create-bible-study-deck <week_id> <youtube_url>`. Its
-  `references/content-rules.md` is the source of truth for question style
-  (see "Question style" below) and `references/translation-rules.md` for
-  translations. Per-week `data/<week_id>/prompt.md` files are historical
-  copies of past prompts.
+- `index.html` — landing page. Fetches `data/manifest.json`, lists weeks as cards (newest first), links to `study.html?week=<id>`.
+- `study.html` — viewer shell. Left panel: passages/voices. Right panel: current question. `js/app.js` injects all content from `data/<week_id>/<week_id>.json`.
+- `js/app.js` — all client logic:
+  - Loads week JSON. Builds view sequence: Summary (if `summary` exists) → Passages → Q1..Qn → Voices (if any) → Prayer → All Questions. No `?q=` opens Summary (else Q1).
+  - Theme (light/dark, `localStorage`), font scaling, keys (arrows navigate, `d` toggles theme), print-only overview.
+- `js/i18n.js` — shared `I18N` helper for both pages. Loads `data/languages.json` and `data/strings.json`. Language order: `?lang=`, then `localStorage['bs-lang']`, then `en`. API: `I18N.t(key)` (UI copy), `I18N.localize(url)` (per-language data URL), `I18N.buildSwitcher(el)` (`<select>` switcher), `I18N.loadWeekJSON(weekId)` (the only localized-file-with-English-fallback loader; used by `index.html` and `js/app.js`).
+- `css/styles.css` — all styling. The HTML pages link this file.
+- `global_styles.css` (root) — old, unused. Leave alone unless asked.
+- `data/languages.json` — `{ languages: [{ code, label }] }`. Switcher renders only with 2+ languages.
+- `data/strings.json` — UI copy by language code (`{ "en": { "prev": "Prev" }, "es": {} }`). Missing keys fall back to `en`.
+- `data/manifest.json` — `{ "weeks": [{ id, videoUrl }] }`. One entry per week. Holds only the language-independent video link. Never duplicate `date`/`series`/`title`/`subtitle` here; they live in each week's JSON (`meta.date`, `meta.series`, `meta.title`, `meta.titleHighlight`).
+- `data/<week_id>/` — one folder per week: rendered JSON plus source material. `week_id` = `<month>_<day>_<2-digit year>` (`9_1_26` = September 1, 2026). It matches the manifest `id` and `study.html?week=9_8_26`. The year suffix prevents cross-year collisions (`meta.date` stores no year).
+  - `<week_id>.json` — English content: `meta`, `sections`, `questions`, `passages`, `scholars` ("Voices for the Discussion"), `prayer`, optional `summary` (`{ speaker, bigIdea, overview, points: [{ title, text, ref }], takeaway }`, 150–250 words; weeks without it skip that view). `meta.date` and `meta.series` drive the landing card and fold into `meta.eyebrow`/`meta.footer`. Summary rules: skill `references/content-rules.md`.
+  - `<week_id>.<lang>.json` — optional translation, same shape (e.g. `9_8_26.es.json`). Missing file: both pages fall back to English; `study.html` shows a "not yet translated" notice.
+  - Other files (`sermon.md`, `references.md`, `prompt.md`) are source material. The site ignores them.
+- `.claude/skills/create-bible-study-deck/` — builds a week end to end (English JSON, manifest entry, Spanish and Burmese translations) from `sermon.md` and `references.md`. Run `/create-bible-study-deck <week_id> <youtube_url>`. `references/content-rules.md` owns question style; `references/translation-rules.md` owns translations. `prompt.md` files are historical.
 
 ## Adding a new week
-Preferred: run `/create-bible-study-deck <week_id> <youtube_url>` (does
-steps 2-3 below plus the es/my translations). Manual steps:
-1. Add source material under `data/<week_id>/` (sermon notes,
-   references), where `week_id` is `<month>_<day>_<2-digit year>` (e.g.
-   `9_1_26`).
-2. Create `data/<week_id>/<week_id>.json` following the exact shape of
-   an existing week (e.g. `data/9_8_26/9_8_26.json`): `meta` (including
-   `date` and `series`, which also drive the landing page card),
-   `summary`, `sections`, `questions`, `passages`, `scholars`, `prayer`.
-3. Append a `{ id, videoUrl }` entry to the `weeks` array in
-   `data/manifest.json` (omit `videoUrl` if there's no sermon video yet).
-4. No build step is required — just open/serve `index.html`.
+Preferred: `/create-bible-study-deck <week_id> <youtube_url>`. Manual:
+1. Add `sermon.md` and `references.md` under `data/<week_id>/`.
+2. Create `data/<week_id>/<week_id>.json`, copying the shape of an existing week (`data/9_8_26/9_8_26.json`).
+3. Append `{ id, videoUrl }` to `weeks` in `data/manifest.json` (omit `videoUrl` if none).
+4. No build step.
 
 ### Question style
-When writing or editing `questions[].text` (follow the full rules in
-the `create-bible-study-deck` skill's `references/content-rules.md`):
-- One short question per entry: exactly one question mark, ~25 words max
-  (50 words max total including an optional one-sentence lead-in). No
-  stacked or "and why...?" questions.
-- No sermon recap or verse/quote restating in `text` — verses go in
-  `passages`, quotes go in `scholars`.
-- Not invasive: no asking people to confess sins/failures or share
-  addictions, health, family crises, finances, or politics. Prefer
-  observations, past lessons, other people, or hypotheticals.
-- Simple English (ESL-friendly), no idioms. Apply the same rules when
-  translating questions into other languages.
+Full rules: skill `references/content-rules.md`. Summary for `questions[].text`:
+- One short question. Exactly one question mark. Max ~25 words (50 with a one-sentence lead-in). No stacked or "and why...?" questions.
+- No sermon recap, verse, or quote in `text`. Verses go in `passages`; quotes go in `scholars`.
+- Not invasive. No confessions of sin or failure. No addictions, health, family crises, finances, or politics. Prefer observations, past lessons, other people, hypotheticals.
+- Simple English (ESL-friendly), no idioms. Apply the same rules in translations.
 
 ## Adding a language
-1. Add `{ code, label }` to `data/languages.json` (e.g.
-   `{ "code": "my", "label": "မြန်မာ" }`). This makes the switcher appear
-   (it's hidden when only one language is configured).
-2. Add a matching block of translated UI copy to `data/strings.json`,
-   keyed by the same code. Copy the `en` block as a starting point so no
-   keys are missing (missing keys fall back to English automatically, but
-   it's best to translate them all).
-3. Optionally translate a week's full content: create
-   `data/<week_id>/<week_id>.<code>.json` with the same shape as
-   `data/<week_id>/<week_id>.json`, including `meta.date`/`meta.series`/
-   `meta.title`/`meta.titleHighlight` (these also drive that week's
-   landing page card — there's no separate manifest translation to keep
-   in sync). Weeks without a translated file just show the English
-   content plus a small notice when that language is selected — so
-   languages/weeks can be translated incrementally.
+1. Add `{ code, label }` to `data/languages.json` (e.g. `{ "code": "my", "label": "မြန်မာ" }`).
+2. Add a translated block to `data/strings.json` under the same code. Copy `en` first.
+3. Optional per week: create `data/<week_id>/<week_id>.<code>.json` in the same shape, including `meta.date`/`series`/`title`/`titleHighlight` (they drive the landing card). Untranslated weeks show English plus a notice, so translation can be incremental.
 
 ## Verifying changes
-There is no test runner or build. To sanity-check changes, serve the repo
-root with a static file server (fetch() requires http(s), not file://) and
-open the pages in a browser, e.g.:
+`fetch()` needs http(s), not `file://`. Serve the repo root:
 
 ```
 python -m http.server 8000
 ```
 
-then visit `http://localhost:8000/index.html` and
-`http://localhost:8000/study.html?week=<id>`. Check the browser console for
-fetch/JS errors, and validate any hand-edited JSON with a JSON linter
-(`python -m json.tool data/<week_id>/<week_id>.json`) before committing.
+Open `http://localhost:8000/index.html` and `http://localhost:8000/study.html?week=<id>`. Check the console for errors. Validate edited JSON: `python -m json.tool data/<week_id>/<week_id>.json`.
 
-## Cache-busting for js/i18n.js and js/app.js
-Both `index.html` and `study.html` load these scripts with a `?v=N` query
-string (e.g. `js/app.js?v=2`). Browsers otherwise cache these files
-aggressively with no cache-busting, so a returning visitor's browser can
-keep running stale JS (e.g. calling a function that was added/renamed in
-a later commit) until a hard refresh. When you change `js/i18n.js` or
-`js/app.js` in a way that matters for already-visited users, bump the
-`?v=N` on that script tag in every HTML file that references it.
+## Cache-busting
+`index.html` and `study.html` load `js/i18n.js` and `js/app.js` with `?v=N` (e.g. `js/app.js?v=2`). Browsers cache these hard. When a change to either script matters to returning visitors, bump `?v=N` in every HTML file that references it.
+
+Data files (`manifest.json`, week JSONs, `strings.json`, `languages.json`) carry no version. Every `fetch()` of them uses `{ cache: 'no-cache' }` so new weeks show at once (GitHub Pages otherwise sends `max-age=600`). Keep that option on every new data fetch.

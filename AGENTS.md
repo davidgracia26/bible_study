@@ -57,8 +57,8 @@ test suite — it's plain HTML/CSS/JS served as static files.
     ("Voices for the Discussion"), `prayer`, and an optional `summary`
     (`{ speaker, bigIdea, overview, points: [{ title, text, ref }],
     takeaway }`, ~150–250 words, shown as the first view and in the print
-    overview; weeks without it simply skip that view — rules are in
-    `new_standard_prompt.md`). `meta.date` and
+    overview; weeks without it simply skip that view — rules are in the
+    `create-bible-study-deck` skill's `references/content-rules.md`). `meta.date` and
     `meta.series` are the plain-text values shown on the landing page
     card (and folded into `meta.eyebrow`/`meta.footer` for the study
     page chrome).
@@ -74,13 +74,18 @@ test suite — it's plain HTML/CSS/JS served as static files.
   - Any other files in the folder (e.g. `sermon.md`, `references.md`,
     `prompt.md`) are source material/workflow input, not loaded by the
     site itself.
-- `new_standard_prompt.md` — the current prompt template for requesting a
-  new week's study guide (role: pastor, task: build discussion questions
-  from sermon notes, output as data JSON + manifest entry). It is the
-  source of truth for question style (see "Question style" below). Per-week
-  `data/<week_id>/prompt.md` files are historical copies of past prompts.
+- `.devin/skills/create-bible-study-deck/` — skill that builds a new week
+  end to end (English JSON + manifest entry + Spanish and Burmese
+  translations) from `data/<week_id>/sermon.md` and `references.md`. Invoke
+  with `/create-bible-study-deck <week_id> <youtube_url>`. Its
+  `references/content-rules.md` is the source of truth for question style
+  (see "Question style" below) and `references/translation-rules.md` for
+  translations. Per-week `data/<week_id>/prompt.md` files are historical
+  copies of past prompts.
 
 ## Adding a new week
+Preferred: run `/create-bible-study-deck <week_id> <youtube_url>` (does
+steps 2-3 below plus the es/my translations). Manual steps:
 1. Add source material under `data/<week_id>/` (sermon notes,
    references), where `week_id` is `<month>_<day>_<2-digit year>` (e.g.
    `9_1_26`).
@@ -94,7 +99,7 @@ test suite — it's plain HTML/CSS/JS served as static files.
 
 ### Question style
 When writing or editing `questions[].text` (follow the full rules in
-`new_standard_prompt.md`):
+the `create-bible-study-deck` skill's `references/content-rules.md`):
 - One short question per entry: exactly one question mark, ~25 words max
   (50 words max total including an optional one-sentence lead-in). No
   stacked or "and why...?" questions.

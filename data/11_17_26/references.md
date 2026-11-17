@@ -1,0 +1,12 @@
+- John 11:32-36
+- Ecclesiastes 3:11
+- Matthew 5:4
+- "No one ever told me that grief felt so like fear." - C.S. Lewis, A Grief Observed
+- 1 Thessalonians 4:13-14
+- Revelation 21:4-5
+- Isaiah 25:6-9
+- "Further up and further in!" - C.S. Lewis, The Last Battle
+- Matthew 18:1-4
+- Romans 8:19-21
+- Psalm 16:11
+- Revelation 22:1-5

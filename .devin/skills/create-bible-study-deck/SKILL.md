@@ -32,6 +32,8 @@ Read `references/content-rules.md` and follow it. Save to `data/<week_id>/<week_
 Append `{ "id": "<week_id>", "videoUrl": "<url>" }` to the `weeks` array in `data/manifest.json` (omit `videoUrl` if none). Skip if an entry with that id already exists, but update its `videoUrl` if the user gave a different one. Validate the JSON afterwards.
 
 ### 4. Translate to Spanish, then Burmese
+**Model requirement for translation:** Always use the **Gemini model on Medium** (do **not** use Claude models for translating). If the current session is running on a Claude model (or anything other than Gemini Medium), stop before starting Step 4 and ask the user to switch the model to Gemini (Medium) before translating `.es.json` and `.my.json`.
+
 Read `references/translation-rules.md` and follow it. Translate in this order, one file at a time, each validated with `python -m json.tool` before starting the next:
 
 1. Spanish -> `data/<week_id>/<week_id>.es.json`

@@ -2,6 +2,10 @@
 
 Goal: produce a fully translated copy of `data/<week_id>/<week_id>.json` as `<week_id>.es.json` (Spanish) and `<week_id>.my.json` (Burmese). The site loads these automatically when the language is selected.
 
+## Model requirement
+
+Use the **Gemini model on Medium** for all translations (Spanish and Burmese). Do **not** use Claude models for translating. If the active session model is Claude, pause before translating and ask the user to switch to Gemini (Medium).
+
 ## Core rule
 
 Keep every object **key** in English; translate the **values** into the target language. Some values are names or proper nouns (people, places, books, titles); handle them as described below. Read the previous week's `.es.json` / `.my.json` first and match its conventions, so wording stays consistent across weeks.

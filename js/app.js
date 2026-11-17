@@ -64,7 +64,7 @@ async function loadWeek() {
     // A translated week file may not have its own summary yet; show the
     // English one rather than dropping the Summary view for that language.
     if (!DATA.summary && !usedFallback) {
-      const baseRes = await fetch(`data/${weekId}/${weekId}.json`);
+      const baseRes = await fetch(`data/${weekId}/${weekId}.json`, { cache: 'no-cache' });
       if (baseRes.ok) {
         const base = await baseRes.json();
         if (base.summary) DATA.summary = base.summary;
@@ -73,7 +73,7 @@ async function loadWeek() {
 
     // videoUrl is language-independent, so it lives only in manifest.json
     // rather than being duplicated into every translated week file.
-    const manifestRes = await fetch('data/manifest.json');
+    const manifestRes = await fetch('data/manifest.json', { cache: 'no-cache' });
     if (manifestRes.ok) {
       const manifest = await manifestRes.json();
       const entry = (manifest.weeks || []).find(w => w.id === weekId);

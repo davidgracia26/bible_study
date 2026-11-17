@@ -10,6 +10,7 @@
    language switcher.
 ════════════════════════════════════════ */
 const I18N = (function () {
+  const NC = { cache: 'no-cache' };
   let strings = {};
   let languages = [{ code: 'en', label: 'English' }];
   let current = 'en';
@@ -28,8 +29,8 @@ const I18N = (function () {
     current = detect();
     try {
       const [sRes, lRes] = await Promise.all([
-        fetch('data/strings.json'),
-        fetch('data/languages.json'),
+        fetch('data/strings.json', NC),
+        fetch('data/languages.json', NC),
       ]);
       if (sRes.ok) strings = await sRes.json();
       if (lRes.ok) {
@@ -79,10 +80,10 @@ const I18N = (function () {
     const localizedUrl = localize(baseUrl);
     let usedFallback = false;
 
-    let res = await fetch(localizedUrl);
+    let res = await fetch(localizedUrl, NC);
     if (!res.ok && localizedUrl !== baseUrl) {
       usedFallback = true;
-      res = await fetch(baseUrl);
+      res = await fetch(baseUrl, NC);
     }
     if (!res.ok) throw new Error(`Could not load ${baseUrl} (${res.status})`);
     const data = await res.json();

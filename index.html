@@ -9,6 +9,7 @@
 <body class="landing-body">
 
   <div class="landing-header">
+    <button type="button" class="share-btn" id="share-btn"><span aria-hidden="true">&#9638;</span> <span id="share-btn-label">Share</span></button>
     <div class="lang-switcher" id="lang-switcher"></div>
     <h1 id="landing-title">Bible Study Guides</h1>
   </div>
@@ -28,9 +29,21 @@
   </main>
 
   <script src="js/i18n.js?v=6"></script>
+  <script src="js/qrcode.js?v=1"></script>
+  <script src="js/share.js?v=1"></script>
   <script>
     (async function () {
       await I18N.init();
+
+      document.getElementById('share-btn-label').textContent = I18N.t('share');
+      Share.mount(document.getElementById('share-btn'), () => {
+        const url = new URL(location.href);
+        url.search = '';
+        url.hash = '';
+        const lang = I18N.get();
+        if (lang && lang !== 'en') url.searchParams.set('lang', lang);
+        return url.toString();
+      });
 
       document.title = I18N.t('landingTitle');
       document.getElementById('landing-title').textContent = I18N.t('landingTitle');

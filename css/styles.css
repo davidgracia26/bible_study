@@ -261,6 +261,53 @@ html[lang="my"] body {
 .theme-toggle-btn:hover { background: rgba(255,255,255,.2); }
 .theme-toggle-btn .theme-icon { font-size: 1rem; line-height: 1; }
 
+/* ── SHARE BUTTON + QR DIALOG ── */
+.share-btn {
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 20px;
+  color: white;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: background .15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.share-btn:hover { background: rgba(255,255,255,.2); }
+.landing-header .share-btn { position: absolute; top: 16px; left: 20px; }
+body.study-error .share-btn { display: none; }
+
+.share-dialog {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  background: var(--bg-section-panel);
+  color: var(--text-primary);
+  padding: 24px;
+  width: min(92vw, 340px);
+  text-align: center;
+}
+.share-dialog::backdrop { background: rgba(0,0,0,.55); }
+.share-title { font-weight: 700; margin-bottom: 16px; }
+.share-qr {
+  background: #fff;
+  padding: 14px;
+  border-radius: 8px;
+  line-height: 0;
+}
+.share-qr svg { width: 100%; height: auto; display: block; }
+.share-url {
+  margin: 14px 0 18px;
+  font-size: .72rem;
+  color: var(--text-muted);
+  word-break: break-all;
+}
+
 /* ── LANGUAGE SWITCHER ── */
 .lang-select {
   background: rgba(255,255,255,.1);
@@ -922,7 +969,7 @@ body.study-error .video-link { display: none; }
 /* ── PRINT ── */
 @media print {
   .top-chrome, .q-counter-bar, .q-nav-bar,
-  .left-panel, .workspace, .page-footer { display: none !important; }
+  .left-panel, .workspace, .page-footer, .share-dialog { display: none !important; }
   .overview-section { display: block !important; }
   .main-workspace { display: none !important; }
   body { font-size: 11pt; background: white; color: black; }
@@ -955,6 +1002,7 @@ body.study-error .video-link { display: none; }
   .list-toggle-btn .ltb-text { display: none; }
   .top-chrome #section-pills { flex-wrap: wrap; gap: 6px; order: 5; flex-basis: 100%; }
   .top-chrome #font-controls,
+  .top-chrome #share-btn,
   .top-chrome #theme-toggle-btn { order: 5; }
   .top-chrome .video-link { order: 4; }
 

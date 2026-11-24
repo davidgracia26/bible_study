@@ -192,6 +192,7 @@ function applyStaticStrings() {
   set('btn-next-label', I18N.t('next'));
   set('chrome-video-link-hint', ` (${I18N.t('opensNewTab')})`);
   set('skip-link', I18N.t('skipToContent'));
+  set('share-btn-label', I18N.t('share'));
   const setAria = (id, key) => {
     const el = document.getElementById(id);
     if (el) el.setAttribute('aria-label', I18N.t(key));
@@ -551,6 +552,14 @@ function questionLinkUrl(n) {
   return url.toString();
 }
 
+function currentPageUrl() {
+  const view = VIEWS[current];
+  if (view && view.type === 'question') return questionLinkUrl(DATA.questions[view.qIndex].n);
+  const url = new URL(questionLinkUrl(0));
+  url.searchParams.delete('q');
+  return url.toString();
+}
+
 function copyQuestionLink(n, btn) {
   const url = questionLinkUrl(n);
   copyToClipboard(url).then(() => showCopyFeedback(btn));
@@ -622,7 +631,7 @@ function adjustFont(dir) {
    KEYBOARD SHORTCUTS
 ════════════════════════════════════════ */
 document.addEventListener('keydown', e => {
-  if (!DATA) return;
+  if (!DATA || Share.isOpen()) return;
   if (['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName)) return;
   if (e.ctrlKey || e.metaKey || e.altKey) return;
   if ((e.key === 'Enter' || e.key === ' ') && e.target.classList && e.target.classList.contains('list-q-item')) {
@@ -685,5 +694,6 @@ document.addEventListener('keydown', e => {
   await I18N.init();
   applyStaticStrings();
   I18N.buildSwitcher(document.getElementById('lang-switcher'));
+  Share.mount(document.getElementById('share-btn'), currentPageUrl);
   loadWeek();
 })();

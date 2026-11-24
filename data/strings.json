@@ -53,7 +53,11 @@
     "opensNewTab": "opens in a new tab",
     "searchStudies": "Search studies",
     "clearSearch": "Clear search",
-    "searchResultsCount": "{n} studies found"
+    "searchResultsCount": "{n} studies found",
+    "share": "Share",
+    "shareScan": "Scan with your phone camera to open this page",
+    "shareQrLabel": "QR code for this page",
+    "close": "Close"
   },
   "es": {
     "language": "Idioma",
@@ -99,7 +103,11 @@
     "copyLink": "Copiar enlace",
     "linkCopied": "¡Enlace copiado!",
     "searchPlaceholder": "Buscar estudios por título, serie o fecha…",
-    "searchNoResults": "Ningún estudio coincide con tu búsqueda."
+    "searchNoResults": "Ningún estudio coincide con tu búsqueda.",
+    "share": "Compartir",
+    "shareScan": "Escanea con la cámara de tu teléfono para abrir esta página",
+    "shareQrLabel": "Código QR de esta página",
+    "close": "Cerrar"
   },
   "my": {
     "language": "ဘာသာစကား",
@@ -145,6 +153,10 @@
     "copyLink": "လင့်ခ်ကို ကူးယူရန်",
     "linkCopied": "လင့်ခ် ကူးယူပြီးပါပြီ!",
     "searchPlaceholder": "ခေါင်းစဉ်၊ စီးရီး သို့မဟုတ် ရက်စွဲဖြင့် လေ့လာမှုများကို ရှာဖွေပါ…",
-    "searchNoResults": "သင့်ရှာဖွေမှုနှင့် ကိုက်ညီသော လေ့လာမှု မရှိပါ။"
+    "searchNoResults": "သင့်ရှာဖွေမှုနှင့် ကိုက်ညီသော လေ့လာမှု မရှိပါ။",
+    "share": "မျှဝေရန်",
+    "shareScan": "ဤစာမျက်နှာကို ဖွင့်ရန် သင့်ဖုန်းကင်မရာဖြင့် စကင်န်ဖတ်ပါ",
+    "shareQrLabel": "ဤစာမျက်နှာအတွက် QR ကုဒ်",
+    "close": "ပိတ်ရန်"
   }
 }

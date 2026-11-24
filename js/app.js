@@ -1,7 +1,7 @@
 /* ════════════════════════════════════════
    THEME
 ════════════════════════════════════════ */
-function applyTheme(theme) {
+function applyTheme(theme, persist = true) {
   document.documentElement.setAttribute('data-theme', theme);
   const icon  = document.getElementById('theme-icon');
   const label = document.getElementById('theme-label');
@@ -12,7 +12,7 @@ function applyTheme(theme) {
     icon.innerHTML    = '&#9790;';
     label.textContent = I18N.t('dark', 'Dark');
   }
-  try { localStorage.setItem('bs-theme', theme); } catch(e) {}
+  if (persist) { try { localStorage.setItem('bs-theme', theme); } catch(e) {} }
 }
 
 function toggleTheme() {
@@ -25,6 +25,7 @@ function toggleTheme() {
   try {
     const saved = localStorage.getItem('bs-theme');
     if (saved === 'dark' || saved === 'light') applyTheme(saved);
+    else applyTheme(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light', false);
   } catch(e) {}
 })();
 
@@ -37,7 +38,9 @@ let SECTION_Q_START = [];
 let VIEWS = [];
 let current = 0;
 let fontScale = 0;
-const BASE_PX = 18;
+const FONT_MIN = -2;
+const FONT_MAX = 6;
+const MOBILE_MQ = window.matchMedia('(max-width: 900px)');
 
 /* ════════════════════════════════════════
    LOAD WEEK DATA
@@ -211,7 +214,8 @@ function applyStaticStrings() {
   if (smallerBtn) smallerBtn.title = I18N.t('smaller');
   const largerBtn = document.getElementById('font-btn-larger');
   if (largerBtn) largerBtn.title = I18N.t('larger');
-  applyTheme(document.documentElement.getAttribute('data-theme') || 'light');
+  set('menu-toggle-label', I18N.t('settings'));
+  applyTheme(document.documentElement.getAttribute('data-theme') || 'light', false);
 }
 
 function showFallbackNotice() {
@@ -400,6 +404,7 @@ function buildOverview() {
    Voices, Prayer. All views render into the
    same main panel (#q-stage) — no overlays.
 ════════════════════════════════════════ */
+let hasRendered = false;
 function render() {
   const view = VIEWS[current];
   updatePageTitle(view);
@@ -479,6 +484,13 @@ function render() {
     activePill.setAttribute('aria-current', 'true');
   }
 
+  if (activePill) {
+    const pills = document.getElementById('section-pills');
+    if (pills.scrollWidth > pills.clientWidth) {
+      pills.scrollLeft = activePill.offsetLeft - (pills.clientWidth - activePill.offsetWidth) / 2;
+    }
+  }
+
   /* All-questions list (when visible) */
   document.querySelectorAll('.list-q-item').forEach((el, i) => {
     el.classList.remove('active-item');
@@ -488,6 +500,17 @@ function render() {
       el.setAttribute('aria-current', 'true');
     }
   });
+
+  /* New view: start at the top (stacked layout scrolls the page; wide layout scrolls the stage) */
+  if (hasRendered) {
+    stage.scrollTop = 0;
+    document.getElementById('left-body').scrollTop = 0;
+    if (MOBILE_MQ.matches) {
+      const bar = document.querySelector('.q-counter-bar');
+      if (bar.getBoundingClientRect().top < 0) bar.scrollIntoView({ block: 'start' });
+    }
+  }
+  hasRendered = true;
 
   /* Rebuilt controls drop keyboard focus; hand it back */
   if (focusInDots) {
@@ -622,9 +645,36 @@ function jumpToSection(target) {
 /* ════════════════════════════════════════
    FONT SIZE
 ════════════════════════════════════════ */
+function applyFontScale() {
+  document.documentElement.style.setProperty('--font-mult', 1 + fontScale * 0.125);
+  const smaller = document.getElementById('font-btn-smaller');
+  const larger = document.getElementById('font-btn-larger');
+  if (smaller) smaller.disabled = fontScale <= FONT_MIN;
+  if (larger) larger.disabled = fontScale >= FONT_MAX;
+}
+
 function adjustFont(dir) {
-  fontScale = Math.max(-2, Math.min(4, fontScale + dir));
-  document.documentElement.style.fontSize = (BASE_PX + fontScale * 2) + 'px';
+  fontScale = Math.max(FONT_MIN, Math.min(FONT_MAX, fontScale + dir));
+  applyFontScale();
+  try { localStorage.setItem('bs-font', fontScale); } catch(e) {}
+}
+
+(function() {
+  try {
+    const saved = parseInt(localStorage.getItem('bs-font'), 10);
+    if (Number.isInteger(saved)) fontScale = Math.max(FONT_MIN, Math.min(FONT_MAX, saved));
+  } catch(e) {}
+})();
+
+/* ════════════════════════════════════════
+   SETTINGS MENU (narrow screens)
+════════════════════════════════════════ */
+function toggleMenu(force) {
+  const chrome = document.getElementById('top-chrome');
+  const btn = document.getElementById('menu-toggle-btn');
+  const open = typeof force === 'boolean' ? force : !chrome.classList.contains('menu-open');
+  chrome.classList.toggle('menu-open', open);
+  btn.setAttribute('aria-expanded', String(open));
 }
 
 /* ════════════════════════════════════════
@@ -642,6 +692,7 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); nextQ(); }
   if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   { e.preventDefault(); prevQ(); }
   if (e.key === 'd' || e.key === 'D') { toggleTheme(); }
+  if (e.key === 'Escape') toggleMenu(false);
 });
 
 /* ════════════════════════════════════════
@@ -693,6 +744,8 @@ document.addEventListener('keydown', e => {
 (async function main() {
   await I18N.init();
   applyStaticStrings();
+  applyFontScale();
+  document.getElementById('menu-toggle-btn').addEventListener('click', () => toggleMenu());
   I18N.buildSwitcher(document.getElementById('lang-switcher'));
   Share.mount(document.getElementById('share-btn'), currentPageUrl);
   loadWeek();

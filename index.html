@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bible Study Guides</title>
   <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" href="data:," />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('bs-theme');
+        if (t !== 'dark' && t !== 'light') t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body class="landing-body">
 

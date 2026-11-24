@@ -5,15 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bible Study</title>
   <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" href="data:," />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('bs-theme');
+        if (t !== 'dark' && t !== 'light') t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
 </head>
-<body>
+<body class="study-body">
 
 <a class="skip-link" id="skip-link" href="#q-stage">Skip to content</a>
 
 <!-- ════════════════════════════════════════
      TOP CHROME
 ════════════════════════════════════════ -->
-<header class="top-chrome">
+<header class="top-chrome" id="top-chrome">
   <a class="home-btn" id="home-btn" href="index.html" title="Back to home"><span class="arrow" aria-hidden="true">&#8592;</span> <span id="home-btn-label">Home</span></a>
 
   <div class="chrome-title">
@@ -21,28 +31,32 @@
     <h1 id="chrome-title"></h1>
   </div>
 
-  <a class="video-link hidden" id="chrome-video-link" href="#" target="_blank" rel="noopener">
-    <span class="video-link-icon" aria-hidden="true">&#9658;</span> <span id="chrome-video-link-label"></span><span class="sr-only" id="chrome-video-link-hint"></span>
-  </a>
+  <button type="button" class="menu-toggle-btn" id="menu-toggle-btn" aria-expanded="false" aria-controls="chrome-menu"><span aria-hidden="true">&#9881;</span> <span id="menu-toggle-label">Settings</span></button>
+
+  <div class="chrome-menu" id="chrome-menu">
+    <a class="video-link hidden" id="chrome-video-link" href="#" target="_blank" rel="noopener">
+      <span class="video-link-icon" aria-hidden="true">&#9658;</span> <span id="chrome-video-link-label"></span><span class="sr-only" id="chrome-video-link-hint"></span>
+    </a>
+
+    <div class="font-controls" id="font-controls" role="group" aria-label="Font size">
+      <span aria-hidden="true">Aa</span>
+      <button class="font-btn" id="font-btn-smaller" onclick="adjustFont(-1)" title="Smaller">&#8722;</button>
+      <button class="font-btn" id="font-btn-larger" onclick="adjustFont(1)"  title="Larger">&#43;</button>
+    </div>
+
+    <div class="lang-switcher" id="lang-switcher"></div>
+
+    <button type="button" class="share-btn" id="share-btn"><span aria-hidden="true">&#9638;</span> <span id="share-btn-label">Share</span></button>
+
+    <button class="theme-toggle-btn" id="theme-toggle-btn" onclick="toggleTheme()" title="Toggle light / dark mode">
+      <span class="theme-icon" id="theme-icon" aria-hidden="true">&#9790;</span>
+      <span id="theme-label">Dark</span>
+    </button>
+  </div>
 
   <nav class="section-pills" id="section-pills" aria-label="Study sections">
     <!-- injected by JS (includes the All Questions toggle as the last pill) -->
   </nav>
-
-  <div class="font-controls" id="font-controls" role="group" aria-label="Font size">
-    <span aria-hidden="true">Aa</span>
-    <button class="font-btn" id="font-btn-smaller" onclick="adjustFont(-1)" title="Smaller">&#8722;</button>
-    <button class="font-btn" id="font-btn-larger" onclick="adjustFont(1)"  title="Larger">&#43;</button>
-  </div>
-
-  <div class="lang-switcher" id="lang-switcher"></div>
-
-  <button type="button" class="share-btn" id="share-btn"><span aria-hidden="true">&#9638;</span> <span id="share-btn-label">Share</span></button>
-
-  <button class="theme-toggle-btn" id="theme-toggle-btn" onclick="toggleTheme()" title="Toggle light / dark mode">
-    <span class="theme-icon" id="theme-icon" aria-hidden="true">&#9790;</span>
-    <span id="theme-label">Dark</span>
-  </button>
 </header>
 
 <!-- ════════════════════════════════════════
@@ -100,6 +114,6 @@
 <script src="js/i18n.js?v=6"></script>
 <script src="js/qrcode.js?v=1"></script>
 <script src="js/share.js?v=1"></script>
-<script src="js/app.js?v=8"></script>
+<script src="js/app.js?v=9"></script>
 </body>
 </html>

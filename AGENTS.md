@@ -35,6 +35,7 @@ Static, no-build site ("Ordinary Glory" series). Renders weekly Bible study disc
   - Theme (light/dark, `localStorage`), font scaling, keys (arrows navigate, `d` toggles theme), print-only overview.
 - `js/i18n.js` — shared `I18N` helper for both pages. Loads `data/languages.json` and `data/strings.json`. Language order: `?lang=`, then `localStorage['bs-lang']`, then `en`. API: `I18N.t(key)` (UI copy), `I18N.localize(url)` (per-language data URL), `I18N.buildSwitcher(el)` (`<select>` switcher), `I18N.loadWeekJSON(weekId)` (the only localized-file-with-English-fallback loader; used by `index.html` and `js/app.js`).
 - `css/styles.css` — all styling. The HTML pages link this file.
+  - Breakpoints: `<=900px` stacks the layout (question first, passage below), moves Watch/font/language/share/theme into the Settings menu, and uses 44px tap targets (also on `pointer: coarse`). `>=1600px` raises the root font size (`--base-font`) for TV; keep sizes in `rem` so they scale. `--font-mult` carries the user's A+/A- step.
 - `global_styles.css` (root) — old, unused. Leave alone unless asked.
 - `data/languages.json` — `{ languages: [{ code, label }] }`. Switcher renders only with 2+ languages.
 - `data/strings.json` — UI copy by language code (`{ "en": { "prev": "Prev" }, "es": {} }`). Missing keys fall back to `en`.

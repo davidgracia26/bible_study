@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bible Study Guides</title>
-  <link rel="stylesheet" href="css/styles.css?v=2" />
+  <link rel="stylesheet" href="css/styles.css?v=3" />
   <link rel="icon" href="data:," />
   <script>
     (function () {
@@ -71,6 +71,13 @@
       const list = document.getElementById('landing-list');
       let sortedWeeks = [];
 
+      const idParts = w => (w.id || '').split('_').map(Number);
+      const yearOf = w => 2000 + (idParts(w)[2] || 0);
+      const parseDate = w => {
+        const [month, day] = idParts(w);
+        return new Date(yearOf(w), (month || 1) - 1, day || 1);
+      };
+
       const plain = s => String(s || '').replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').replace(/"/g, '&quot;').trim();
 
       function cardHTML(w) {
@@ -105,7 +112,21 @@
           status.textContent = I18N.t('searchNoResults');
           return;
         }
-        list.innerHTML = filtered.map(cardHTML).join('');
+        if (q) {
+          list.innerHTML = filtered.map(cardHTML).join('');
+        } else {
+          const monthKey = w => yearOf(w) * 12 + idParts(w)[0];
+          const inMonth = filtered.filter(w => monthKey(w) === monthKey(filtered[0])).length;
+          const shown = inMonth === 1 ? 2 : inMonth;
+          const older = {};
+          filtered.slice(shown).forEach(w => (older[yearOf(w)] ||= []).push(w));
+          const groups = Object.keys(older).sort((a, b) => b - a).map(y => `
+            <details class="landing-year">
+              <summary>${y} <span class="ly-count">(${older[y].length})</span></summary>
+              <div class="landing-year-list">${older[y].map(cardHTML).join('')}</div>
+            </details>`).join('');
+          list.innerHTML = filtered.slice(0, shown).map(cardHTML).join('') + groups;
+        }
         status.textContent = q ? I18N.t('searchResultsCount').replace('{n}', filtered.length) : '';
       }
 
@@ -144,12 +165,6 @@
               subtitle: meta.titleHighlight,
             };
           }));
-          const parseDate = (w) => {
-            const parsed = w.date ? new Date(`${w.date}, 2000`) : null;
-            if (parsed && !isNaN(parsed)) return parsed;
-            const [month, day] = (w.id || '').split('_').map(Number);
-            return new Date(2000, (month || 1) - 1, day || 1);
-          };
           sortedWeeks = weeks.slice().sort((a, b) => parseDate(b) - parseDate(a));
           renderList(searchInput.value);
         })

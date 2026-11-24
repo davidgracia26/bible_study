@@ -1010,6 +1010,21 @@ body.study-error .video-link { display: none; }
   text-decoration: none;
 }
 .landing-card .lc-video-link:hover { text-decoration: underline; }
+.landing-year {
+  border: 1px solid var(--border-color, var(--border));
+  border-radius: var(--radius);
+  background: var(--bg-section-panel, var(--white));
+}
+.landing-year > summary {
+  cursor: pointer;
+  padding: 14px 22px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--gold-dark);
+  min-height: 44px;
+}
+.landing-year > summary .ly-count { font-weight: 400; color: var(--text-muted); font-size: 1rem; }
+.landing-year-list { display: flex; flex-direction: column; gap: 14px; padding: 0 14px 14px; }
 .landing-empty { text-align: center; color: var(--text-muted); padding: 40px 0; }
 
 /* ── PRINT ── */

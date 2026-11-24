@@ -27,11 +27,12 @@
     <div class="landing-empty" id="landing-loading">Loading studies&hellip;</div>
   </main>
 
-  <script src="js/i18n.js?v=5"></script>
+  <script src="js/i18n.js?v=6"></script>
   <script>
     (async function () {
       await I18N.init();
 
+      document.title = I18N.t('landingTitle');
       document.getElementById('landing-title').textContent = I18N.t('landingTitle');
       document.getElementById('landing-loading').textContent = I18N.t('landingLoading');
       I18N.buildSwitcher(document.getElementById('lang-switcher'));
@@ -130,8 +131,18 @@
           renderList(searchInput.value);
         })
         .catch(err => {
-          document.getElementById('landing-list').innerHTML =
-            `<div class="landing-empty">${I18N.t('landingError')} (${err.message}).</div>`;
+          document.title = `${I18N.t('errorTitle')} | ${I18N.t('landingTitle')}`;
+          const msg = document.createElement('div');
+          msg.className = 'landing-empty';
+          msg.setAttribute('role', 'alert');
+          msg.textContent = `${I18N.t('landingError')} (${err.message}).`;
+          const retry = document.createElement('button');
+          retry.type = 'button';
+          retry.className = 'nav-btn primary';
+          retry.textContent = I18N.t('tryAgain');
+          retry.addEventListener('click', () => location.reload());
+          msg.append(document.createElement('br'), retry);
+          list.replaceChildren(msg);
         });
     })();
   </script>

@@ -80,7 +80,12 @@ async function loadWeek() {
       if (entry && entry.videoUrl) DATA.meta.videoUrl = entry.videoUrl;
     }
   } catch (err) {
-    showAppError(`${I18N.t('couldNotLoadStudy')} (${err.message})`);
+    const notFound = err.status === 404;
+    showAppError(
+      `${I18N.t(notFound ? 'studyNotFound' : 'couldNotLoadStudy')}` +
+      ` <a href="index.html">${I18N.t('backToIndex')}</a>`,
+      { detail: err.message, retry: !notFound }
+    );
     return;
   }
 
@@ -88,19 +93,55 @@ async function loadWeek() {
   initPage(usedFallback, requestedQ);
 }
 
-function showAppError(html) {
+function escapeHTML(s) {
+  return String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+}
+
+function plainText(html) {
+  const el = document.createElement('div');
+  el.innerHTML = html || '';
+  return el.textContent.replace(/\s+/g, ' ').trim();
+}
+
+function showAppError(html, { detail, retry } = {}) {
+  document.body.classList.add('study-error');
   const stage = document.getElementById('q-stage');
-  if (stage) stage.innerHTML = `<div class="app-error" role="alert">${html}</div>`;
+  if (stage) {
+    stage.className = 'q-stage';
+    stage.innerHTML = `
+      <div class="app-error" role="alert">
+        <div class="app-error-msg">${html}</div>
+        ${detail ? `<div class="app-error-detail">${escapeHTML(detail)}</div>` : ''}
+        ${retry ? `<button type="button" class="nav-btn primary app-error-retry" onclick="location.reload()">${I18N.t('tryAgain')}</button>` : ''}
+      </div>`;
+  }
   const chromeTitle = document.getElementById('chrome-title');
-  if (chromeTitle) chromeTitle.textContent = 'Bible Study';
+  if (chromeTitle) chromeTitle.textContent = I18N.t('landingTitle');
+  document.title = `${I18N.t('errorTitle')} | ${I18N.t('landingTitle')}`;
+}
+
+function baseTitle() {
+  const m = DATA.meta || {};
+  if (m.pageTitle) return m.pageTitle;
+  const name = plainText(`${m.title || ''} ${m.titleHighlight || ''}`);
+  return [m.series, m.date, name].filter(Boolean).join(' | ') || I18N.t('landingTitle');
+}
+
+function updatePageTitle(view) {
+  let label = '';
+  if (view.type === 'question') label = `${I18N.t('question')} ${DATA.questions[view.qIndex].n}`;
+  else if (view.type === 'summary') label = I18N.t('sermonSummary');
+  else if (view.type === 'passages') label = I18N.t('scripturePassages');
+  else if (view.type === 'voices') label = I18N.t('voicesForDiscussion');
+  else if (view.type === 'prayer') label = I18N.t('prayer');
+  else if (view.type === 'allquestions') label = I18N.t('allQuestions');
+  document.title = label ? `${label} · ${baseTitle()}` : baseTitle();
 }
 
 /* ════════════════════════════════════════
    BUILD STATIC-ISH CHROME FROM DATA
 ════════════════════════════════════════ */
 function initPage(usedFallback, requestedQ) {
-  if (DATA.meta && DATA.meta.pageTitle) document.title = DATA.meta.pageTitle;
-
   document.getElementById('chrome-eyebrow').innerHTML = DATA.meta.eyebrow || '';
   document.getElementById('chrome-title').innerHTML =
     `${DATA.meta.title || ''} <span>${DATA.meta.titleHighlight || ''}</span>`;
@@ -143,6 +184,7 @@ function applyStaticStrings() {
     const el = document.getElementById(id);
     if (el) el.textContent = text;
   };
+  document.title = I18N.t('loadingStudy');
   set('home-btn-label', I18N.t('home'));
   set('app-loading', I18N.t('loadingStudy'));
   set('chrome-video-link-label', I18N.t('watchSermon'));
@@ -359,6 +401,7 @@ function buildOverview() {
 ════════════════════════════════════════ */
 function render() {
   const view = VIEWS[current];
+  updatePageTitle(view);
   const stage = document.getElementById('q-stage');
   const totalEl = document.getElementById('q-of-total');
 

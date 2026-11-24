@@ -85,7 +85,11 @@ const I18N = (function () {
       usedFallback = true;
       res = await fetch(baseUrl, NC);
     }
-    if (!res.ok) throw new Error(`Could not load ${baseUrl} (${res.status})`);
+    if (!res.ok) {
+      const err = new Error(`Could not load ${baseUrl} (${res.status})`);
+      err.status = res.status;
+      throw err;
+    }
     const data = await res.json();
     return { data, usedFallback };
   }

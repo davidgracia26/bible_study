@@ -1,0 +1,12 @@
+- Ezekiel 33:11
+- John 3:16-17
+- "Nothing is inexorable but love" - George MacDonald
+- "God is wrathful because God is love" - Miroslav Volf
+- "The practice on nonviolence requires a belief in divine vengeance" - Miroslav Volf
+- Matthew 25:31-36
+- 1 John 4:18
+- "The doors of hell are locked on the inside" - C.S. Lewis
+- Romans 1:21-25
+- Luke 16:19-21
+- 2 Corinthians 5:18-19
+- Colossians 1:19-20

@@ -101,7 +101,14 @@ html[lang="my"] body {
   position: relative;
   z-index: 200;
 }
-.chrome-menu { display: contents; }
+.chrome-menu, .chrome-actions { display: contents; }
+.top-chrome > .chrome-title { order: 0; }
+.video-link { order: 1; }
+.font-controls { order: 2; }
+.lang-switcher { order: 3; }
+.share-btn { order: 4; }
+.theme-toggle-btn { order: 5; }
+.section-pills { order: 10; }
 .menu-toggle-btn {
   display: none;
   align-items: center;
@@ -1075,6 +1082,8 @@ body.study-error .video-link { display: none; }
     border-bottom: 1px solid rgba(255,255,255,.15);
   }
   .top-chrome.menu-open .chrome-menu { display: flex; }
+  .chrome-actions { display: flex; flex: 1 1 100%; gap: 8px; }
+  .chrome-actions > .video-link, .chrome-actions > .share-btn { flex: 1 1 0; justify-content: center; }
   .chrome-menu .font-controls { border-left: 0; padding-left: 0; margin-left: 0; gap: 8px; }
   .chrome-menu .theme-toggle-btn { margin-left: 0; padding-left: 14px; }
   .section-pills { padding: 2px 0 4px; }

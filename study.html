@@ -33,11 +33,14 @@
 
   <button type="button" class="menu-toggle-btn" id="menu-toggle-btn" aria-expanded="false" aria-controls="chrome-menu"><span aria-hidden="true">&#9881;</span> <span id="menu-toggle-label">Settings</span></button>
 
-  <div class="chrome-menu" id="chrome-menu">
+  <div class="chrome-actions">
     <a class="video-link hidden" id="chrome-video-link" href="#" target="_blank" rel="noopener">
       <span class="video-link-icon" aria-hidden="true">&#9658;</span> <span id="chrome-video-link-label"></span><span class="sr-only" id="chrome-video-link-hint"></span>
     </a>
+    <button type="button" class="share-btn" id="share-btn"><span aria-hidden="true">&#9638;</span> <span id="share-btn-label">Share</span></button>
+  </div>
 
+  <div class="chrome-menu" id="chrome-menu">
     <div class="font-controls" id="font-controls" role="group" aria-label="Font size">
       <span aria-hidden="true">Aa</span>
       <button class="font-btn" id="font-btn-smaller" onclick="adjustFont(-1)" title="Smaller">&#8722;</button>
@@ -45,8 +48,6 @@
     </div>
 
     <div class="lang-switcher" id="lang-switcher"></div>
-
-    <button type="button" class="share-btn" id="share-btn"><span aria-hidden="true">&#9638;</span> <span id="share-btn-label">Share</span></button>
 
     <button class="theme-toggle-btn" id="theme-toggle-btn" onclick="toggleTheme()" title="Toggle light / dark mode">
       <span class="theme-icon" id="theme-icon" aria-hidden="true">&#9790;</span>

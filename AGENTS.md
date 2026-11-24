@@ -45,13 +45,14 @@ Static, no-build site ("Ordinary Glory" series). Renders weekly Bible study disc
   - `<week_id>.<lang>.json` — optional translation, same shape (e.g. `9_8_26.es.json`). Missing file: both pages fall back to English; `study.html` shows a "not yet translated" notice.
   - Other files (`sermon.md`, `references.md`, `prompt.md`) are source material. The site ignores them.
 - `.claude/skills/create-bible-study-deck/` — builds a week end to end (English JSON, manifest entry, Spanish and Burmese translations) from `sermon.md` and `references.md`. Run `/create-bible-study-deck <week_id> <youtube_url>`. `references/content-rules.md` owns question style; `references/translation-rules.md` owns translations. `prompt.md` files are historical.
+- `s/<week_id>.html` — generated share stubs (OG meta, then JS redirect to `study.html`). Crawlers read the meta; browsers redirect and keep `q`/`lang`. `js/app.js` share and copy links point here. Regenerate with `python scripts/gen_share_pages.py` (deletes unknown files in `s/`). Absolute URLs use `BASE` in the script.
 
 ## Adding a new week
 Preferred: `/create-bible-study-deck <week_id> <youtube_url>`. Manual:
 1. Add `sermon.md` and `references.md` under `data/<week_id>/`.
 2. Create `data/<week_id>/<week_id>.json`, copying the shape of an existing week (`data/9_8_26/9_8_26.json`).
 3. Append `{ id, videoUrl }` to `weeks` in `data/manifest.json` (omit `videoUrl` if none).
-4. No build step.
+4. Run `python scripts/gen_share_pages.py`.
 
 ### Question style
 Full rules: skill `references/content-rules.md`. Summary for `questions[].text`:

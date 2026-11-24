@@ -566,8 +566,7 @@ function renderLeftPanel(q) {
    COPY / SHARE A QUESTION
 ════════════════════════════════════════ */
 function questionLinkUrl(n) {
-  const url = new URL(location.href);
-  url.searchParams.set('week', WEEK_ID);
+  const url = new URL(`s/${WEEK_ID}.html`, location.href);
   url.searchParams.set('q', n);
   const lang = I18N.get();
   if (lang && lang !== 'en') url.searchParams.set('lang', lang);

@@ -31,6 +31,9 @@ Follow `references/content-rules.md`. Save to `data/<week_id>/<week_id>.json`. V
 ### 3. Update the manifest
 Append `{ "id": "<week_id>", "videoUrl": "<url>" }` to `weeks` in `data/manifest.json` (omit `videoUrl` if none). If the id exists, skip, but update `videoUrl` when the user gave a different one. Validate the JSON.
 
+### 3b. Generate share page
+Run `python scripts/gen_share_pages.py`. It writes `s/<week_id>.html` (OG meta plus redirect) for every manifest week. Share links point at these pages.
+
 ### 4. Translate to Spanish, then Burmese
 **Model gate:** translate only on **Gemini (Medium)**. Never translate on a Claude model. On any other model, stop before this step and ask the user to switch.
 

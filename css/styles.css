@@ -977,3 +977,29 @@ html[lang="my"] body {
   .landing-header { padding: 36px 18px 30px; }
   .landing-list { padding: 24px 14px 40px; }
 }
+
+/* ── ACCESSIBILITY ── */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.skip-link {
+  position: absolute;
+  left: 8px; top: -60px;
+  z-index: 1000;
+  background: var(--gold-dark);
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.skip-link:focus { top: 8px; }
+:focus-visible { outline: 3px solid var(--gold-dark); outline-offset: 2px; }
+#q-stage:focus { outline: none; }
+button.q-dot { border: 0; }

@@ -8,11 +8,13 @@
 </head>
 <body>
 
+<a class="skip-link" id="skip-link" href="#q-stage">Skip to content</a>
+
 <!-- ════════════════════════════════════════
      TOP CHROME
 ════════════════════════════════════════ -->
-<div class="top-chrome">
-  <a class="home-btn" id="home-btn" href="index.html" title="Back to home"><span class="arrow">&#8592;</span> <span id="home-btn-label">Home</span></a>
+<header class="top-chrome">
+  <a class="home-btn" id="home-btn" href="index.html" title="Back to home"><span class="arrow" aria-hidden="true">&#8592;</span> <span id="home-btn-label">Home</span></a>
 
   <div class="chrome-title">
     <div class="eyebrow" id="chrome-eyebrow"></div>
@@ -20,15 +22,15 @@
   </div>
 
   <a class="video-link hidden" id="chrome-video-link" href="#" target="_blank" rel="noopener">
-    <span class="video-link-icon">&#9658;</span> <span id="chrome-video-link-label"></span>
+    <span class="video-link-icon" aria-hidden="true">&#9658;</span> <span id="chrome-video-link-label"></span><span class="sr-only" id="chrome-video-link-hint"></span>
   </a>
 
-  <div class="section-pills" id="section-pills">
+  <nav class="section-pills" id="section-pills" aria-label="Study sections">
     <!-- injected by JS (includes the All Questions toggle as the last pill) -->
-  </div>
+  </nav>
 
-  <div class="font-controls" id="font-controls">
-    <span>Aa</span>
+  <div class="font-controls" id="font-controls" role="group" aria-label="Font size">
+    <span aria-hidden="true">Aa</span>
     <button class="font-btn" id="font-btn-smaller" onclick="adjustFont(-1)" title="Smaller">&#8722;</button>
     <button class="font-btn" id="font-btn-larger" onclick="adjustFont(1)"  title="Larger">&#43;</button>
   </div>
@@ -36,19 +38,19 @@
   <div class="lang-switcher" id="lang-switcher"></div>
 
   <button class="theme-toggle-btn" id="theme-toggle-btn" onclick="toggleTheme()" title="Toggle light / dark mode">
-    <span class="theme-icon" id="theme-icon">&#9790;</span>
+    <span class="theme-icon" id="theme-icon" aria-hidden="true">&#9790;</span>
     <span id="theme-label">Dark</span>
   </button>
-</div>
+</header>
 
 <!-- ════════════════════════════════════════
      MAIN WORKSPACE (two-column)
 ════════════════════════════════════════ -->
-<div class="main-workspace" id="main-workspace">
+<main class="main-workspace" id="main-workspace">
 <div class="workspace">
 
   <!-- LEFT PANEL -->
-  <div class="left-panel" id="left-panel">
+  <aside class="left-panel" id="left-panel" aria-label="Passages and voices for this question">
     <div class="left-panel-header" id="left-header">
       <div class="part-badge" id="left-part-badge"></div>
       <div class="part-name" id="left-part-name"></div>
@@ -56,31 +58,31 @@
     <div class="left-panel-body" id="left-body">
       <!-- injected by JS -->
     </div>
-  </div>
+  </aside>
 
   <!-- RIGHT PANEL -->
   <div class="right-panel">
     <div class="q-counter-bar">
-      <div class="q-dots" id="q-dots"></div>
-      <div class="q-of-total" id="q-of-total"></div>
+      <div class="q-dots" id="q-dots" role="group" aria-label="Questions"></div>
+      <div class="q-of-total" id="q-of-total" role="status" aria-live="polite" aria-atomic="true"></div>
     </div>
 
-    <div class="q-stage" id="q-stage">
-      <div class="app-loading" id="app-loading">Loading study&hellip;</div>
+    <div class="q-stage" id="q-stage" tabindex="-1">
+      <div class="app-loading" id="app-loading" role="status">Loading study&hellip;</div>
     </div>
 
     <div class="q-nav-bar">
       <button class="nav-btn" id="btn-prev" onclick="prevQ()" disabled>
-        <span class="arrow">&#8592;</span> <span id="btn-prev-label">Prev</span>
+        <span class="arrow" aria-hidden="true">&#8592;</span> <span id="btn-prev-label">Prev</span>
       </button>
       <button class="nav-btn primary" id="btn-next" onclick="nextQ()">
-        <span id="btn-next-label">Next</span> <span class="arrow">&#8594;</span>
+        <span id="btn-next-label">Next</span> <span class="arrow" aria-hidden="true">&#8594;</span>
       </button>
     </div>
   </div>
 
 </div>
-</div><!-- /main-workspace -->
+</main><!-- /main-workspace -->
 
 <!-- ════════════════════════════════════════
      PRINT-ONLY OVERVIEW (auto-built from data)
@@ -93,7 +95,7 @@
   <span id="page-footer-text"></span>
 </div>
 
-<script src="js/i18n.js?v=4"></script>
-<script src="js/app.js?v=5"></script>
+<script src="js/i18n.js?v=5"></script>
+<script src="js/app.js?v=6"></script>
 </body>
 </html>

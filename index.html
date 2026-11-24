@@ -15,17 +15,19 @@
 
   <div class="landing-search-wrap">
     <div class="landing-search">
-      <span class="ls-icon">&#128269;</span>
-      <input type="search" id="landing-search-input" autocomplete="off" />
-      <button class="ls-clear hidden" id="landing-search-clear" title="Clear" aria-label="Clear search">&times;</button>
+      <span class="ls-icon" aria-hidden="true">&#128269;</span>
+      <input type="search" id="landing-search-input" autocomplete="off" aria-label="Search studies" />
+      <button class="ls-clear hidden" id="landing-search-clear" title="Clear" aria-label="Clear search"><span aria-hidden="true">&times;</span></button>
     </div>
   </div>
 
-  <div class="landing-list" id="landing-list">
-    <div class="landing-empty" id="landing-loading">Loading studies&hellip;</div>
-  </div>
+  <div class="sr-only" id="landing-status" role="status" aria-live="polite" aria-atomic="true"></div>
 
-  <script src="js/i18n.js?v=4"></script>
+  <main class="landing-list" id="landing-list">
+    <div class="landing-empty" id="landing-loading">Loading studies&hellip;</div>
+  </main>
+
+  <script src="js/i18n.js?v=5"></script>
   <script>
     (async function () {
       await I18N.init();
@@ -37,13 +39,20 @@
       const searchInput = document.getElementById('landing-search-input');
       const searchClear = document.getElementById('landing-search-clear');
       searchInput.placeholder = I18N.t('searchPlaceholder');
+      searchInput.setAttribute('aria-label', I18N.t('searchStudies'));
+      searchClear.title = I18N.t('clearSearch');
+      searchClear.setAttribute('aria-label', I18N.t('clearSearch'));
+      const status = document.getElementById('landing-status');
 
       const list = document.getElementById('landing-list');
       let sortedWeeks = [];
 
+      const plain = s => String(s || '').replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').replace(/"/g, '&quot;').trim();
+
       function cardHTML(w) {
+        const videoLabel = `${I18N.t('watchSermon')}: ${plain(w.title || w.id)} (${I18N.t('opensNewTab')})`;
         const videoLink = w.videoUrl
-          ? `<a class="lc-video-link" href="${w.videoUrl}" target="_blank" rel="noopener">&#9658; ${I18N.t('watchSermon')}</a>`
+          ? `<a class="lc-video-link" href="${w.videoUrl}" target="_blank" rel="noopener" aria-label="${videoLabel}"><span aria-hidden="true">&#9658;</span> ${I18N.t('watchSermon')}</a>`
           : '';
         return `
           <div class="landing-card">
@@ -69,9 +78,11 @@
           : sortedWeeks;
         if (!filtered.length) {
           list.innerHTML = `<div class="landing-empty">${I18N.t('searchNoResults')}</div>`;
+          status.textContent = I18N.t('searchNoResults');
           return;
         }
         list.innerHTML = filtered.map(cardHTML).join('');
+        status.textContent = q ? I18N.t('searchResultsCount').replace('{n}', filtered.length) : '';
       }
 
       searchInput.addEventListener('input', () => renderList(searchInput.value));

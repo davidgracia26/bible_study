@@ -90,7 +90,7 @@ async function loadWeek() {
 
 function showAppError(html) {
   const stage = document.getElementById('q-stage');
-  if (stage) stage.innerHTML = `<div class="app-error">${html}</div>`;
+  if (stage) stage.innerHTML = `<div class="app-error" role="alert">${html}</div>`;
   const chromeTitle = document.getElementById('chrome-title');
   if (chromeTitle) chromeTitle.textContent = 'Bible Study';
 }
@@ -148,6 +148,18 @@ function applyStaticStrings() {
   set('chrome-video-link-label', I18N.t('watchSermon'));
   set('btn-prev-label', I18N.t('prev'));
   set('btn-next-label', I18N.t('next'));
+  set('chrome-video-link-hint', ` (${I18N.t('opensNewTab')})`);
+  set('skip-link', I18N.t('skipToContent'));
+  const setAria = (id, key) => {
+    const el = document.getElementById(id);
+    if (el) el.setAttribute('aria-label', I18N.t(key));
+  };
+  setAria('section-pills', 'studySections');
+  setAria('font-controls', 'fontSize');
+  setAria('q-dots', 'questionsLabel');
+  setAria('left-panel', 'passagesPanel');
+  setAria('font-btn-smaller', 'smaller');
+  setAria('font-btn-larger', 'larger');
   const homeBtn = document.getElementById('home-btn');
   if (homeBtn) homeBtn.title = I18N.t('backToHome');
   const themeBtn = document.getElementById('theme-toggle-btn');
@@ -194,17 +206,17 @@ function buildSectionPills() {
   const hasVoices = Object.keys(DATA.scholars || {}).length > 0;
   let html = '';
   if (hasSummary()) {
-    html += `<button onclick="jumpToSection('summary')" data-target="summary">${I18N.t('summary')}</button>`;
+    html += `<button type="button" onclick="jumpToSection('summary')" data-target="summary">${I18N.t('summary')}</button>`;
   }
-  html += `<button onclick="jumpToSection('passages')" data-target="passages">${I18N.t('passages')}</button>`;
+  html += `<button type="button" onclick="jumpToSection('passages')" data-target="passages">${I18N.t('passages')}</button>`;
   DATA.sections.forEach((sec, i) => {
-    html += `<button onclick="jumpToSection('${i}')" data-target="${i}">${sec.label}</button>`;
+    html += `<button type="button" onclick="jumpToSection('${i}')" data-target="${i}">${sec.label}</button>`;
   });
   if (hasVoices) {
-    html += `<button onclick="jumpToSection('voices')" data-target="voices">${I18N.t('voices')}</button>`;
+    html += `<button type="button" onclick="jumpToSection('voices')" data-target="voices">${I18N.t('voices')}</button>`;
   }
-  html += `<button onclick="jumpToSection('prayer')" data-target="prayer">${I18N.t('prayer')}</button>`;
-  html += `<button class="list-toggle-btn" onclick="jumpToSection('allquestions')" data-target="allquestions"><span class="ltb-text">${I18N.t('allQuestions')}</span> &#9776;</button>`;
+  html += `<button type="button" onclick="jumpToSection('prayer')" data-target="prayer">${I18N.t('prayer')}</button>`;
+  html += `<button type="button" class="list-toggle-btn" onclick="jumpToSection('allquestions')" data-target="allquestions"><span class="ltb-text">${I18N.t('allQuestions')}</span> <span aria-hidden="true">&#9776;</span></button>`;
   document.getElementById('section-pills').innerHTML = html;
 }
 
@@ -215,7 +227,7 @@ function allQuestionsHTML() {
     DATA.questions.forEach((q, qIdx) => {
       if (q.section !== sIdx) return;
       html += `
-        <div class="list-q-item" id="li-${qIdx}" onclick="goToQuestion(${qIdx});">
+        <div class="list-q-item" id="li-${qIdx}" role="button" tabindex="0" onclick="goToQuestion(${qIdx});">
           <div class="lq-num">${q.n}</div>
           <div class="lq-text">${q.text}</div>
         </div>`;
@@ -256,12 +268,20 @@ function summaryHTML() {
   return html;
 }
 
+function newTabHint() {
+  return `<span class="sr-only"> (${I18N.t('opensNewTab')})</span>`;
+}
+
+function stageHeading(text) {
+  return `<div class="q-num-large" role="heading" aria-level="2">${text}</div>`;
+}
+
 function passagesHTML() {
   let html = '';
   Object.values(DATA.passages || {}).forEach(p => {
     html += `
       <div class="sp-passage-card">
-        <div class="sp-ref"><a href="${p.link}" target="_blank" rel="noopener">${p.ref}</a></div>
+        <div class="sp-ref"><a href="${p.link}" target="_blank" rel="noopener">${p.ref}${newTabHint()}</a></div>
         <div class="sp-text">${p.text}</div>
         <div class="sp-trans">${DATA.meta.translation || 'NIV'}</div>
       </div>`;
@@ -343,6 +363,9 @@ function render() {
   const totalEl = document.getElementById('q-of-total');
 
   const leftPanel = document.getElementById('left-panel');
+  const dotsEl = document.getElementById('q-dots');
+  const focusInDots = dotsEl.contains(document.activeElement);
+  const focusInStage = stage.contains(document.activeElement);
 
   if (view.type === 'question') {
     const q = DATA.questions[view.qIndex];
@@ -352,11 +375,11 @@ function render() {
     const refsHTML = q.refs.map(r => `<span>${r}</span>`).join('');
     stage.className = 'q-stage';
     stage.innerHTML = `
-      <div class="q-num-large">${I18N.t('question')} ${q.n}</div>
+      ${stageHeading(`${I18N.t('question')} ${q.n}`)}
       <div class="q-text-main">${q.text}</div>
       <div class="q-refs">${refsHTML}</div>
-      <button class="copy-link-btn" onclick="copyQuestionLink(${q.n}, this)" title="${I18N.t('copyLink')}">
-        <span class="clb-icon">&#128279;</span> <span class="clb-label">${I18N.t('copyLink')}</span>
+      <button type="button" class="copy-link-btn" onclick="copyQuestionLink(${q.n}, this)" title="${I18N.t('copyLink')}">
+        <span class="clb-icon" aria-hidden="true">&#128279;</span> <span class="clb-label" role="status" aria-live="polite">${I18N.t('copyLink')}</span>
       </button>
     `;
     totalEl.innerHTML = `<strong>Q${q.n}</strong> ${I18N.t('of')} ${DATA.questions.length}`;
@@ -364,19 +387,19 @@ function render() {
     leftPanel.classList.add('hidden');
     stage.className = 'q-stage list-view';
     if (view.type === 'summary') {
-      stage.innerHTML = `<div class="q-num-large">${I18N.t('sermonSummary')}</div>${summaryHTML()}`;
+      stage.innerHTML = `${stageHeading(I18N.t('sermonSummary'))}${summaryHTML()}`;
       totalEl.textContent = I18N.t('sermonSummary');
     } else if (view.type === 'passages') {
-      stage.innerHTML = `<div class="q-num-large">${I18N.t('scripturePassages')}</div>${passagesHTML()}`;
+      stage.innerHTML = `${stageHeading(I18N.t('scripturePassages'))}${passagesHTML()}`;
       totalEl.textContent = I18N.t('scripturePassages');
     } else if (view.type === 'voices') {
-      stage.innerHTML = `<div class="q-num-large">${I18N.t('voicesForDiscussion')}</div>${voicesHTML()}`;
+      stage.innerHTML = `${stageHeading(I18N.t('voicesForDiscussion'))}${voicesHTML()}`;
       totalEl.textContent = I18N.t('voicesForDiscussion');
     } else if (view.type === 'prayer') {
-      stage.innerHTML = `<div class="q-num-large">${I18N.t('prayer')}</div>${prayerHTML()}`;
+      stage.innerHTML = `${stageHeading(I18N.t('prayer'))}${prayerHTML()}`;
       totalEl.textContent = I18N.t('prayer');
     } else if (view.type === 'allquestions') {
-      stage.innerHTML = `<div class="q-num-large">${I18N.t('allQuestions')}</div>${allQuestionsHTML()}`;
+      stage.innerHTML = `${stageHeading(I18N.t('allQuestions'))}${allQuestionsHTML()}`;
       totalEl.textContent = I18N.t('allQuestions');
     }
   }
@@ -385,33 +408,50 @@ function render() {
   let dotsHTML = '';
   DATA.questions.forEach((_, i) => {
     let cls = 'q-dot';
-    if (view.type === 'question' && i === view.qIndex) cls += ' active';
-    dotsHTML += `<div class="${cls}" onclick="goToQuestion(${i})" title="Q${i+1}"></div>`;
+    let cur = '';
+    if (view.type === 'question' && i === view.qIndex) { cls += ' active'; cur = ' aria-current="true"'; }
+    dotsHTML += `<button type="button" class="${cls}" onclick="goToQuestion(${i})" title="Q${i+1}" aria-label="${I18N.t('goToQuestion')} ${i+1}"${cur}></button>`;
   });
-  document.getElementById('q-dots').innerHTML = dotsHTML;
+  dotsEl.innerHTML = dotsHTML;
 
   /* Nav buttons */
   document.getElementById('btn-prev').disabled = current === 0;
   document.getElementById('btn-next').disabled = current === VIEWS.length - 1;
   document.getElementById('btn-next').innerHTML = current === VIEWS.length - 1
     ? I18N.t('theEnd')
-    : `${I18N.t('next')} <span class="arrow">&#8594;</span>`;
+    : `${I18N.t('next')} <span class="arrow" aria-hidden="true">&#8594;</span>`;
 
   /* Section pills */
   document.querySelectorAll('.section-pills button[data-target]').forEach(btn => {
     btn.classList.remove('active');
+    btn.removeAttribute('aria-current');
   });
   const activeTarget = view.type === 'question'
     ? String(DATA.questions[view.qIndex].section)
     : view.type;
   const activePill = document.querySelector(`.section-pills button[data-target="${activeTarget}"]`);
-  if (activePill) activePill.classList.add('active');
+  if (activePill) {
+    activePill.classList.add('active');
+    activePill.setAttribute('aria-current', 'true');
+  }
 
   /* All-questions list (when visible) */
   document.querySelectorAll('.list-q-item').forEach((el, i) => {
     el.classList.remove('active-item');
-    if (view.type === 'question' && i === view.qIndex) el.classList.add('active-item');
+    el.removeAttribute('aria-current');
+    if (view.type === 'question' && i === view.qIndex) {
+      el.classList.add('active-item');
+      el.setAttribute('aria-current', 'true');
+    }
   });
+
+  /* Rebuilt controls drop keyboard focus; hand it back */
+  if (focusInDots) {
+    const activeDot = dotsEl.querySelector('.q-dot.active');
+    if (activeDot) activeDot.focus();
+  } else if (focusInStage && !stage.contains(document.activeElement)) {
+    stage.focus();
+  }
 }
 
 function renderLeftPanel(q) {
@@ -429,7 +469,7 @@ function renderLeftPanel(q) {
     if (!p) return;
     leftHTML += `
       <div class="passage-block">
-        <div class="p-ref"><a href="${p.link}" target="_blank" rel="noopener">${p.ref}</a></div>
+        <div class="p-ref"><a href="${p.link}" target="_blank" rel="noopener">${p.ref}${newTabHint()}</a></div>
         <div class="p-text">${p.text}</div>
         <div class="p-trans">${DATA.meta.translation || 'NIV'}</div>
       </div>`;
@@ -540,7 +580,13 @@ function adjustFont(dir) {
 ════════════════════════════════════════ */
 document.addEventListener('keydown', e => {
   if (!DATA) return;
-  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+  if (['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName)) return;
+  if (e.ctrlKey || e.metaKey || e.altKey) return;
+  if ((e.key === 'Enter' || e.key === ' ') && e.target.classList && e.target.classList.contains('list-q-item')) {
+    e.preventDefault();
+    e.target.click();
+    return;
+  }
   if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); nextQ(); }
   if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   { e.preventDefault(); prevQ(); }
   if (e.key === 'd' || e.key === 'D') { toggleTheme(); }

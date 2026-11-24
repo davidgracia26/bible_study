@@ -75,6 +75,6 @@ python -m http.server 8000
 Open `http://localhost:8000/index.html` and `http://localhost:8000/study.html?week=<id>`. Check the console for errors. Validate edited JSON: `python -m json.tool data/<week_id>/<week_id>.json`.
 
 ## Cache-busting
-`index.html` and `study.html` load `js/i18n.js` and `js/app.js` with `?v=N` (e.g. `js/app.js?v=2`). Browsers cache these hard. When a change to either script matters to returning visitors, bump `?v=N` in every HTML file that references it.
+`index.html` and `study.html` load `css/styles.css`, `js/i18n.js` and `js/app.js` with `?v=N` (e.g. `js/app.js?v=2`). Browsers cache these hard. When a change to any of them matters to returning visitors, bump `?v=N` in every HTML file that references it. Bump the CSS version whenever HTML and CSS change together, or returning visitors get new markup with old styles.
 
 Data files (`manifest.json`, week JSONs, `strings.json`, `languages.json`) carry no version. Every `fetch()` of them uses `{ cache: 'no-cache' }` so new weeks show at once (GitHub Pages otherwise sends `max-age=600`). Keep that option on every new data fetch.
